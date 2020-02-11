@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">movetto</string>
+    <string name="get_started">Get Started</string>
+    <string name="continued">Continue</string>
+    <string name="movetto">Movetto</string>
+    <string name="movetto_shape_logo">movetto logo shape</string>
+    <string name="movetto_text_logo">movetto logo text</string>
+    <string name="bienvenido_a_movetto">Bienvenido a MOVETTO</string>
+    <string name="introduce_tu_email">"  Introduce tu email"</string>
+    <string name="reg_strate_o_inicia_sesi_n_con_tu_email">Regístrate o inicia sesión con tu email</string>
+    <string name="si_continuas_aceptar_s_nuestra_pol_tica_de_privacidad_y_las_condiciones_de_uso_general">Si continuas, aceptarás nuestra Política de Privacidad y las Condiciones de Uso General</string>
+    <string name="introduce_un_email_v_lido">Introduce un email válido</string>
+    <string name="todo">TODO</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font app:fontStyle="normal" app:fontWeight="200" app:font="@font/kulim_park_extra_light"/>
+    <font app:fontStyle="italic" app:fontWeight="200" app:font="@font/kulim_park_extra_light_italic"/>
+    <font app:fontStyle="normal" app:fontWeight="300" app:font="@font/kulim_park_light"/>
+    <font app:fontStyle="italic" app:fontWeight="300" app:font="@font/kulim_park_light_italic"/>
+    <font app:fontStyle="normal" app:fontWeight="400" app:font="@font/kulim_park_regular"/>
+    <font app:fontStyle="italic" app:fontWeight="400" app:font="@font/kulim_park_italic"/>
+    <font app:fontStyle="normal" app:fontWeight="600" app:font="@font/kulim_park_semibold"/>
+    <font app:fontStyle="italic" app:fontWeight="600" app:font="@font/kulim_park_semibold_italic"/>
+    <font app:fontStyle="normal" app:fontWeight="400" app:font="@font/kulim_park_bold"/>
+    <font app:fontStyle="italic" app:fontWeight="400" app:font="@font/kulim_park_bold_italic"/>
+</font-family>
