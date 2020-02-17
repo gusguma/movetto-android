@@ -11,4 +11,5 @@
     <string name="si_continuas_aceptar_s_nuestra_pol_tica_de_privacidad_y_las_condiciones_de_uso_general">Si continuas, aceptarás nuestra Política de Privacidad y las Condiciones de Uso General</string>
     <string name="introduce_un_email_v_lido">Introduce un email válido</string>
     <string name="todo">TODO</string>
+    <string name="revisar_politica_privacidad">Review Privacy Policy</string>
 </resources>

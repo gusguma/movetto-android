@@ -9,6 +9,4 @@ public class MovettoButton extends AppCompatButton {
     public MovettoButton(Context context){
         super(context);
     }
-
-
 }
