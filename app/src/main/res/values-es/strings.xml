@@ -13,4 +13,5 @@
     <string name="introduce_un_email_v_lido">Introduce un email válido</string>
     <string name="todo">TODO</string>
     <string name="revisar_politica_privacidad">Revisar Política Privacidad</string>
+    <string name="email_validate_ko">Email Incorrecto</string>
 </resources>

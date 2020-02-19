@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void getEmailActivity(View view) {
+    public void goEmailActivity(View view) {
         Intent intent = new Intent(this, EmailActivity.class);
         startActivity(intent);
         finish();
