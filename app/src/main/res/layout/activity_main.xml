@@ -64,7 +64,7 @@
         android:alpha="1"
         android:backgroundTint="@color/green_900"
         android:fontFamily="@font/kulim_park_bold"
-        android:onClick="goEmailActivity"
+        android:onClick="getFirebaseUIActivity"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:shadowColor="@android:color/black"

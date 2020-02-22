@@ -27,7 +27,7 @@
         app:srcCompat="@drawable/welcome_image" />
 
     <Button
-        android:id="@+id/button_privacy"
+        android:id="@+id/button_terms_conditions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"

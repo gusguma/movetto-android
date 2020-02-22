@@ -1,9 +1,12 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.Movetto.Main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:colorAccent">@color/colorAccent</item>
+    </style>
+    <!-- FirebaseUI theme. -->
+    <style name="Theme.Movetto.FirebaseUI" parent="Theme.Movetto.Main">
+        <item name="android:buttonStyle">@style/FirebaseUI.Button</item>
     </style>
 </resources>

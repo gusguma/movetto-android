@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void goEmailActivity(View view) {
-        Intent intent = new Intent(this, EmailActivity.class);
+    public void getFirebaseUIActivity(View view) {
+        Intent intent = new Intent(this, FirebaseUIActivity.class);
         startActivity(intent);
         finish();
     }

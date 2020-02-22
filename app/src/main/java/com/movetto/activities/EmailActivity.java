@@ -9,20 +9,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.firebase.ui.auth.AuthUI;
 import com.movetto.R;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class EmailActivity extends AppCompatActivity {
+
+    List<AuthUI.IdpConfig> providers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
-        Button continueButton = findViewById(R.id.button_continue);
-        Button privacyButton = findViewById(R.id.button_privacy);
-        continueButtonListener(continueButton);
-        privacyButtonListener(privacyButton);
+        getProviders();
     }
 
     private boolean emailValidate(String email){
@@ -56,5 +58,12 @@ public class EmailActivity extends AppCompatActivity {
                 goPrivacyActivity(v);
             }
         });
+    }
+
+    private void getProviders(){
+        providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+
     }
 }
