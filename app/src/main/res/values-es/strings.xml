@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">movetto</string>
+    <string name="app_name">Movetto</string>
     <string name="continued">Continuar</string>
     <string name="get_started">Comencemos</string>
     <string name="movetto">Movetto</string>
@@ -9,8 +9,14 @@
     <string name="bienvenido_a_movetto">Bienvenido a MOVETTO</string>
     <string name="si_continuas_aceptar_s_nuestra_pol_tica_de_privacidad_y_las_condiciones_de_uso_general">Si continuas, aceptarás nuestra Política de Privacidad y las Condiciones de Uso General</string>
     <string name="introduce_tu_email">"  Introduce tu email"</string>
-    <string name="reg_strate_o_inicia_sesi_n_con_tu_email">Regístrate o inicia sesión con tu email</string>
+    <string name="reg_strate_o_inicia_sesi_n_con_tu_email">Regístrate o inicia sesión</string>
     <string name="introduce_un_email_v_lido">Introduce un email válido</string>
     <string name="todo">TODO</string>
     <string name="revisar_politica_privacidad">Revisar Política Privacidad</string>
+    <string name="email_validate_ko">Email Incorrecto</string>
+    <string name="revisar_terminos_condiciones">Terminos y Condiciones</string>
+    <string name="inicio_sesion_email">Iniciar sesión con Email</string>
+    <string name="inicio_sesion_google">Iniciar sesión con Google</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="session_closed">Sesion Finalizada</string>
 </resources>

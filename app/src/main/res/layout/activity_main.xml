@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/background_welcome"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:contentDescription="@string/movetto"
         android:scaleX="1.5"
         android:scaleY="1.5"
@@ -47,7 +47,7 @@
         android:layout_marginBottom="64dp"
         android:contentDescription="@string/todo"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/button_welcome"
+        app:layout_constraintBottom_toTopOf="@+id/button_continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logotipo_welcome"
@@ -55,7 +55,7 @@
         app:srcCompat="@drawable/welcome_text" />
 
     <Button
-        android:id="@+id/button_welcome"
+        android:id="@+id/button_continue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -64,7 +64,7 @@
         android:alpha="1"
         android:backgroundTint="@color/green_900"
         android:fontFamily="@font/kulim_park_bold"
-        android:onClick="getEmailActivity"
+        android:onClick="getFirebaseUIActivity"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:shadowColor="@android:color/black"
