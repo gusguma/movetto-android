@@ -8,7 +8,7 @@
     <string name="bienvenido_a_movetto">Welcome to MOVETTO</string>
     <string name="introduce_tu_email">"  Introduce tu email"</string>
     <string name="reg_strate_o_inicia_sesi_n_con_tu_email">Sign Up or Sign In</string>
-    <string name="si_continuas_aceptar_s_nuestra_pol_tica_de_privacidad_y_las_condiciones_de_uso_general">If continue , you accept  our Privacy Policy and Use Terms and Conditions</string>
+    <string name="si_continuas_aceptar_s_nuestra_pol_tica_de_privacidad_y_las_condiciones_de_uso_general" translatable="false">If continue , you accept  our Privacy Policy and Use Terms and Conditions</string>
     <string name="introduce_un_email_v_lido">Introduce un email válido</string>
     <string name="todo">TODO</string>
     <string name="revisar_politica_privacidad">Review Privacy Policy</string>
@@ -16,4 +16,36 @@
     <string name="revisar_terminos_condiciones">Terms and Conditions</string>
     <string name="inicio_sesion_email">Sign in with Email</string>
     <string name="inicio_sesion_google">Sign in with Google</string>
+    <string name="cerrar_sesion">Close Session</string>
+    <string name="session_closed">Session Closed</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

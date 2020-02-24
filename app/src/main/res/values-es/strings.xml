@@ -17,4 +17,6 @@
     <string name="revisar_terminos_condiciones">Terminos y Condiciones</string>
     <string name="inicio_sesion_email">Iniciar sesión con Email</string>
     <string name="inicio_sesion_google">Iniciar sesión con Google</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="session_closed">Sesion Finalizada</string>
 </resources>

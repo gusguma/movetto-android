@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.movetto">
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_movetto"
@@ -8,21 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Movetto.Main">
-        <activity android:name="com.movetto.activities.FirebaseUIActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.movetto.activities.EmailActivity"></activity>
-        <activity android:name="com.movetto.activities.MainActivity">
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity
+            android:name=".activities.MainMenuActivity"
+            android:label="@string/title_activity_main_menu"
+            android:theme="@style/Theme.Movetto.Main.NoActionBar" />
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.FirebaseUIActivity"
+            android:theme="@style/Theme.Movetto.FirebaseUI" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>
