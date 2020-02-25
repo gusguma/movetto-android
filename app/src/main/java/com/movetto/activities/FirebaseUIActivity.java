@@ -37,13 +37,12 @@ public class FirebaseUIActivity extends AppCompatActivity {
         startActivityForResult(
                 AuthUI.getInstance().createSignInIntentBuilder()
                         .setAuthMethodPickerLayout(customLayout)
-                        .setAvailableProviders(providers)//provider list
+                        .setAvailableProviders(providers)
                         .setTosAndPrivacyPolicyUrls(
                                 "https://example.com/terms.html",
                                 "https://example.com/privacy.html")
                         .setIsSmartLockEnabled(false)
-                        .setTheme(R.style.Theme_Movetto_FirebaseUI)
-                        .setLogo(R.drawable.logotipo)
+                        .setTheme(R.style.Movetto_FirebaseUI)
                         .build()
                 ,RC_SIGN_IN);
     }
@@ -78,20 +77,12 @@ public class FirebaseUIActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == RC_SIGN_IN) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
-
             if (resultCode == RESULT_OK) {
-                // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 getEmailActivity();
-                // ...
             } else {
-                // Sign in failed. If response is null the user canceled the
-                // sign-in flow using the back button. Otherwise check
-                // response.getError().getErrorCode() and handle the error.
-                // ...
                 getMainActivity();
             }
         }
@@ -108,8 +99,4 @@ public class FirebaseUIActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
-
-
 }
