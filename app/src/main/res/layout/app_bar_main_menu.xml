@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/red_900"
-        android:theme="@style/Theme.Movetto.Main.AppBarOverlay">
+        android:theme="@style/Theme.Movetto.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/red_900"
-            app:popupTheme="@style/Theme.Movetto.Main.PopupOverlay" />
+            app:popupTheme="@style/Theme.Movetto.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
