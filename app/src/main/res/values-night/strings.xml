@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account">Account</string>
+    <string name="my_account">My Account</string>
+    <string name="balance">Balance</string>
+    <string name="wallet">Wallet</string>
+</resources>

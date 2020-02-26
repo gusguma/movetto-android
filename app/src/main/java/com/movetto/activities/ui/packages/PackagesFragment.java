@@ -1,4 +1,4 @@
-package com.movetto.activities.ui.share;
+package com.movetto.activities.ui.packages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.movetto.R;
 
-public class ShareFragment extends Fragment {
+public class PackagesFragment extends Fragment {
 
-    private ShareViewModel shareViewModel;
+    private PackagesViewModel packagesViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        shareViewModel =
-                new ViewModelProvider(this).get(ShareViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
-        final TextView textView = root.findViewById(R.id.text_share);
-        shareViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        packagesViewModel =
+                new ViewModelProvider(this).get(PackagesViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        final TextView textView = root.findViewById(R.id.text_slideshow);
+        packagesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

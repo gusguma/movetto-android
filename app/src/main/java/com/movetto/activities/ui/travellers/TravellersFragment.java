@@ -1,4 +1,4 @@
-package com.movetto.activities.ui.gallery;
+package com.movetto.activities.ui.travellers;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.movetto.R;
 
-public class GalleryFragment extends Fragment {
+public class TravellersFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private TravellersViewModel travellersViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        travellersViewModel =
+                new ViewModelProvider(this).get(TravellersViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_tools, container, false);
+        final TextView textView = root.findViewById(R.id.text_tools);
+        travellersViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,4 +1,4 @@
-package com.movetto.activities.ui.send;
+package com.movetto.activities.ui.wallet;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.movetto.R;
 
-public class SendFragment extends Fragment {
+public class WalletFragment extends Fragment {
 
-    private SendViewModel sendViewModel;
+    private WalletViewModel walletViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sendViewModel =
-                new ViewModelProvider(this).get(SendViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
-        final TextView textView = root.findViewById(R.id.text_send);
-        sendViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        walletViewModel =
+                new ViewModelProvider(this).get(WalletViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_share, container, false);
+        final TextView textView = root.findViewById(R.id.text_share);
+        walletViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

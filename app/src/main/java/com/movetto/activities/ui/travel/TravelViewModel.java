@@ -1,16 +1,16 @@
-package com.movetto.activities.ui.send;
+package com.movetto.activities.ui.travel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SendViewModel extends ViewModel {
+public class TravelViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SendViewModel() {
+    public TravelViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is send fragment");
+        mText.setValue("This is travel fragment");
     }
 
     public LiveData<String> getText() {

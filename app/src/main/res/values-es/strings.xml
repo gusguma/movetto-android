@@ -19,4 +19,25 @@
     <string name="inicio_sesion_google">Iniciar sesión con Google</string>
     <string name="cerrar_sesion">Cerrar Sesión</string>
     <string name="session_closed">Sesion Finalizada</string>
+    <string name="account">Cuenta</string>
+    <string name="my_account">Mi Cuenta</string>
+    <string name="travel">Viajes</string>
+    <string name="travellers">Viajeros</string>
+    <string name="shipments">Envios</string>
+    <string name="packages">Paquetes</string>
+    <string name="balance">Balance</string>
+    <string name="wallet">Monedero</string>
+    <string name="action_settings">Configuración</string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="attachment_title">"    "</string>
+    <string name="messages_header">Mensajes</string>
+    <string name="navigation_drawer_close">Cerrar Menu Navegación</string>
+    <string name="navigation_drawer_open">Abrir Menu Navegación</string>
+    <string name="reply_title">Acción por Defecto</string>
+    <string name="nav_header_desc">Cabecera Navegación</string>
+    <string name="signature_title">Tu Firma</string>
+    <string name="sync_header">Sincronizar</string>
+    <string name="sync_title">Sincronizar Email Periodicamente</string>
+    <string name="title_activity_main_menu">Menu Principal</string>
+    <string name="title_activity_settings">Configuración</string>
 </resources>
