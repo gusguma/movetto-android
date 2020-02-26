@@ -1,16 +1,16 @@
-package com.movetto.activities.ui.tools;
+package com.movetto.activities.ui.shipments;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ToolsViewModel extends ViewModel {
+public class ShipmentsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ToolsViewModel() {
+    public ShipmentsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is tools fragment");
+        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {

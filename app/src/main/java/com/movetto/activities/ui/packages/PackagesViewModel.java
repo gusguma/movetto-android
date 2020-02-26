@@ -1,16 +1,16 @@
-package com.movetto.activities.ui.gallery;
+package com.movetto.activities.ui.packages;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class PackagesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public PackagesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is packages fragment");
     }
 
     public LiveData<String> getText() {

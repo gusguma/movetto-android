@@ -12,16 +12,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.os.HandlerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -47,7 +42,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -67,11 +61,7 @@ public class MainMenuActivity extends AppCompatActivity {
         floatingActionButtonBuilder();
         setmAppBarConfiguration();
         controllerBuilder();
-        try {
-            userDataUIBuilder();
-        } catch (IOException e) {
-            Log.e("loadUserError", "Get Data User error");
-        }
+        userDataUIBuilder();
     }
 
     @Override
@@ -108,8 +98,8 @@ public class MainMenuActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_shipments, R.id.nav_travel, R.id.nav_packages,
+                R.id.nav_travellers, R.id.nav_account, R.id.nav_wallet)
                 .setDrawerLayout(drawerLayout)
                 .build();
     }
@@ -120,7 +110,7 @@ public class MainMenuActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    private void userDataUIBuilder() throws IOException {
+    private void userDataUIBuilder() {
         View headerView = navigationView.getHeaderView(0);
         TextView userNameTextView = headerView.findViewById(R.id.user_display_name);
         TextView userEmailTextView = headerView.findViewById(R.id.user_email);
@@ -129,13 +119,17 @@ public class MainMenuActivity extends AppCompatActivity {
         getUserImage();
     }
 
-    private void getUserImage() throws IOException {
+    private void getUserImage() {
         new Thread(new Runnable() {
+            String url;
+            Bitmap avatarImage = null;
             ImageView imageView = navigationView
                     .getHeaderView(0)
                     .findViewById(R.id.user_avatar);
-            String url = user.getPhotoUrl().toString();
-            Bitmap avatarImage = null;
+            {
+                if (user.getPhotoUrl() != null)
+                url = user.getPhotoUrl().toString();
+            }
             public void run() {
                 try {
                     URL aURL = new URL(url);
