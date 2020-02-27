@@ -7,19 +7,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_shipments"
-            android:icon="@drawable/ic_local_shipping_black_24dp"
+            android:icon="@drawable/ic_018_fast_delivery"
             android:title="@string/shipments" />
         <item
             android:id="@+id/nav_travel"
-            android:icon="@drawable/ic_local_taxi_black_24dp"
+            android:icon="@drawable/ic_032_route"
             android:title="@string/travel" />
         <item
             android:id="@+id/nav_packages"
-            android:icon="@drawable/ic_work_black_24dp"
+            android:icon="@drawable/ic_006_boxes"
             android:title="@string/packages" />
         <item
             android:id="@+id/nav_travellers"
-            android:icon="@drawable/ic_people_black_24dp"
+            android:icon="@drawable/ic_005_customer"
             android:title="@string/travellers" />
     </group>
     <item
