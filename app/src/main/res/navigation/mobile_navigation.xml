@@ -47,15 +47,30 @@
 
     <fragment
         android:id="@+id/nav_account"
-        android:name="com.movetto.activities.ui.wallet.WalletFragment"
+        android:name="com.movetto.activities.ui.account.AccountLandFragment"
         android:label="@string/my_account"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_account_land" >
+        <action
+            android:id="@+id/action_nav_account_to_nav_account_customer"
+            app:destination="@id/nav_account_customer"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_account_to_nav_account_partner"
+            app:destination="@id/nav_account_partner"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_wallet"
-        android:name="com.movetto.activities.ui.account.AccountFragment"
+        android:name="com.movetto.activities.ui.wallet.WalletFragment"
         android:label="@string/wallet"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_share" />
     <fragment
         android:id="@+id/nav_news"
         android:name="com.movetto.activities.ui.news.NewsFragment"
@@ -71,4 +86,14 @@
         android:name="com.movetto.activities.ui.travel.TravelCreateFragment"
         android:label="@string/new_travel"
         tools:layout="@layout/fragment_travel_create" />
+    <fragment
+        android:id="@+id/nav_account_customer"
+        android:name="com.movetto.activities.ui.account.AccountCustomerFragment"
+        android:label="Cuenta de Cliente"
+        tools:layout="@layout/fragment_account_customer" />
+    <fragment
+        android:id="@+id/nav_account_partner"
+        android:name="com.movetto.activities.ui.account.AccountPartnerFragment"
+        android:label="Cuenta de Socio"
+        tools:layout="@layout/fragment_account_partner" />
 </navigation>
