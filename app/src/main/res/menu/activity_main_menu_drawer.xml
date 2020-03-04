@@ -2,25 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
-
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_shipments"
-            android:icon="@drawable/ic_local_shipping_black_24dp"
+            android:icon="@drawable/ic_menu_shipments_linear"
             android:title="@string/shipments" />
         <item
             android:id="@+id/nav_travel"
-            android:icon="@drawable/ic_local_taxi_black_24dp"
+            android:icon="@drawable/ic_menu_travel_linear"
             android:title="@string/travel" />
         <item
             android:id="@+id/nav_packages"
-            android:icon="@drawable/ic_work_black_24dp"
+            android:icon="@drawable/ic_menu_packages_linear"
             android:title="@string/packages" />
         <item
             android:id="@+id/nav_travellers"
-            android:icon="@drawable/ic_people_black_24dp"
+            android:icon="@drawable/ic_menu_travellers_linear"
             android:title="@string/travellers" />
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_menu_news_linear"
+            android:title="@string/news" />
     </group>
     <item
         android:id="@+id/account"
@@ -28,14 +30,12 @@
         <menu>
             <item
                 android:id="@+id/nav_account"
-                android:icon="@drawable/ic_account_circle_black_24dp"
+                android:icon="@drawable/ic_menu_account_linear"
                 android:title="@string/my_account" />
             <item
                 android:id="@+id/nav_wallet"
-                android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+                android:icon="@drawable/ic_menu_wallet_linear"
                 android:title="@string/wallet" />
         </menu>
     </item>
-
-
 </menu>
