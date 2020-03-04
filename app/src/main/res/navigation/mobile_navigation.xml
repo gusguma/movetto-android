@@ -3,31 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_shipments">
+    app:startDestination="@+id/nav_news">
 
     <fragment
         android:id="@+id/nav_shipments"
-        android:name="com.movetto.activities.ui.shipments.ShipmentsFragment"
+        android:name="com.movetto.activities.ui.shipments.ShipmentsLandFragment"
         android:label="@string/shipments"
-        tools:layout="@layout/fragment_shipments" />
+        tools:layout="@layout/fragment_shipment_land">
+        <action
+            android:id="@+id/action_nav_shipments_to_nav_shipments_create"
+            app:destination="@id/nav_shipments_create"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_travel"
-        android:name="com.movetto.activities.ui.travel.TravelFragment"
+        android:name="com.movetto.activities.ui.travel.TravelLandFragment"
         android:label="@string/travel"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_travel_land" >
+        <action
+            android:id="@+id/action_nav_travel_to_nav_travel_create"
+            app:destination="@id/nav_travel_create"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_packages"
-        android:name="com.movetto.activities.ui.packages.PackagesFragment"
+        android:name="com.movetto.activities.ui.packages.PackagesLandFragment"
         android:label="@string/packages"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_packages_land" />
 
     <fragment
         android:id="@+id/nav_travellers"
-        android:name="com.movetto.activities.ui.travellers.TravellersFragment"
+        android:name="com.movetto.activities.ui.travellers.TravellersLandFragment"
         android:label="@string/travellers"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_traveller_land" />
 
     <fragment
         android:id="@+id/nav_account"
@@ -40,4 +56,19 @@
         android:name="com.movetto.activities.ui.account.AccountFragment"
         android:label="@string/wallet"
         tools:layout="@layout/fragment_send" />
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.movetto.activities.ui.news.NewsFragment"
+        android:label="Noticias"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/nav_shipments_create"
+        android:name="com.movetto.activities.ui.shipments.ShipmentCreateFragment"
+        android:label="@string/new_shipment"
+        tools:layout="@layout/fragment_shipment_create" />
+    <fragment
+        android:id="@+id/nav_travel_create"
+        android:name="com.movetto.activities.ui.travel.TravelCreateFragment"
+        android:label="@string/new_travel"
+        tools:layout="@layout/fragment_travel_create" />
 </navigation>

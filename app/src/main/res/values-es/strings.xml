@@ -21,10 +21,10 @@
     <string name="session_closed">Sesion Finalizada</string>
     <string name="account">Cuenta</string>
     <string name="my_account">Mi Cuenta</string>
-    <string name="travel">Viajes</string>
-    <string name="travellers">Viajeros</string>
-    <string name="shipments">Envios</string>
-    <string name="packages">Paquetes</string>
+    <string name="travel">Mis Viajes</string>
+    <string name="travellers">Viajeros Disponibles</string>
+    <string name="shipments">Mis Envios</string>
+    <string name="packages">Paquetes Disponibles</string>
     <string name="balance">Balance</string>
     <string name="wallet">Monedero</string>
     <string name="action_settings">Configuración</string>
@@ -40,4 +40,19 @@
     <string name="sync_title">Sincronizar Email Periodicamente</string>
     <string name="title_activity_main_menu">Menu Principal</string>
     <string name="title_activity_settings">Configuración</string>
+    <string name="news">Novedades</string>
+    <string name="shipment_list">Listado Envíos</string>
+    <string name="new_shipment">Nuevo Envío</string>
+    <string name="shipment_subtitle" >En esta sección, podrás añadir, mostrar y ver el estado de todos tus envíos.</string>
+    <string name="shipment_land_image_description">Imagen Envios</string>
+    <string name="travels">Mis Viajes</string>
+    <string name="travel_subtitle">En esta sección, podrás añadir, mostrar y ver el estado de todos tus viajes.</string>
+    <string name="new_travel">Nuevo Viaje</string>
+    <string name="travel_list">Listado Viajes</string>
+    <string name="package_land_image_description">Imagen Paquetes</string>
+    <string name="package_subtitle">En esta sección, podrás mostrar y visualizar el estado de todos los paquetes disponibles.</string>
+    <string name="package_list">Listado Paquetes</string>
+    <string name="traveller_land_image_description">Imagen Viajeros</string>
+    <string name="traveller_subtitle">En esta sección, podrás mostrar y visualizar el estado de todos los viajeros disponibles.</string>
+    <string name="traveller_list">Listado Viajeros</string>
 </resources>

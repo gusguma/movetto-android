@@ -50,4 +50,22 @@
     <string name="balance">Balance</string>
     <string name="wallet">Wallet</string>
     <string name="attachment_title">Automatically download attachments for incoming emails</string>
+    <string name="news">News</string>
+    <string name="shipment_list">Shipment List</string>
+    <string name="new_shipment">New Shipment</string>
+    <string name="shipment_subtitle">" In this section, you can add, display and view the status of all your shipments."</string>
+    <string name="shipment_land_image_description">Shipment Image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="travels">My Travels</string>
+    <string name="travel_subtitle">" In this section, you can add, display and view the status of all your travels."</string>
+    <string name="new_travel">New Travel</string>
+    <string name="travel_list">Travel List</string>
+    <string name="package_land_image_description">Package Image</string>
+    <string name="package_subtitle">In this section, you can display and view the status of all available packages</string>
+    <string name="package_list">Packages List</string>
+    <string name="traveller_land_image_description">Traveller Image</string>
+    <string name="traveller_subtitle">In this section, you can display and view the status of all available travellers</string>
+    <string name="traveller_list">Traveller List</string>
 </resources>
