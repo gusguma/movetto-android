@@ -14,22 +14,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.movetto.R;
 
-public class AccountFragment extends Fragment {
+public class AccountLandFragment extends Fragment {
 
-    private AccountViewModel accountViewModel;
+    private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        accountViewModel =
-                new ViewModelProvider(this).get(AccountViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
-        final TextView textView = root.findViewById(R.id.text_send);
-        accountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        root = inflater.inflate(R.layout.fragment_send, container, false);
         return root;
     }
 }

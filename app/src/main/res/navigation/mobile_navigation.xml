@@ -53,7 +53,7 @@
 
     <fragment
         android:id="@+id/nav_wallet"
-        android:name="com.movetto.activities.ui.account.AccountFragment"
+        android:name="com.movetto.activities.ui.account.AccountLandFragment"
         android:label="@string/wallet"
         tools:layout="@layout/fragment_send" />
     <fragment
