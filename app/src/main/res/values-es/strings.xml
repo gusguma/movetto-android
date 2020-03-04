@@ -56,5 +56,6 @@
     <string name="traveller_subtitle">En esta sección, podrás mostrar y visualizar el estado de todos los viajeros disponibles.</string>
     <string name="traveller_list">Listado Viajeros</string>
     <string name="account_subtitle">En esta sección, podrás ver y editar los datos de tu cuenta.</string>
-    <string name="account_manage">Gestionar Cuenta</string>
+    <string name="account_manage_customer">Cuenta Cliente</string>
+    <string name="account_manage_partner">Cuenta Socio</string>
 </resources>
