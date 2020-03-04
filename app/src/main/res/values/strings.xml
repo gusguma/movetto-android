@@ -68,4 +68,6 @@
     <string name="traveller_land_image_description">Traveller Image</string>
     <string name="traveller_subtitle">In this section, you can display and view the status of all available travellers</string>
     <string name="traveller_list">Traveller List</string>
+    <string name="account_subtitle">In this section, you can display and edit your account data</string>
+    <string name="account_manage">Manage Account</string>
 </resources>

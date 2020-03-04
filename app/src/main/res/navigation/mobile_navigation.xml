@@ -47,15 +47,15 @@
 
     <fragment
         android:id="@+id/nav_account"
-        android:name="com.movetto.activities.ui.wallet.WalletFragment"
+        android:name="com.movetto.activities.ui.account.AccountLandFragment"
         android:label="@string/my_account"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_account_land" />
 
     <fragment
         android:id="@+id/nav_wallet"
-        android:name="com.movetto.activities.ui.account.AccountLandFragment"
+        android:name="com.movetto.activities.ui.wallet.WalletFragment"
         android:label="@string/wallet"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_share" />
     <fragment
         android:id="@+id/nav_news"
         android:name="com.movetto.activities.ui.news.NewsFragment"
