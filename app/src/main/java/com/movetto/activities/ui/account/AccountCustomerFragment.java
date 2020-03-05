@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.data.model.User;
@@ -30,6 +31,7 @@ public class AccountCustomerFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_account_customer, container, false);
         setUser();
         setCustomerData();
+        setEditCustomerData();
         return root;
     }
 
@@ -38,9 +40,15 @@ public class AccountCustomerFragment extends Fragment {
     }
 
     private void setCustomerData(){
-        setUser();
         TextView customerName = root.findViewById(R.id.account_customer_name);
         TextView customerEmail = root.findViewById(R.id.account_customer_email);
+        customerName.setText(user.getDisplayName());
+        customerEmail.setText(user.getEmail());
+    }
+
+    private void setEditCustomerData(){
+        EditText customerName = root.findViewById(R.id.account_customer_name_edit);
+        EditText customerEmail = root.findViewById(R.id.account_customer_email_edit);
         customerName.setText(user.getDisplayName());
         customerEmail.setText(user.getEmail());
     }
