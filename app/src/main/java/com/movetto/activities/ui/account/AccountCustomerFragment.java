@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.movetto.R;
-import com.movetto.activities.MainMenuActivity;
 
 public class AccountCustomerFragment extends Fragment {
 

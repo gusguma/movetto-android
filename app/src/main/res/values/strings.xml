@@ -72,4 +72,14 @@
     <string name="account_manage_customer">Customer Account</string>
     <string name="account_manage_partner">Partner Account</string>
     <string name="Update">Update</string>
+    <string name="name">Name:</string>
+    <string name="email">Email:</string>
+    <string name="telephone">Telephone:</string>
+    <string name="account_customer_image_description">Customer Image</string>
+    <string name="Street">Street:</string>
+    <string name="postal_code">Postal Code:</string>
+    <string name="city">City:</string>
+    <string name="state">State:</string>
+    <string name="country">Country:</string>
+    <string name="social_security_number">SSN:</string>
 </resources>

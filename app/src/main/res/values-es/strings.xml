@@ -59,4 +59,14 @@
     <string name="account_manage_customer">Cuenta Cliente</string>
     <string name="account_manage_partner">Cuenta Socio</string>
     <string name="Update">Actualizar</string>
+    <string name="name">Nombre:</string>
+    <string name="email">Email:</string>
+    <string name="telephone">Telefono:</string>
+    <string name="account_customer_image_description">Imagen Cliente</string>
+    <string name="Street">Calle:</string>
+    <string name="postal_code">Código Postal:</string>
+    <string name="city">Población:</string>
+    <string name="state">Provincia:</string>
+    <string name="country">País:</string>
+    <string name="social_security_number">NIF/NIE:</string>
 </resources>

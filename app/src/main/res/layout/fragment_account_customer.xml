@@ -6,22 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activities.ui.account.AccountCustomerFragment">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Código Postal:"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_phone_edit2"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/account_customer_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/account_customer_image_description"
         android:src="@drawable/ic_account_linear_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Usuario Anónimo"
+        android:text="@string/name"
         android:textAppearance="@style/TextAppearance.Movetto.Headline6"
         app:layout_constraintBottom_toTopOf="@+id/account_customer_email"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="user@user.com"
+        android:text="@string/email"
         android:textAppearance="@style/TextAppearance.Movetto.Caption"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_customer_name" />
@@ -61,93 +52,13 @@
         app:layout_constraintTop_toBottomOf="@+id/account_customer_image" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/account_customer_name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Nombre:"
+        android:text="@string/name"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_name_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Email:"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_email_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Teléfono:"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_phone_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Calle:"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Código Postal:"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_phone_edit2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Población:"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_name_edit4"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Provincia:"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_name_edit5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="País:"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_name_edit6"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="NIF / NIE:"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_name_edit7"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -157,79 +68,27 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:autofillHints=""
         android:ems="10"
         android:enabled="true"
         android:inputType="textPersonName"
-        android:text="Usuario Anónimo"
+        android:labelFor="@id/account_customer_name_label"
+        android:text="@string/name"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/account_customer_name_label"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-    <EditText
-        android:id="@+id/account_customer_name_edit4"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/account_customer_email_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:enabled="true"
-        android:hint="Población"
-        android:inputType="textPersonName"
+        android:layout_marginStart="16dp"
+        android:text="@string/email"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_phone_edit2"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_phone_edit2" />
-
-    <EditText
-        android:id="@+id/account_customer_name_edit5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:enabled="true"
-        android:hint="Provincia"
-        android:inputType="textPersonName"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_phone_edit2"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_name_edit4" />
-
-    <EditText
-        android:id="@+id/account_customer_name_edit7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:enabled="true"
-        android:hint="NIF / NIE"
-        android:inputType="textPersonName"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_phone_edit2"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_name_edit6" />
-
-    <EditText
-        android:id="@+id/account_customer_name_edit6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:enabled="true"
-        android:hint="País"
-        android:inputType="textPersonName"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_phone_edit2"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_name_edit5" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_email_edit"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/account_customer_email_edit"
@@ -239,13 +98,24 @@
         android:ems="10"
         android:enabled="false"
         android:inputType="textEmailAddress"
-        android:text="user@user.com"
+        android:labelFor="@id/account_customer_email_label"
+        android:text="@string/email"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/account_customer_name_edit"
         app:layout_constraintTop_toBottomOf="@+id/account_customer_name_edit" />
+
+    <TextView
+        android:id="@+id/account_customer_phone_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/telephone"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_phone_edit"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/account_customer_phone_edit"
@@ -254,44 +124,181 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:enabled="true"
-        android:hint="Teléfono"
+        android:hint="@string/telephone"
         android:inputType="phone"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/account_customer_email_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_email_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_email_edit"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/account_customer_street_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/Street"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_street_edit"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/account_customer_street_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Calle"
+        android:hint="@string/Street"
         android:inputType="textMultiLine|textPostalAddress"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/account_customer_phone_edit"
         app:layout_constraintTop_toBottomOf="@+id/account_customer_phone_edit" />
 
+    <TextView
+        android:id="@+id/account_customer_cp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/postal_code"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_cp_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
-        android:id="@+id/account_customer_phone_edit2"
+        android:id="@+id/account_customer_cp_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:enabled="true"
-        android:hint="Código Postal"
+        android:hint="@string/postal_code"
         android:inputType="number|phone"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintStart_toEndOf="@id/account_customer_cp_label"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_street_edit" />
+
+    <TextView
+        android:id="@+id/account_customer_city_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/city"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_city_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/account_customer_city_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/city"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/account_customer_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_cp_edit" />
+
+    <TextView
+        android:id="@+id/account_customer_state_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/state"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_state_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/account_customer_state_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/state"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/account_customer_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_city_edit" />
+
+    <TextView
+        android:id="@+id/account_customer_country_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/country"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_country_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/account_customer_country_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/country"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/account_customer_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_state_edit" />
+
+    <TextView
+        android:id="@+id/account_customer_id_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/social_security_number"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_id_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/account_customer_id_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/social_security_number"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/account_customer_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_country_edit" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_id_edit" />
 
     <Button
         android:id="@+id/account_customer_save_button"
@@ -312,17 +319,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_name_edit7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
