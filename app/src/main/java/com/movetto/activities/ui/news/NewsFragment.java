@@ -1,6 +1,6 @@
 package com.movetto.activities.ui.news;
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
@@ -13,14 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.movetto.R;
+import com.movetto.view_models.NewsViewModel;
 
 public class NewsFragment extends Fragment {
 
     private NewsViewModel mViewModel;
-
-    public static NewsFragment newInstance() {
-        return new NewsFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -31,7 +28,10 @@ public class NewsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(NewsViewModel.class);
+
+
+
         // TODO: Use the ViewModel
     }
 

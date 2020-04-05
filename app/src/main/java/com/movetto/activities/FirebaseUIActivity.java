@@ -24,8 +24,6 @@ public class FirebaseUIActivity extends AppCompatActivity {
     AuthMethodPickerLayout customLayout;
     List<AuthUI.IdpConfig> providers;
     ActionCodeSettings actionCodeSettings;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +82,7 @@ public class FirebaseUIActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 checkUserDatabase();
-                getEmailActivity();
+                getMainMenuActivity();
             } else {
                 getMainActivity();
             }
@@ -97,18 +95,14 @@ public class FirebaseUIActivity extends AppCompatActivity {
         finish();
     }
 
-    public void getEmailActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void getMainMenuActivity() {
+        Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void checkUserDatabase(){
-        Toast.makeText(this,"Comprobando Usuario", Toast.LENGTH_SHORT).show();
         UserCheckDatabaseService userCheckDatabaseService = new UserCheckDatabaseService(this);
         userCheckDatabaseService.execute();
-
     }
-
-
 }

@@ -2,72 +2,124 @@ package com.movetto.services.user_services;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.movetto.dtos.UserDto;
+import com.movetto.dtos.UserMinimumDto;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class UserCheckDatabaseService extends AsyncTask<String, String, String> {
 
-    private Context context;
-    private FirebaseUser user;
-    private HttpURLConnection connection;
+    private static final String URL_USER_RESOURCE = "http://192.168.1.60:8080/users/";
 
-    public UserCheckDatabaseService(Context context) {
-        user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseUser user;
+    private RequestQueue queue;
+    private Context context;
+    private ObjectMapper mapper;
+    private UserDto userDto;
+
+    public UserCheckDatabaseService(final Context context){
         this.context = context;
     }
 
     @Override
-    protected String doInBackground(String... params) {
-        StringBuilder result = new StringBuilder();
-        String uri = "http://localhost:8080/users/uid/";
-        String userUid = user.getUid();
-        try {
-            URL url = new URL(uri + userUid);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setReadTimeout(15000);
-            connection.setConnectTimeout(15000);
-            connection.setRequestMethod("GET");
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-            InputStream inputStream = new BufferedInputStream(connection.getInputStream());
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = bufferedReader.readLine()) != null){
-                result.append(line);            }
-        } catch (IOException e) {
-            Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            connection.disconnect();
-        }
-        return result.toString();
-    }
-
-    @Override
     protected void onPreExecute() {
-        //Do Nothing
+        super.onPreExecute();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        Toast.makeText(context,"Comprobando Usuario", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        Toast.makeText(context, "El Usuario " + user.getDisplayName() + " está Registrado", Toast.LENGTH_LONG).show();
+    protected String doInBackground(String... params) {
+        queue = Volley.newRequestQueue(context);
+        checkUser();
+        return null;
     }
 
     @Override
     protected void onProgressUpdate(String... values) {
-        //Do Nothing
+        super.onProgressUpdate(values);
     }
 
-    private void jsonInsertLocal(){
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+    }
 
+    private void checkUser(){
+        String uri = URL_USER_RESOURCE + user.getUid();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, uri,null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            UserDto userDatabase = mapper.readValue(response.toString(), UserDto.class);
+                            System.out.println(userDatabase.getDisplayName() + " " + userDatabase.getEmail() + " " + userDatabase.getUid());
+                            Toast.makeText(context,"Usuario Encontrado", Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Usuario no encontrado " + user.getUid());
+                try {
+                    saveUser();
+                } catch (JSONException | JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+                error.printStackTrace();
+            }
+        });
+        queue.add(request);
+    }
+
+    private void saveUser() throws JSONException, JsonProcessingException {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL_USER_RESOURCE ,userRequest(),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            UserDto userDatabase = mapper.readValue(response.toString(), UserDto.class);
+                            System.out.println(userDatabase.getDisplayName() + " " + userDatabase.getEmail() + " " + userDatabase.getUid());
+                            Toast.makeText(context,"Usuario Encontrado", Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Usuario no encontrado " + user.getUid());
+                error.printStackTrace();
+            }
+        });
+        queue.add(request);
+        System.out.println("Usuario Guardado " + queue.toString());
+    }
+
+    private JSONObject userRequest () throws JSONException, JsonProcessingException {
+        UserMinimumDto userMinimumDto = new UserMinimumDto(user.getDisplayName(),user.getEmail(),user.getUid());
+        String json = mapper.writeValueAsString(userMinimumDto);
+        return new JSONObject(json);
     }
 }

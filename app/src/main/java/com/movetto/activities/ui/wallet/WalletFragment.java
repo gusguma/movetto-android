@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.movetto.R;
+import com.movetto.view_models.WalletViewModel;
 
 public class WalletFragment extends Fragment {
 
@@ -22,14 +23,18 @@ public class WalletFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         walletViewModel =
                 new ViewModelProvider(this).get(WalletViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
+
+        View root = inflater.inflate(R.layout.fragment_wallet, container, false);
+
         final TextView textView = root.findViewById(R.id.text_share);
+
         walletViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
+
         return root;
     }
 }

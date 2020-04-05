@@ -1,16 +1,16 @@
-package com.movetto.activities.ui.news;
+package com.movetto.view_models;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NewsViewModel extends ViewModel {
+public class WalletViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NewsViewModel() {
+    public WalletViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is news fragment");
+        mText.setValue("This is wallet fragment");
     }
 
     public LiveData<String> getText() {

@@ -64,13 +64,23 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_account_to_nav_account_customer_empty"
+            app:destination="@id/nav_account_customer_empty"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_account_to_nav_account_partner_empty"
+            app:destination="@id/nav_account_partner_empty" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_wallet"
         android:name="com.movetto.activities.ui.wallet.WalletFragment"
         android:label="@string/wallet"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_wallet" />
     <fragment
         android:id="@+id/nav_news"
         android:name="com.movetto.activities.ui.news.NewsFragment"
@@ -96,4 +106,14 @@
         android:name="com.movetto.activities.ui.account.AccountPartnerFragment"
         android:label="Cuenta de Socio"
         tools:layout="@layout/fragment_account_partner" />
+    <fragment
+        android:id="@+id/nav_account_customer_empty"
+        android:name="com.movetto.activities.ui.account.AccountCustomerEmptyFragment"
+        android:label="Cuenta de Cliente"
+        tools:layout="@layout/fragment_account_customer_empty" />
+    <fragment
+        android:id="@+id/nav_account_partner_empty"
+        android:name="com.movetto.activities.ui.account.AccountPartnerEmptyFragment"
+        android:label="AccountPartnerEmptyFragment"
+        tools:layout="@layout/fragment_account_partner_empty" />
 </navigation>
