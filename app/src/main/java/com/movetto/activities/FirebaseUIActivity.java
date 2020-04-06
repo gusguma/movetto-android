@@ -2,6 +2,7 @@ package com.movetto.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.firebase.ui.auth.AuthUI;
@@ -12,6 +13,7 @@ import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.movetto.R;
+import com.movetto.services.user_services.UserCheckDatabaseService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,8 +24,6 @@ public class FirebaseUIActivity extends AppCompatActivity {
     AuthMethodPickerLayout customLayout;
     List<AuthUI.IdpConfig> providers;
     ActionCodeSettings actionCodeSettings;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +81,8 @@ public class FirebaseUIActivity extends AppCompatActivity {
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == RESULT_OK) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                getEmailActivity();
+                checkUserDatabase();
+                getMainMenuActivity();
             } else {
                 getMainActivity();
             }
@@ -94,9 +95,14 @@ public class FirebaseUIActivity extends AppCompatActivity {
         finish();
     }
 
-    public void getEmailActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void getMainMenuActivity() {
+        Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void checkUserDatabase(){
+        UserCheckDatabaseService userCheckDatabaseService = new UserCheckDatabaseService(this);
+        userCheckDatabaseService.execute();
     }
 }

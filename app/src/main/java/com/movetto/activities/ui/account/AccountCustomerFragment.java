@@ -3,6 +3,7 @@ package com.movetto.activities.ui.account;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +11,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.movetto.R;
-import com.movetto.activities.MainMenuActivity;
+import com.movetto.view_models.AccountViewModel;
 
 public class AccountCustomerFragment extends Fragment {
 
     private View root;
     private FirebaseUser user;
+    private AccountViewModel accountViewModel;
 
     public AccountCustomerFragment() {
         // Required empty public constructor
@@ -28,6 +29,7 @@ public class AccountCustomerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        accountViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
         root = inflater.inflate(R.layout.fragment_account_customer, container, false);
         setUser();
         setCustomerData();
