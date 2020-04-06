@@ -1,14 +1,21 @@
 package com.movetto.dtos;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -36,19 +43,21 @@ public class UserDto {
     @JsonProperty("uid")
     private String uid;
     @JsonProperty("phone")
-    private Object phone;
+    private String phone;
     @JsonProperty("customer")
-    private Object customer;
+    private CustomerDto customer;
     @JsonProperty("partner")
-    private Object partner;
+    private PartnerDto partner;
     @JsonProperty("roles")
-    private List<String> roles = null;
+    private Set<Role> roles = null;
     @JsonProperty("directions")
-    private List<Object> directions = null;
+    private Set<DirectionDto> directions = null;
     @JsonProperty("vehicles")
-    private List<Object> vehicles = null;
+    private Set<VehicleDto> vehicles = null;
     @JsonProperty("registrationDate")
-    private String registrationDate;
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime registrationDate;
     @JsonProperty("active")
     private Boolean active;
     @JsonIgnore
@@ -59,6 +68,7 @@ public class UserDto {
      *
      */
     public UserDto() {
+
     }
 
     /**
@@ -76,7 +86,10 @@ public class UserDto {
      * @param email
      * @param customer
      */
-    public UserDto(Integer id, String displayName, String email, String uid, Object phone, Object customer, Object partner, List<String> roles, List<Object> directions, List<Object> vehicles, String registrationDate, Boolean active) {
+    public UserDto(Integer id, String displayName, String email, String uid,
+                   String phone, CustomerDto customer, PartnerDto partner, Set<Role> roles,
+                   Set<DirectionDto> directions, Set<VehicleDto> vehicles, LocalDateTime registrationDate,
+                   Boolean active) {
         super();
         this.id = id;
         this.displayName = displayName;
@@ -138,72 +151,72 @@ public class UserDto {
     }
 
     @JsonProperty("phone")
-    public void setPhone(Object phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
     @JsonProperty("customer")
-    public Object getCustomer() {
+    public CustomerDto getCustomer() {
         return customer;
     }
 
     @JsonProperty("customer")
-    public void setCustomer(Object customer) {
+    public void setCustomer(CustomerDto customer) {
         this.customer = customer;
     }
 
     @JsonProperty("partner")
-    public Object getPartner() {
+    public PartnerDto getPartner() {
         return partner;
     }
 
     @JsonProperty("partner")
-    public void setPartner(Object partner) {
+    public void setPartner(PartnerDto partner) {
         this.partner = partner;
     }
 
     @JsonProperty("roles")
-    public List<String> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
     @JsonProperty("roles")
-    public void setRoles(List<String> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
     @JsonProperty("directions")
-    public List<Object> getDirections() {
+    public Set<DirectionDto> getDirections() {
         return directions;
     }
 
     @JsonProperty("directions")
-    public void setDirections(List<Object> directions) {
+    public void setDirections(Set<DirectionDto> directions) {
         this.directions = directions;
     }
 
     @JsonProperty("vehicles")
-    public List<Object> getVehicles() {
+    public Set<VehicleDto> getVehicles() {
         return vehicles;
     }
 
     @JsonProperty("vehicles")
-    public void setVehicles(List<Object> vehicles) {
+    public void setVehicles(Set<VehicleDto> vehicles) {
         this.vehicles = vehicles;
     }
 
     @JsonProperty("registrationDate")
-    public String getRegistrationDate() {
+    public LocalDateTime getRegistrationDate() {
         return registrationDate;
     }
 
     @JsonProperty("registrationDate")
-    public void setRegistrationDate(String registrationDate) {
+    public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
     }
 
     @JsonProperty("active")
-    public Boolean getActive() {
+    public Boolean isActive() {
         return active;
     }
 

@@ -16,4 +16,6 @@ public class WalletViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+
+
 }

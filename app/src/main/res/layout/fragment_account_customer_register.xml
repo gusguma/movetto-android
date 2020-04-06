@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ui.account.AccountCustomerFragment">
+    tools:context=".activities.ui.account.AccountCustomerRegisterFragment">
 
     <ImageView
-        android:id="@+id/account_customer_image"
+        android:id="@+id/account_customer_reg_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -18,29 +18,29 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/account_customer_name"
+        android:id="@+id/account_customer_reg_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/name"
         android:textAppearance="@style/TextAppearance.Movetto.Headline6"
-        app:layout_constraintBottom_toTopOf="@+id/account_customer_email"
+        app:layout_constraintBottom_toTopOf="@+id/account_customer_reg_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/account_customer_email"
+        android:id="@+id/account_customer_reg_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/email"
         android:textAppearance="@style/TextAppearance.Movetto.Caption"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_name" />
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_name" />
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/account_customer_reg_divider_top"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -49,20 +49,21 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_image" />
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_image" />
 
     <TextView
-        android:id="@+id/account_customer_name_label"
+        android:id="@+id/account_customer_reg_name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:labelFor="@id/account_customer_reg_name_edit"
         android:text="@string/name"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_name_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_reg_name_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_customer_name_edit"
+        android:id="@+id/account_customer_reg_name_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -72,53 +73,54 @@
         android:ems="10"
         android:enabled="true"
         android:inputType="textPersonName"
-        android:labelFor="@id/account_customer_name_label"
+        android:labelFor="@id/account_customer_reg_name_label"
         android:text="@string/name"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/account_customer_name_label"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintStart_toEndOf="@+id/account_customer_reg_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_divider_top" />
 
     <TextView
-        android:id="@+id/account_customer_email_label"
+        android:id="@+id/account_customer_reg_email_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:labelFor="@id/account_customer_reg_email_edit"
         android:text="@string/email"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_email_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_reg_email_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_customer_email_edit"
+        android:id="@+id/account_customer_reg_email_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:enabled="false"
         android:inputType="textEmailAddress"
-        android:labelFor="@id/account_customer_email_label"
+        android:labelFor="@id/account_customer_reg_email_label"
         android:text="@string/email"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_name_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_name_edit" />
+        app:layout_constraintStart_toStartOf="@+id/account_customer_reg_name_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_name_edit" />
 
     <TextView
-        android:id="@+id/account_customer_phone_label"
+        android:id="@+id/account_customer_reg_phone_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/telephone"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_phone_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_reg_phone_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_customer_phone_edit"
+        android:id="@+id/account_customer_reg_phone_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -130,22 +132,22 @@
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_email_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_email_edit"
+        app:layout_constraintStart_toStartOf="@+id/account_customer_reg_email_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_email_edit"
         android:autofillHints="" />
 
     <TextView
-        android:id="@+id/account_customer_street_label"
+        android:id="@+id/account_customer_reg_street_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/Street"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_street_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_reg_street_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_customer_street_edit"
+        android:id="@+id/account_customer_reg_street_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -155,21 +157,21 @@
         android:inputType="textMultiLine|textPostalAddress"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_phone_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_phone_edit" />
+        app:layout_constraintStart_toStartOf="@+id/account_customer_reg_phone_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_phone_edit" />
 
     <TextView
-        android:id="@+id/account_customer_cp_label"
+        android:id="@+id/account_customer_reg_cp_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/postal_code"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_cp_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_reg_cp_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_customer_cp_edit"
+        android:id="@+id/account_customer_reg_cp_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -181,21 +183,21 @@
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/account_customer_cp_label"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_street_edit" />
+        app:layout_constraintStart_toEndOf="@id/account_customer_reg_cp_label"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_street_edit" />
 
     <TextView
-        android:id="@+id/account_customer_city_label"
+        android:id="@+id/account_customer_reg_city_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/city"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_city_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_reg_city_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_customer_city_edit"
+        android:id="@+id/account_customer_reg_city_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -207,21 +209,21 @@
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_cp_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_cp_edit" />
+        app:layout_constraintStart_toStartOf="@+id/account_customer_reg_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_cp_edit" />
 
     <TextView
-        android:id="@+id/account_customer_state_label"
+        android:id="@+id/account_customer_reg_state_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/state"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_state_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_reg_state_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_customer_state_edit"
+        android:id="@+id/account_customer_reg_state_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -233,21 +235,21 @@
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_cp_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_city_edit" />
+        app:layout_constraintStart_toStartOf="@+id/account_customer_reg_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_city_edit" />
 
     <TextView
-        android:id="@+id/account_customer_country_label"
+        android:id="@+id/account_customer_reg_country_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/country"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_country_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_reg_country_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_customer_country_edit"
+        android:id="@+id/account_customer_reg_country_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -259,21 +261,21 @@
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_cp_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_state_edit" />
+        app:layout_constraintStart_toStartOf="@+id/account_customer_reg_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_state_edit" />
 
     <TextView
-        android:id="@+id/account_customer_id_label"
+        android:id="@+id/account_customer_reg_id_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/social_security_number"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_id_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_customer_reg_id_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_customer_id_edit"
+        android:id="@+id/account_customer_reg_id_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -285,11 +287,11 @@
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_customer_cp_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_country_edit" />
+        app:layout_constraintStart_toStartOf="@+id/account_customer_reg_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_country_edit" />
 
     <View
-        android:id="@+id/divider2"
+        android:id="@+id/account_customer_reg_divider_below"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -298,10 +300,10 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_id_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_id_edit" />
 
     <Button
-        android:id="@+id/account_customer_save_button"
+        android:id="@+id/account_customer_reg_save_button"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -313,11 +315,11 @@
         android:insetBottom="0dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:text="@string/Update"
+        android:text="@string/fui_button_text_save"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_divider_below" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

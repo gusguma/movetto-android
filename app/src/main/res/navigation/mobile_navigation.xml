@@ -102,14 +102,14 @@
         tools:layout="@layout/fragment_travel_create" />
     <fragment
         android:id="@+id/nav_account_customer"
-        android:name="com.movetto.activities.ui.account.AccountCustomerFragment"
+        android:name="com.movetto.activities.ui.account.AccountCustomerRegisterFragment"
         android:label="Cuenta de Cliente"
-        tools:layout="@layout/fragment_account_customer" />
+        tools:layout="@layout/fragment_account_customer_register" />
     <fragment
         android:id="@+id/nav_account_partner"
-        android:name="com.movetto.activities.ui.account.AccountPartnerFragment"
+        android:name="com.movetto.activities.ui.account.AccountPartnerRegisterFragment"
         android:label="Cuenta de Socio"
-        tools:layout="@layout/fragment_account_partner" />
+        tools:layout="@layout/fragment_account_partner_register" />
     <fragment
         android:id="@+id/nav_account_customer_empty"
         android:name="com.movetto.activities.ui.account.AccountCustomerEmptyFragment"

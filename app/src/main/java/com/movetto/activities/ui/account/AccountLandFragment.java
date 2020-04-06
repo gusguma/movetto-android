@@ -12,17 +12,22 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.movetto.R;
-import com.movetto.view_models.AccountViewModel;
+import com.movetto.dtos.UserDto;
+import com.movetto.view_models.CustomerViewModel;
+import com.movetto.view_models.PartnerViewModel;
 
 public class AccountLandFragment extends Fragment {
 
     private View root;
-    private AccountViewModel accountViewModel;
+    private CustomerViewModel customerViewModel;
+    private PartnerViewModel partnerViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        accountViewModel =
-                new ViewModelProvider(this).get(AccountViewModel.class);
+        customerViewModel =
+                new ViewModelProvider(this).get(CustomerViewModel.class);
+        partnerViewModel =
+                new ViewModelProvider(this).get(PartnerViewModel.class);
         root = inflater.inflate(R.layout.fragment_account_land, container, false);
         setButtonPartner();
         setButtonCustomer();
@@ -31,39 +36,39 @@ public class AccountLandFragment extends Fragment {
 
     private void setButtonPartner(){
         Button buttonPartner = root.findViewById(R.id.account_land_partner_button);
-        if (checkUserPartnerExist()){
+        if (checkUserPartnerExist() == null){
             buttonPartner.setOnClickListener(
                     Navigation.createNavigateOnClickListener(
-                            R.id.action_nav_account_to_nav_account_partner,null)
+                            R.id.action_nav_account_to_nav_account_partner_empty,null)
             );
         } else {
             buttonPartner.setOnClickListener(
                     Navigation.createNavigateOnClickListener(
-                            R.id.action_nav_account_to_nav_account_partner_empty,null)
+                            R.id.action_nav_account_to_nav_account_partner,null)
             );
         }
     }
 
     private void setButtonCustomer(){
         Button buttonCustomer = root.findViewById(R.id.account_land_customer_button);
-        if (checkUserCustomerExist()){
-            buttonCustomer.setOnClickListener(
-                    Navigation.createNavigateOnClickListener(
-                            R.id.action_nav_account_to_nav_account_customer,null)
-            );
-        } else {
+        if (checkUserCustomerExist() == null){
             buttonCustomer.setOnClickListener(
                     Navigation.createNavigateOnClickListener(
                             R.id.action_nav_account_to_nav_account_customer_empty,null)
             );
+        } else {
+            buttonCustomer.setOnClickListener(
+                    Navigation.createNavigateOnClickListener(
+                            R.id.action_nav_account_to_nav_account_customer,null)
+            );
         }
     }
 
-    private boolean checkUserCustomerExist(){
-        return accountViewModel.checkUserCustomerExist();
+    private UserDto checkUserCustomerExist(){
+        return customerViewModel.readCustomer();
     }
 
-    private boolean checkUserPartnerExist(){
-        return accountViewModel.checkUserPartnerExist();
+    private UserDto checkUserPartnerExist(){
+        return partnerViewModel.readPartner();
     }
 }
