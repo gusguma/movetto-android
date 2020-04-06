@@ -82,4 +82,9 @@
     <string name="state">State:</string>
     <string name="country">Country:</string>
     <string name="social_security_number">SSN:</string>
+    <string name="later">Later</string>
+    <string name="sign_up_customer">Sign Up Customer</string>
+    <string name="account_customer_empty_subtitle">" We have verified that you do not have a customer account, in order to use our services, you must register or, if you prefer, you can leave it for later."</string>
+    <string name="account_partner_empty_subtitle">" We have verified that you do not have a member account, in order to perform services, you must register or, if you prefer, you can leave it for later."</string>
+    <string name="sign_up_partner">Sign Up Partner</string>
 </resources>

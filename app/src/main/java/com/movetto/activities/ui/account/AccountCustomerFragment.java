@@ -24,17 +24,13 @@ public class AccountCustomerFragment extends Fragment {
 
     public AccountCustomerFragment() {
         // Required empty public constructor
-        accountViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        accountViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
         root = inflater.inflate(R.layout.fragment_account_customer, container, false);
-
-
-
-
         setUser();
         setCustomerData();
         setEditCustomerData();

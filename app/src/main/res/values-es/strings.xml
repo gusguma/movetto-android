@@ -69,4 +69,9 @@
     <string name="state">Provincia:</string>
     <string name="country">País:</string>
     <string name="social_security_number">NIF/NIE:</string>
+    <string name="sign_up_customer">Registro Cliente</string>
+    <string name="account_customer_empty_subtitle">Hemos comprobado que no tienes cuenta de cliente, para poder utilizar nuestros servicios, debes registrarte o, si prefieres, puedes dejarlo para mas tarde.</string>
+    <string name="later">Mas Tarde</string>
+    <string name="account_partner_empty_subtitle">Hemos comprobado que no tienes cuenta de socio, para poder realizar servicios, debes registrarte o, si prefieres, puedes dejarlo para mas tarde.</string>
+    <string name="sign_up_partner">Registro Socio</string>
 </resources>

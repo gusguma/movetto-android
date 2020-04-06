@@ -13,7 +13,6 @@ import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.view_models.AccountViewModel;
-import com.movetto.view_models.WalletViewModel;
 
 public class AccountLandFragment extends Fragment {
 
