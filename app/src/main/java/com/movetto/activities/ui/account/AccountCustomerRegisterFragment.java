@@ -58,6 +58,7 @@ public class AccountCustomerRegisterFragment extends Fragment {
         country = root.findViewById(R.id.account_customer_reg_country_edit);
         customerId = root.findViewById(R.id.account_customer_reg_id_edit);
         setUserData();
+        //setButtonSave();
         return root;
     }
 
@@ -97,7 +98,7 @@ public class AccountCustomerRegisterFragment extends Fragment {
 
     }
 
-    private void setButtonSave(final UserDto userDto){
+    private void setButtonSave(){
         //TODO
         Button buttonSave = root.findViewById(R.id.account_customer_reg_save_button);
         setCustomerData();

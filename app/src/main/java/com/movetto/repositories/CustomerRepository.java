@@ -1,6 +1,5 @@
 package com.movetto.repositories;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Request;
@@ -8,7 +7,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.firebase.ui.auth.data.model.User;
 import com.movetto.dtos.UserDto;
 import com.movetto.handler.UrlHandler;
 
