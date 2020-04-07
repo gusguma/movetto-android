@@ -17,15 +17,19 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.movetto.R;
+import com.movetto.view_models.PartnerViewModel;
+import com.movetto.view_models.UserViewModel;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -49,6 +53,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private FirebaseUser user;
+    private UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,8 @@ public class MainMenuActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         user = FirebaseAuth.getInstance().getCurrentUser();
+        System.out.println("El usuario es " + user.getUid());
+        checkUserDatabase();
         actionBarBuilder();
         floatingActionButtonBuilder();
         setmAppBarConfiguration();
@@ -120,6 +127,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     private void getUserImage() {
+        //TODO
         new Thread(new Runnable() {
             String url;
             Bitmap avatarImage = null;
@@ -178,4 +186,11 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(new Intent(this, SettingsActivity.class));
         finish();
     }
+
+    public void checkUserDatabase(){
+        userViewModel = new ViewModelProvider(this).get(PartnerViewModel.class);
+        userViewModel.readUser();
+    }
+
+
 }

@@ -15,7 +15,7 @@ import com.movetto.repositories.UserRepository;
 public class UserViewModel extends AndroidViewModel {
 
     private UserRepository userRepository;
-    private MutableLiveData<UserDto> userDto;
+    MutableLiveData<UserDto> userDto;
 
     public UserViewModel(@NonNull Application application) {
         super(application);
@@ -25,12 +25,22 @@ public class UserViewModel extends AndroidViewModel {
         userDto = new MutableLiveData<>();
     }
 
-    public MutableLiveData<UserDto> getUserData(){
+    public MutableLiveData<UserDto> readUser(){
         userRepository.readUser(userDto);
         return userDto;
     }
 
+    public MutableLiveData<UserDto> updateUser(){
+        userRepository.updateUser(userDto);
+        return userDto;
+    }
 
+    public MutableLiveData<UserDto> deleteUser(){
+        userRepository.deleteUser(userDto);
+        return userDto;
+    }
 
-
+    public MutableLiveData<UserDto> getUserDto() {
+        return userDto;
+    }
 }

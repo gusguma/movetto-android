@@ -1,6 +1,5 @@
 package com.movetto.view_models;
 
-
 import android.app.Application;
 
 import androidx.annotation.NonNull;
@@ -10,6 +9,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.movetto.dtos.UserDto;
 import com.movetto.repositories.CustomerRepository;
+
+import org.json.JSONException;
 
 public class CustomerViewModel extends UserViewModel {
 
@@ -22,25 +23,28 @@ public class CustomerViewModel extends UserViewModel {
         customerRepository = new CustomerRepository(requestQueue);
     }
 
-    public UserDto readCustomer(){
-        return customerRepository.readCustomerByUid();
+    public MutableLiveData<UserDto> readCustomer(){
+        customerRepository.readCustomer(userDto);
+        return userDto;
+    }
+
+    public void saveCustomer(UserDto userOutputDto) throws JSONException {
+        customerRepository.saveCustomer(userOutputDto);
+    }
+
+    public MutableLiveData<UserDto> updateCustomer(){
+        customerRepository.updateCustomer(userDto);
+        return userDto;
+    }
+
+    public MutableLiveData<UserDto> deleteCustomer(){
+        customerRepository.deleteCustomer(userDto);
+        return userDto;
     }
 
 
-    public UserDto saveUserCustomer(UserDto user){
-        return null;
-        //TODO
-    }
 
-    public UserDto updateUserCustomer(UserDto user){
-        return null;
-        //TODO
-    }
 
-    public UserDto deleteUserCustomer(UserDto user){
-        return null;
-        //TODO
-    }
 
 
 

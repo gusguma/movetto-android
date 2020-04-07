@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "id",
@@ -63,46 +62,15 @@ public class UserDto {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public UserDto() {
-
+        //Empty for Serializer.
     }
 
-    /**
-     *
-     * @param uid
-     * @param partner
-     * @param directions
-     * @param phone
-     * @param displayName
-     * @param roles
-     * @param registrationDate
-     * @param vehicles
-     * @param active
-     * @param id
-     * @param email
-     * @param customer
-     */
-    public UserDto(Integer id, String displayName, String email, String uid,
-                   String phone, CustomerDto customer, PartnerDto partner, Set<Role> roles,
-                   Set<DirectionDto> directions, Set<VehicleDto> vehicles, LocalDateTime registrationDate,
-                   Boolean active) {
-        super();
-        this.id = id;
+    public UserDto(String displayName, String email, String uid, String phone) {
         this.displayName = displayName;
         this.email = email;
         this.uid = uid;
         this.phone = phone;
-        this.customer = customer;
-        this.partner = partner;
-        this.roles = roles;
-        this.directions = directions;
-        this.vehicles = vehicles;
-        this.registrationDate = registrationDate;
-        this.active = active;
     }
 
     @JsonProperty("id")

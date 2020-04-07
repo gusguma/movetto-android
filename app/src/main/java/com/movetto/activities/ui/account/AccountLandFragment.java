@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -36,7 +37,7 @@ public class AccountLandFragment extends Fragment {
 
     private void setButtonPartner(){
         Button buttonPartner = root.findViewById(R.id.account_land_partner_button);
-        if (checkUserPartnerExist() == null){
+        if (checkUserPartnerExist().getValue() == null){
             buttonPartner.setOnClickListener(
                     Navigation.createNavigateOnClickListener(
                             R.id.action_nav_account_to_nav_account_partner_empty,null)
@@ -51,7 +52,7 @@ public class AccountLandFragment extends Fragment {
 
     private void setButtonCustomer(){
         Button buttonCustomer = root.findViewById(R.id.account_land_customer_button);
-        if (checkUserCustomerExist() == null){
+        if (checkUserCustomerExist().getValue() == null){
             buttonCustomer.setOnClickListener(
                     Navigation.createNavigateOnClickListener(
                             R.id.action_nav_account_to_nav_account_customer_empty,null)
@@ -64,11 +65,11 @@ public class AccountLandFragment extends Fragment {
         }
     }
 
-    private UserDto checkUserCustomerExist(){
+    private MutableLiveData<UserDto> checkUserCustomerExist(){
         return customerViewModel.readCustomer();
     }
 
-    private UserDto checkUserPartnerExist(){
+    private MutableLiveData<UserDto> checkUserPartnerExist(){
         return partnerViewModel.readPartner();
     }
 }
