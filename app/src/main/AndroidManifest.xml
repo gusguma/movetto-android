@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.movetto">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_movetto"
@@ -10,13 +9,14 @@
         android:supportsRtl="true"
         android:theme="@style/Movetto.DayNight"
         android:usesCleartextTraffic="true">
-
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings">
+        </activity>
         <activity
             android:name=".activities.MainMenuActivity"
-            android:label="@string/title_activity_main_menu" />
+            android:label="@string/title_activity_main_menu">
+        </activity>
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,11 +25,11 @@
         </activity>
         <activity
             android:name=".activities.FirebaseUIActivity"
-            android:label="Autorizacion"/>
+            android:label="Autorizacion">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
