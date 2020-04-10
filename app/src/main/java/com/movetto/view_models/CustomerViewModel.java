@@ -10,8 +10,6 @@ import com.android.volley.toolbox.Volley;
 import com.movetto.dtos.UserDto;
 import com.movetto.repositories.CustomerRepository;
 
-import org.json.JSONException;
-
 public class CustomerViewModel extends UserViewModel {
 
     private CustomerRepository customerRepository;
@@ -28,7 +26,7 @@ public class CustomerViewModel extends UserViewModel {
         return userDto;
     }
 
-    public void saveCustomer(UserDto userOutputDto) throws JSONException {
+    public void saveCustomer(UserDto userOutputDto) throws Exception {
         customerRepository.saveCustomer(userOutputDto);
     }
 

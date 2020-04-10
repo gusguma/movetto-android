@@ -5,6 +5,11 @@ public class CoordinateDto {
     private double latitude;
     private double longitude;
 
+    public CoordinateDto(){
+        latitude = 0.0;
+        longitude = 0.0;
+    }
+
     public CoordinateDto(double latitude, double longitude){
         this.latitude = latitude;
         this.longitude = longitude;

@@ -41,7 +41,7 @@ public class PartnerRepository extends UserRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //Nothing to do
+                        error.printStackTrace();
                     }
                 });
         requestQueue.add(request);

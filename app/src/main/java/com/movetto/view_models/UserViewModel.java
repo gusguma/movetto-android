@@ -15,7 +15,7 @@ import com.movetto.repositories.UserRepository;
 public class UserViewModel extends AndroidViewModel {
 
     private UserRepository userRepository;
-    MutableLiveData<UserDto> userDto;
+    protected MutableLiveData<UserDto> userDto;
 
     public UserViewModel(@NonNull Application application) {
         super(application);

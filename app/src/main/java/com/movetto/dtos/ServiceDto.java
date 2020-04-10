@@ -12,7 +12,7 @@ public class ServiceDto {
     private VehicleDto vehicle;
 
     private LocalDateTime registrationDate;
-    private Boolean active;
+    private boolean active;
 
     public ServiceDto(CustomerDto customer, PartnerDto partner, VehicleDto vehicle){
         this.customer = customer;
@@ -76,11 +76,11 @@ public class ServiceDto {
         this.registrationDate = registrationDate;
     }
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 }

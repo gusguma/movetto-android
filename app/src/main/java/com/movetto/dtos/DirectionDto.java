@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import org.intellij.lang.annotations.Pattern;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +24,6 @@ import java.util.List;
         "city",
         "state",
         "country",
-        "hash",
         "coordinate",
         "user",
         "services",
@@ -30,13 +31,14 @@ import java.util.List;
         "active"
 })
 public class DirectionDto {
-
     @JsonProperty("id")
     private int id;
-    @JsonProperty("name")
-    private String name;
+    @NonNull
+    @JsonProperty("directionType")
+    private DirectionType directionType;
     @JsonProperty("street")
     private String street;
+    @Pattern(com.movetto.dtos.validations.Pattern.POSTAL_CODE)
     @JsonProperty("postalCode")
     private String postalCode;
     @JsonProperty("city")
@@ -45,8 +47,6 @@ public class DirectionDto {
     private String state;
     @JsonProperty("country")
     private String country;
-    @JsonProperty("hash")
-    private int hash;
     @JsonProperty("coordinate")
     private CoordinateDto coordinate;
     @JsonProperty("user")
@@ -59,31 +59,33 @@ public class DirectionDto {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime registrationDate;
     @JsonProperty("active")
-    private Boolean active;
+    private boolean active;
 
-    public DirectionDto(){
-        ////Empty for Serializer.
+    public DirectionDto() {
+        coordinate = new CoordinateDto();
     }
 
-    public DirectionDto(String street, String postalCode, String city,
-                     String state, String country, CoordinateDto coordinate,
-                     UserDto user) {
-        this.street = street;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.coordinate = coordinate;
+    public DirectionDto(DirectionType directionType, UserDto user) {
+        this();
+        this.directionType = directionType;
         this.user = user;
     }
 
-    @NonNull
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(@NonNull String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NonNull
+    public DirectionType getDirectionType() {
+        return directionType;
+    }
+
+    public void setDirectionType(@NonNull DirectionType directionType) {
+        this.directionType = directionType;
     }
 
     public String getStreet() {
@@ -124,14 +126,6 @@ public class DirectionDto {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public int getHash() {
-        return hash;
-    }
-
-    public void setHash(int hash) {
-        this.hash = hash;
     }
 
     public CoordinateDto getCoordinate() {

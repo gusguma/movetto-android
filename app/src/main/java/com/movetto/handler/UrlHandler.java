@@ -6,5 +6,7 @@ public class UrlHandler {
     public static final String USERS_URL = "users/";
     public static final String CUSTOMERS_URL = "customers/";
     public static final String PARTNERS_URL = "partners/";
+    public static final String DIRECTIONS_URL = "directions/";
+    public static final String VEHICLES_URL = "vehicles/";
 
 }
