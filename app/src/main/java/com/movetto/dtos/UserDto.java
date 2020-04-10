@@ -16,12 +16,10 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import org.intellij.lang.annotations.Pattern;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "id",
-        "displayName",
-        "email",
-        "uid",
         "phone",
         "customer",
         "partner",
@@ -31,16 +29,9 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
         "registrationDate",
         "active"
 })
-public class UserDto {
+public class UserDto extends UserMinimumDto {
 
-    @JsonProperty("id")
-    private Integer id;
-    @JsonProperty("displayName")
-    private String displayName;
-    @JsonProperty("email")
-    private String email;
-    @JsonProperty("uid")
-    private String uid;
+    @Pattern(com.movetto.dtos.validations.Pattern.MOBILE_NUMBER)
     @JsonProperty("phone")
     private String phone;
     @JsonProperty("customer")
@@ -58,7 +49,7 @@ public class UserDto {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime registrationDate;
     @JsonProperty("active")
-    private Boolean active;
+    private boolean active;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -67,50 +58,8 @@ public class UserDto {
     }
 
     public UserDto(String displayName, String email, String uid, String phone) {
-        this.displayName = displayName;
-        this.email = email;
-        this.uid = uid;
+        super(displayName,email,uid);
         this.phone = phone;
-    }
-
-    @JsonProperty("id")
-    public Integer getId() {
-        return id;
-    }
-
-    @JsonProperty("id")
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @JsonProperty("displayName")
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    @JsonProperty("displayName")
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    @JsonProperty("email")
-    public String getEmail() {
-        return email;
-    }
-
-    @JsonProperty("email")
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @JsonProperty("uid")
-    public String getUid() {
-        return uid;
-    }
-
-    @JsonProperty("uid")
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
     @JsonProperty("phone")
@@ -184,12 +133,12 @@ public class UserDto {
     }
 
     @JsonProperty("active")
-    public Boolean isActive() {
+    public boolean isActive() {
         return active;
     }
 
     @JsonProperty("active")
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 

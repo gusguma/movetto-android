@@ -78,6 +78,7 @@
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         android:theme="?attr/textInputStyle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/account_customer_reg_name_label"
         app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_divider_top" />
 
@@ -124,6 +125,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:autofillHints=""
         android:ems="10"
         android:enabled="true"
         android:hint="@string/telephone"
@@ -133,8 +135,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/account_customer_reg_email_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_email_edit"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/account_customer_reg_email_edit" />
 
     <TextView
         android:id="@+id/account_customer_reg_street_label"

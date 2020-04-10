@@ -30,7 +30,7 @@ public abstract class VehicleDto {
     @JsonProperty("registrationDate")
     private LocalDateTime registrationDate;
     @JsonProperty("active")
-    private Boolean active;
+    private boolean active;
 
     public VehicleDto() {
         //Empty for Serializer.

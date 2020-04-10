@@ -102,7 +102,8 @@ public class UserRepository {
     }
 
     private JSONObject userRequest () throws JSONException, JsonProcessingException {
-        UserMinimumDto userMinimumDto = new UserMinimumDto(user.getDisplayName(),user.getEmail(),user.getUid());
+        UserMinimumDto userMinimumDto = new UserMinimumDto(
+                user.getDisplayName(),user.getEmail(),user.getUid());
         String json = mapper.writeValueAsString(userMinimumDto);
         return new JSONObject(json);
     }
