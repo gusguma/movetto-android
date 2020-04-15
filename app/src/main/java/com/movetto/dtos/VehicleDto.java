@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
         "id",
         "name",
         "registration",
-        "hash",
-        "user",
         "registrationDate",
         "active"
 })
@@ -23,10 +21,6 @@ public abstract class VehicleDto {
     private String name;
     @JsonProperty("registration")
     private String registration;
-    @JsonProperty("hash")
-    private int hash;
-    @JsonProperty("user")
-    private UserDto user;
     @JsonProperty("registrationDate")
     private LocalDateTime registrationDate;
     @JsonProperty("active")
@@ -34,10 +28,6 @@ public abstract class VehicleDto {
 
     public VehicleDto() {
         //Empty for Serializer.
-    }
-
-    public VehicleDto(UserDto user){
-        this.user = user;
     }
 
     public int getId() {
@@ -62,22 +52,6 @@ public abstract class VehicleDto {
 
     public void setRegistration(String registration) {
         this.registration = registration;
-    }
-
-    public int getHash() {
-        return hash;
-    }
-
-    public void setHash(int hash) {
-        this.hash = hash;
-    }
-
-    public UserDto getUser() {
-        return user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
     }
 
     public LocalDateTime getRegistrationDate() {

@@ -12,6 +12,8 @@ import com.movetto.repositories.PartnerRepository;
 
 public class PartnerViewModel extends UserViewModel {
 
+    private MutableLiveData<UserDto> partner;
+    private MutableLiveData<Boolean> response;
     private PartnerRepository partnerRepository;
 
     public PartnerViewModel(@NonNull Application application) {
@@ -19,11 +21,13 @@ public class PartnerViewModel extends UserViewModel {
         RequestQueue requestQueue = Volley
                 .newRequestQueue(getApplication().getApplicationContext());
         partnerRepository = new PartnerRepository(requestQueue);
+        partner = new MutableLiveData<>();
+        response = new MutableLiveData<>();
     }
 
     public MutableLiveData<UserDto> readPartner(){
-        partnerRepository.readPartner(userDto);
-        return userDto;
+        partner = partnerRepository.readPartner();
+        return partner;
     }
 
     public MutableLiveData<UserDto> savePartner(){

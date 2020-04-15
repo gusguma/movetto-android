@@ -9,11 +9,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.movetto.dtos.DirectionDto;
 import com.movetto.handler.UrlHandler;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -22,13 +22,15 @@ public class DirectionRepository {
 
     private static final String BASE_DIRECTIONS_URL = UrlHandler.API_URL + UrlHandler.DIRECTIONS_URL;
 
-    protected DirectionDto directionDto;
-    protected RequestQueue requestQueue;
-    protected ObjectMapper mapper;
+    private DirectionDto directionDto;
+    private RequestQueue requestQueue;
+    private ObjectMapper mapper;
+    private FirebaseUser user;
 
     public DirectionRepository(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
         this.mapper = new ObjectMapper();
+        this.user = FirebaseAuth.getInstance().getCurrentUser();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
@@ -37,8 +39,9 @@ public class DirectionRepository {
     }
 
     public void saveDirection(DirectionDto directionInputDto) throws Exception {
+        String uri = BASE_DIRECTIONS_URL + user.getUid();
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.POST, BASE_DIRECTIONS_URL, directionRequest(directionInputDto),
+                Request.Method.POST, uri, directionRequest(directionInputDto),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -67,6 +70,7 @@ public class DirectionRepository {
     }
 
     private JSONObject directionRequest (DirectionDto directionDto) throws Exception {
+        System.out.println(directionDto.toString());
         String json = mapper.writeValueAsString(directionDto);
         return new JSONObject(json);
     }

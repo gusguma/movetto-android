@@ -56,8 +56,8 @@
     <string name="traveller_subtitle">En esta sección, podrás mostrar y visualizar el estado de todos los viajeros disponibles.</string>
     <string name="traveller_list">Listado Viajeros</string>
     <string name="account_subtitle">En esta sección, podrás ver y editar los datos de tu cuenta.</string>
-    <string name="account_manage_customer">Cuenta Cliente</string>
-    <string name="account_manage_partner">Cuenta Socio</string>
+    <string name="account_manage_customer">Cuenta de Cliente</string>
+    <string name="account_manage_partner">Cuenta de Socio</string>
     <string name="Update">Actualizar</string>
     <string name="name">Nombre:</string>
     <string name="email">Email:</string>
@@ -74,4 +74,20 @@
     <string name="later">Mas Tarde</string>
     <string name="account_partner_empty_subtitle">Hemos comprobado que no tienes cuenta de socio, para poder realizar servicios, debes registrarte o, si prefieres, puedes dejarlo para mas tarde.</string>
     <string name="sign_up_partner">Registro Socio</string>
+    <string name="register_ko_customer">Hemos tenido un problema al realizar tu registro como Cliente, pulsa continuar para empezar de nuevo.</string>
+    <string name="register_ko_partner">Hemos tenido un problema al realizar tu registro como Socio, pulsa continuar para empezar de nuevo.</string>
+    <string name="register_ok_customer">Gracias por darte de alta como Cliente, ahora ya puedes solicitar Viajes y Envíos.</string>
+    <string name="register_ok_partner">Gracias por darte de alta como Socio, ahora ya puedes realizar Viajes y Envíos</string>
+    <string name="account_update">Aqui puedes actualizar tus datos</string>
+    <string name="account_partner_image_description">Imagen Socio</string>
+    <string name="account_customer_register">Registro de Cliente</string>
+    <string name="account_partner_register">Registro de Socio</string>
+    <string name="account_register">Aqui puedes registrar tus datos</string>
+    <string name="vehicle_register">Registro de Vehiculo</string>
+    <string name="vehicle_register_subtitle">Aqui tu puedes registrador tu vehiculo</string>
+    <string name="type">Tipo:</string>
+    <string name="make">Marca:</string>
+    <string name="model">Modelo:</string>
+    <string name="description">Descripción:</string>
+    <string name="registration">Matrícula:</string>
 </resources>

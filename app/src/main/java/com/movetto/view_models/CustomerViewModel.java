@@ -12,6 +12,8 @@ import com.movetto.repositories.CustomerRepository;
 
 public class CustomerViewModel extends UserViewModel {
 
+    private MutableLiveData<UserDto> customer;
+    private MutableLiveData<Boolean> response;
     private CustomerRepository customerRepository;
 
     public CustomerViewModel(@NonNull Application application) {
@@ -19,20 +21,21 @@ public class CustomerViewModel extends UserViewModel {
         RequestQueue requestQueue = Volley
                 .newRequestQueue(getApplication().getApplicationContext());
         customerRepository = new CustomerRepository(requestQueue);
+        customer = new MutableLiveData<>();
+        response = new MutableLiveData<>();
     }
 
     public MutableLiveData<UserDto> readCustomer(){
-        customerRepository.readCustomer(userDto);
-        return userDto;
+        customer = customerRepository.readCustomer();
+        return customer;
     }
 
-    public void saveCustomer(UserDto userOutputDto) throws Exception {
-        customerRepository.saveCustomer(userOutputDto);
+    public MutableLiveData<Boolean> saveCustomer(UserDto userOutputDto) throws Exception {
+        return customerRepository.saveCustomer(userOutputDto);
     }
 
-    public MutableLiveData<UserDto> updateCustomer(){
-        customerRepository.updateCustomer(userDto);
-        return userDto;
+    public MutableLiveData<Boolean> updateCustomer(UserDto userOutputDto) throws Exception {
+        return customerRepository.updateCustomer(userOutputDto);
     }
 
     public MutableLiveData<UserDto> deleteCustomer(){

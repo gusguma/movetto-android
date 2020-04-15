@@ -51,20 +51,6 @@
         android:label="@string/my_account"
         tools:layout="@layout/fragment_account_land" >
         <action
-            android:id="@+id/action_nav_account_to_nav_account_customer"
-            app:destination="@id/nav_account_customer"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_nav_account_to_nav_account_partner"
-            app:destination="@id/nav_account_partner"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_nav_account_to_nav_account_customer_empty"
             app:destination="@id/nav_account_customer_empty"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -78,6 +64,12 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_account_to_nav_account_customer"
+            app:destination="@id/nav_account_customer" />
+        <action
+            android:id="@+id/action_nav_account_to_nav_account_partner"
+            app:destination="@id/nav_account_partner" />
     </fragment>
 
     <fragment
@@ -101,23 +93,39 @@
         android:label="@string/new_travel"
         tools:layout="@layout/fragment_travel_create" />
     <fragment
-        android:id="@+id/nav_account_customer"
+        android:id="@+id/nav_account_customer_reg"
         android:name="com.movetto.activities.ui.account.AccountCustomerRegisterFragment"
-        android:label="Cuenta de Cliente"
-        tools:layout="@layout/fragment_account_customer_register" />
+        android:label="Registro de Cliente"
+        tools:layout="@layout/fragment_account_customer_register" >
+        <action
+            android:id="@+id/action_nav_account_customer_reg_to_nav_account_reg_result"
+            app:destination="@id/nav_account_reg_result"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
-        android:id="@+id/nav_account_partner"
+        android:id="@+id/nav_account_partner_reg"
         android:name="com.movetto.activities.ui.account.AccountPartnerRegisterFragment"
-        android:label="Cuenta de Socio"
-        tools:layout="@layout/fragment_account_partner_register" />
+        android:label="Registro de Socio"
+        tools:layout="@layout/fragment_account_partner_register" >
+        <action
+            android:id="@+id/action_nav_account_partner_reg_to_nav_account_reg_vehicle"
+            app:destination="@id/nav_account_reg_vehicle"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/nav_account_customer_empty"
         android:name="com.movetto.activities.ui.account.AccountCustomerEmptyFragment"
-        android:label="Cuenta de Cliente"
-        tools:layout="@layout/fragment_account_customer_empty" >
+        android:label="Registro de Cliente"
+        tools:layout="@layout/fragment_account_customer_empty">
         <action
-            android:id="@+id/action_nav_account_customer_empty_to_nav_account_customer"
-            app:destination="@+id/nav_account_customer"
+            android:id="@+id/action_nav_account_customer_empty_to_nav_account_customer_reg"
+            app:destination="@+id/nav_account_customer_reg"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -133,6 +141,45 @@
     <fragment
         android:id="@+id/nav_account_partner_empty"
         android:name="com.movetto.activities.ui.account.AccountPartnerEmptyFragment"
-        android:label="AccountPartnerEmptyFragment"
-        tools:layout="@layout/fragment_account_partner_empty" />
+        android:label="Registro de Socio"
+        tools:layout="@layout/fragment_account_partner_empty">
+        <action
+            android:id="@+id/action_nav_account_partner_empty_to_nav_account_partner_reg"
+            app:destination="@id/nav_account_partner_reg"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_account_partner_empty_to_nav_account"
+            app:destination="@id/nav_account"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_account_customer"
+        android:name="com.movetto.activities.ui.account.AccountCustomerFragment"
+        android:label="Cuenta de Cliente"
+        tools:layout="@layout/fragment_account_customer" />
+    <fragment
+        android:id="@+id/nav_account_partner"
+        android:name="com.movetto.activities.ui.account.AccountPartnerFragment"
+        android:label="Cuenta de Socio"
+        tools:layout="@layout/fragment_account_partner" />
+    <activity
+        android:id="@+id/nav_account_reg_result"
+        android:name="com.movetto.activities.ui.account.AccountRegisterResultActivity"
+        android:label="AccountRegisterResultActivity"
+        tools:layout="@layout/activity_account_register_result" />
+    <fragment
+        android:id="@+id/nav_account_reg_vehicle"
+        android:name="com.movetto.activities.ui.account.AccountPartnerVehicleRegisterFragment"
+        android:label="Registro de Vehículo"
+        tools:layout="@layout/fragment_account_partner_vehicle_register">
+        <action
+            android:id="@+id/action_nav_account_reg_vehicle_to_nav_account_reg_result"
+            app:destination="@id/nav_account_reg_result" />
+    </fragment>
 </navigation>

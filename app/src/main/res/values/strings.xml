@@ -87,4 +87,22 @@
     <string name="account_customer_empty_subtitle">" We have verified that you do not have a customer account, in order to use our services, you must register or, if you prefer, you can leave it for later."</string>
     <string name="account_partner_empty_subtitle">" We have verified that you do not have a member account, in order to perform services, you must register or, if you prefer, you can leave it for later."</string>
     <string name="sign_up_partner">Sign Up Partner</string>
+    <string name="register_ok_title" translatable="false">Ok!!!</string>
+    <string name="register_ko_title" translatable="false">Opps...</string>
+    <string name="register_ok_customer">sdfsdf</string>
+    <string name="register_ok_partner">register_ko_partner</string>
+    <string name="register_ko_partner">" We have had a problem when registering as a Partner, click continue to start again."</string>
+    <string name="register_ko_customer">" We had a problem when registering as a Client, click continue to start again."</string>
+    <string name="account_update">" Here you can update your data"</string>
+    <string name="account_partner_image_description">Partner Image</string>
+    <string name="account_partner_register">Partner Register</string>
+    <string name="account_customer_register">Customer Register</string>
+    <string name="account_register">" Here you can register your data"</string>
+    <string name="vehicle_register">Vehicle Register</string>
+    <string name="vehicle_register_subtitle">Here you can register your vehicle</string>
+    <string name="type">Type:</string>
+    <string name="make">Make:</string>
+    <string name="model">Model:</string>
+    <string name="description">Description:</string>
+    <string name="registration">Registration:</string>
 </resources>

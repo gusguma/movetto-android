@@ -28,6 +28,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.movetto.R;
+import com.movetto.activities.ui.account.AccountPartnerVehicleRegisterFragment;
 import com.movetto.view_models.PartnerViewModel;
 import com.movetto.view_models.UserViewModel;
 
@@ -47,7 +48,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class MainMenuActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity{
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawerLayout;

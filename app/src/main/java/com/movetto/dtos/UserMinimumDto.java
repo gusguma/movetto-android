@@ -11,12 +11,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+        "id",
         "displayName",
         "email",
         "uid"
 })
 public class UserMinimumDto {
 
+    @JsonProperty("id")
+    private int id;
     @JsonProperty("displayName")
     private String displayName;
     @JsonProperty("email")

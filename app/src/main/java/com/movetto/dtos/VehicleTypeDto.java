@@ -31,10 +31,6 @@ public abstract class VehicleTypeDto extends VehicleDto {
         //Empty for Serializer.
     }
 
-    public VehicleTypeDto(UserDto user) {
-        super(user);
-    }
-
     public double getMaxVolume() {
         return maxVolume;
     }

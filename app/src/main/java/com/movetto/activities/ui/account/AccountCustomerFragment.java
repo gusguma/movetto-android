@@ -1,16 +1,17 @@
 package com.movetto.activities.ui.account;
 
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.movetto.R;
 import com.movetto.dtos.CustomerDto;
@@ -21,14 +22,16 @@ import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;
 import com.movetto.view_models.CustomerViewModel;
 
-public class AccountCustomerRegisterFragment extends Fragment
+import java.util.Set;
+
+public class AccountCustomerFragment extends Fragment
         implements View.OnFocusChangeListener, View.OnClickListener {
 
     private View root;
     private CustomerViewModel customerViewModel;
 
-    private EditText displayName;
-    private EditText email;
+    private EditText displayNameForm;
+    private EditText emailForm;
     private EditText phone;
     private EditText street;
     private EditText postalCode;
@@ -39,9 +42,9 @@ public class AccountCustomerRegisterFragment extends Fragment
     private UserDto userOutputDto;
     private DirectionDto directionOutputDto;
     private Button buttonSave;
-    private boolean response;
+    private Boolean response;
 
-    public AccountCustomerRegisterFragment() {
+    public AccountCustomerFragment() {
         // Required empty public constructor
     }
 
@@ -61,24 +64,25 @@ public class AccountCustomerRegisterFragment extends Fragment
     }
 
     private void setLayout(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.fragment_account_customer_register, container, false);
+        root = inflater.inflate(R.layout.fragment_account_customer, container, false);
     }
 
     private void setComponents() {
-        displayName = root.findViewById(R.id.account_customer_reg_name_edit);
-        email = root.findViewById(R.id.account_customer_reg_email_edit);
-        phone = root.findViewById(R.id.account_customer_reg_phone_edit);
-        street = root.findViewById(R.id.account_customer_reg_street_edit);
-        postalCode = root.findViewById(R.id.account_customer_reg_cp_edit);
-        city = root.findViewById(R.id.account_customer_reg_city_edit);
-        state = root.findViewById(R.id.account_customer_reg_state_edit);
-        country = root.findViewById(R.id.account_customer_reg_country_edit);
-        customerId = root.findViewById(R.id.account_customer_reg_id_edit);
-        buttonSave = root.findViewById(R.id.account_customer_reg_save_button);
+        displayNameForm = root.findViewById(R.id.account_customer_name_edit);
+        emailForm = root.findViewById(R.id.account_customer_email_edit);
+        phone = root.findViewById(R.id.account_customer_phone_edit);
+        street = root.findViewById(R.id.account_customer_street_edit);
+        postalCode = root.findViewById(R.id.account_customer_cp_edit);
+        city = root.findViewById(R.id.account_customer_city_edit);
+        state = root.findViewById(R.id.account_customer_state_edit);
+        country = root.findViewById(R.id.account_customer_country_edit);
+        customerId = root.findViewById(R.id.account_customer_id_edit);
+        customerId.setEnabled(false);
+        buttonSave = root.findViewById(R.id.account_customer_save_button);
     }
 
     private void setFormFieldsListener() {
-        displayName.setOnFocusChangeListener(this);
+        displayNameForm.setOnFocusChangeListener(this);
         phone.setOnFocusChangeListener(this);
         street.setOnFocusChangeListener(this);
         postalCode.setOnFocusChangeListener(this);
@@ -93,11 +97,30 @@ public class AccountCustomerRegisterFragment extends Fragment
         customerViewModel.readUser().observe(getViewLifecycleOwner(), new Observer<UserDto>() {
             @Override
             public void onChanged(UserDto userDto) {
-                displayName.setText(userDto.getDisplayName());
-                email.setText(userDto.getEmail());
                 userOutputDto = userDto;
+                DirectionDto customerDirection = getCustomerDirection(userDto);
+                displayNameForm.setText(userDto.getDisplayName());
+                emailForm.setText(userDto.getEmail());
+                phone.setText((String)userDto.getPhone());
+                street.setText(customerDirection.getStreet());
+                postalCode.setText(customerDirection.getPostalCode());
+                city.setText(customerDirection.getCity());
+                state.setText(customerDirection.getState());
+                country.setText(customerDirection.getCountry());
+                customerId.setText(userDto.getCustomer().getCustomerId());
             }
         });
+    }
+
+    private DirectionDto getCustomerDirection(UserDto user){
+        Set<DirectionDto> directionDtos = user.getDirections();
+        for(DirectionDto direction:directionDtos){
+            if(direction.getDirectionType() == DirectionType.CUSTOMER){
+                directionDtos.remove(direction);
+                directionOutputDto = direction;
+            }
+        }
+        return directionOutputDto;
     }
 
     @Override
@@ -111,15 +134,15 @@ public class AccountCustomerRegisterFragment extends Fragment
             if(isEmpty){
                 editText.setError(ErrorStrings.EMPTY);
             } else {
-                if (editText.getId() == R.id.account_customer_reg_cp_edit){
+                if (editText.getId() == R.id.account_customer_cp_edit){
                     if (!Validation.isPostalCodeValid(postalCode.getText().toString()))
                         postalCode.setError(ErrorStrings.INVALID_POSTAL_CODE);
                 }
-                if (editText.getId() == R.id.account_customer_reg_phone_edit) {
+                if (editText.getId() == R.id.account_customer_phone_edit) {
                     if (!Validation.isPhoneValid(phone.getText().toString()))
                         phone.setError(ErrorStrings.INVALID_PHONE_NUMBER);
                 }
-                if (editText.getId() == R.id.account_customer_reg_id_edit) {
+                if (editText.getId() == R.id.account_customer_id_edit) {
                     if (!Validation.isRegisterIdValid(customerId.getText().toString()))
                         customerId.setError(ErrorStrings.INVALID_REGISTER_ID);
                 }
@@ -130,8 +153,8 @@ public class AccountCustomerRegisterFragment extends Fragment
     private boolean isFormValidate(){
         boolean isValidate = true;
         EditText[] editTexts = new EditText[]{
-                displayName,phone,street,postalCode,city,
-                state,country,customerId
+                displayNameForm,phone,street,postalCode,city,
+                state,country
         };
         for (EditText editText:editTexts) {
             String text = editText.getText().toString();
@@ -143,7 +166,7 @@ public class AccountCustomerRegisterFragment extends Fragment
     }
 
     private void setCustomerDataOutput() {
-        userOutputDto.setDisplayName(displayName.getText().toString());
+        userOutputDto.setDisplayName(displayNameForm.getText().toString());
         userOutputDto.setPhone(phone.getText().toString());
         userOutputDto.setCustomer(new CustomerDto());
         setCustomerDirection();
@@ -152,8 +175,6 @@ public class AccountCustomerRegisterFragment extends Fragment
     }
 
     private void setCustomerDirection() {
-        directionOutputDto = new DirectionDto();
-        directionOutputDto.setDirectionType(DirectionType.CUSTOMER);
         directionOutputDto.setStreet(street.getText().toString());
         directionOutputDto.setPostalCode(postalCode.getText().toString());
         directionOutputDto.setCity(city.getText().toString());
@@ -167,11 +188,7 @@ public class AccountCustomerRegisterFragment extends Fragment
         try {
             setCustomerDataOutput();
             if (isFormValidate()){
-                try {
-                    setResponseResult();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                setResponseResult();
             } else {
                 Toast.makeText(root.getContext()
                         ,"Verifique los datos del formulario",Toast.LENGTH_LONG).show();
@@ -184,16 +201,16 @@ public class AccountCustomerRegisterFragment extends Fragment
     private void setResponseResult() throws Exception {
         customerViewModel.updateCustomer(userOutputDto).observe(getViewLifecycleOwner(),
                 new Observer<Boolean>() {
-                    @Override
-                    public void onChanged(Boolean responseResult) {
-                        response = responseResult;
-                        if (response) {
-                            getRegisterOkFragment();
-                        } else {
-                            getRegisterErrorFragment();
-                        }
-                    }
-                });
+            @Override
+            public void onChanged(Boolean responseResult) {
+                response = responseResult;
+                if (response) {
+                    getRegisterOkFragment();
+                } else {
+                    getRegisterErrorFragment();
+                }
+            }
+        });
     }
 
     private void getRegisterOkFragment() {

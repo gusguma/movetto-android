@@ -18,12 +18,17 @@ public class CustomerRepository extends UserRepository {
 
     private static final String BASE_CUSTOMERS_URL = BASE_USERS_URL + UrlHandler.CUSTOMERS_URL;
 
+    private MutableLiveData<Boolean> isResponseOk;
+
+    private MutableLiveData<UserDto> userDtoMutableLiveData;
+
     public CustomerRepository(RequestQueue requestQueue) {
         super(requestQueue);
+        userDtoMutableLiveData = new MutableLiveData<>();
+        isResponseOk = new MutableLiveData<>();
     }
 
-    public void readCustomer(final MutableLiveData<UserDto> userDtoMutableLiveData){
-        userDto = null;
+    public MutableLiveData<UserDto> readCustomer(){
         String uri = BASE_CUSTOMERS_URL + user.getUid();
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET, uri, null,
@@ -31,7 +36,7 @@ public class CustomerRepository extends UserRepository {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            userDto = mapper.readValue(response.toString(),UserDto.class);
+                            UserDto userDto = mapper.readValue(response.toString(),UserDto.class);
                             userDtoMutableLiveData.setValue(userDto);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -45,9 +50,11 @@ public class CustomerRepository extends UserRepository {
                     }
                 });
         requestQueue.add(request);
+        return userDtoMutableLiveData;
     }
 
-    public void saveCustomer(UserDto userInputDto) throws Exception {
+    public MutableLiveData<Boolean> saveCustomer(UserDto userInputDto) throws Exception {
+        isResponseOk.setValue(true);
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST, BASE_CUSTOMERS_URL, customerRequest(userInputDto),
                     new Response.Listener<JSONObject>() {
@@ -64,13 +71,37 @@ public class CustomerRepository extends UserRepository {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             error.printStackTrace();
+                            isResponseOk.setValue(false);
                         }
                     });
         requestQueue.add(request);
+        return isResponseOk;
     }
 
-    public void updateCustomer(final MutableLiveData<UserDto> userDtoMutableLiveData){
-        //TODO
+    public MutableLiveData<Boolean> updateCustomer(UserDto userInputDto) throws Exception {
+        isResponseOk.setValue(true);
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.PUT, BASE_CUSTOMERS_URL, customerRequest(userInputDto),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            userDto = mapper.readValue(response.toString(),UserDto.class);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        isResponseOk.setValue(false);
+                    }
+                });
+        requestQueue.add(request);
+        return isResponseOk;
+
     }
 
     public void deleteCustomer(final MutableLiveData<UserDto> userDtoMutableLiveData){

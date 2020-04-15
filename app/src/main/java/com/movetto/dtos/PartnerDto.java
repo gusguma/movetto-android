@@ -4,21 +4,24 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.util.Set;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "partnerId",
-        "driverId"
+        "driverId",
+        "vehicles"
 })
 public class PartnerDto {
-
     @JsonProperty("partnerId")
     private String partnerId;
     @JsonProperty("driverId")
     private String driverId;
+    @JsonProperty("vehicles")
+    private Set<VehicleDto> vehicles;
 
-    public PartnerDto(UserDto user) {
-        this.partnerId = user.getPartner().partnerId;
-        this.driverId = user.getPartner().driverId;
+    public PartnerDto() {
+        //Empty for Framework
     }
 
     public String getPartnerId() {

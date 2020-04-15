@@ -23,10 +23,6 @@ public class CarDto extends VehicleTypeDto {
         //Empty for Serializer.
     }
 
-    public CarDto(UserDto user) {
-        super(user);
-    }
-
     public String getMake() {
         return make;
     }

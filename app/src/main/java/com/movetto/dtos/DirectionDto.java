@@ -13,29 +13,23 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.intellij.lang.annotations.Pattern;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "id",
-        "name",
         "street",
         "postalCode",
         "city",
         "state",
         "country",
+        "directionType",
         "coordinate",
-        "user",
-        "services",
         "registrationDate",
         "active"
 })
 public class DirectionDto {
     @JsonProperty("id")
     private int id;
-    @NonNull
-    @JsonProperty("directionType")
-    private DirectionType directionType;
     @JsonProperty("street")
     private String street;
     @Pattern(com.movetto.dtos.validations.Pattern.POSTAL_CODE)
@@ -47,12 +41,11 @@ public class DirectionDto {
     private String state;
     @JsonProperty("country")
     private String country;
+    @NonNull
+    @JsonProperty("directionType")
+    private DirectionType directionType;
     @JsonProperty("coordinate")
     private CoordinateDto coordinate;
-    @JsonProperty("user")
-    private UserDto user;
-    @JsonProperty("services")
-    private List<ServiceDto> services;
 
     @JsonProperty("registrationDate")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
@@ -65,10 +58,9 @@ public class DirectionDto {
         coordinate = new CoordinateDto();
     }
 
-    public DirectionDto(DirectionType directionType, UserDto user) {
+    public DirectionDto(DirectionType directionType) {
         this();
         this.directionType = directionType;
-        this.user = user;
     }
 
     public int getId() {
@@ -134,22 +126,6 @@ public class DirectionDto {
 
     public void setCoordinate(CoordinateDto coordinate) {
         this.coordinate = coordinate;
-    }
-
-    public UserDto getUser() {
-        return user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
-    }
-
-    public List<ServiceDto> getServices() {
-        return services;
-    }
-
-    public void setServices(List<ServiceDto> services) {
-        this.services = services;
     }
 
     public LocalDateTime getRegistrationDate() {

@@ -33,7 +33,7 @@ public class AccountCustomerEmptyFragment extends Fragment {
         Button buttonCustomerSignUp = root.findViewById(R.id.account_customer_empty_create_button);
         buttonCustomerSignUp.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                        R.id.action_nav_account_customer_empty_to_nav_account_customer,null)
+                        R.id.action_nav_account_customer_empty_to_nav_account_customer_reg,null)
         );
     }
 

@@ -31,6 +31,4 @@ public class DirectionViewModel extends AndroidViewModel {
     public void saveDirection(DirectionDto directionOutputDto) throws Exception {
         directionRepository.saveDirection(directionOutputDto);
     }
-
-
 }

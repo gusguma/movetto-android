@@ -20,10 +20,6 @@ public class BikeDto extends VehicleTypeDto {
         //Empty for Serializer.
     }
 
-    public BikeDto(UserDto user) {
-        super(user);
-    }
-
     public String getMake() {
         return make;
     }

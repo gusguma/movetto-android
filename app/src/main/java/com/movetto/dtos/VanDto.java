@@ -23,10 +23,6 @@ public class VanDto extends VehicleTypeDto {
         //Empty for Serializer.
     }
 
-    public VanDto(UserDto user) {
-        super(user);
-    }
-
     public String getMake() {
         return make;
     }

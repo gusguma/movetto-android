@@ -1,5 +1,9 @@
 package com.movetto.dtos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,25 +29,24 @@ import org.intellij.lang.annotations.Pattern;
         "partner",
         "roles",
         "directions",
-        "vehicles",
         "registrationDate",
         "active"
 })
-public class UserDto extends UserMinimumDto {
+public class UserDto extends UserMinimumDto implements Serializable {
 
-    @Pattern(com.movetto.dtos.validations.Pattern.MOBILE_NUMBER)
+    private static final long serialVersionUID = 1L;
+
     @JsonProperty("phone")
     private String phone;
     @JsonProperty("customer")
     private CustomerDto customer;
     @JsonProperty("partner")
     private PartnerDto partner;
+
     @JsonProperty("roles")
     private Set<Role> roles = null;
     @JsonProperty("directions")
     private Set<DirectionDto> directions = null;
-    @JsonProperty("vehicles")
-    private Set<VehicleDto> vehicles = null;
     @JsonProperty("registrationDate")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -54,6 +57,7 @@ public class UserDto extends UserMinimumDto {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public UserDto() {
+        this.active = true;
         //Empty for Serializer.
     }
 
@@ -112,16 +116,6 @@ public class UserDto extends UserMinimumDto {
         this.directions = directions;
     }
 
-    @JsonProperty("vehicles")
-    public Set<VehicleDto> getVehicles() {
-        return vehicles;
-    }
-
-    @JsonProperty("vehicles")
-    public void setVehicles(Set<VehicleDto> vehicles) {
-        this.vehicles = vehicles;
-    }
-
     @JsonProperty("registrationDate")
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
@@ -151,5 +145,4 @@ public class UserDto extends UserMinimumDto {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-
 }
