@@ -8,9 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.tabs.TabLayout;
 import com.movetto.R;
 
-public class AccountPartnerFragment extends Fragment {
+public class AccountPartnerFragment extends Fragment implements TabLayout.OnTabSelectedListener {
 
 
     public AccountPartnerFragment() {
@@ -25,4 +26,18 @@ public class AccountPartnerFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_account_partner, container, false);
     }
 
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
 }
