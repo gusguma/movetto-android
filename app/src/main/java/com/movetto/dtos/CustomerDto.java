@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.io.Serializable;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "customerId"
 })
-public class CustomerDto {
+public class CustomerDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @JsonProperty("customerId")
     private String customerId;
@@ -27,5 +31,12 @@ public class CustomerDto {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerDto{" +
+                "customerId='" + customerId + '\'' +
+                '}';
     }
 }

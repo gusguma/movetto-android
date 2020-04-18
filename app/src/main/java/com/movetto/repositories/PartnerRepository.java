@@ -18,11 +18,13 @@ public class PartnerRepository extends UserRepository {
 
     private static final String BASE_PARTNERS_URL = BASE_USERS_URL + UrlHandler.PARTNERS_URL;
 
+    private MutableLiveData<Boolean> isResponseOk;
     private MutableLiveData<UserDto> userDtoMutableLiveData;
 
     public PartnerRepository(RequestQueue requestQueue) {
         super(requestQueue);
         userDtoMutableLiveData = new MutableLiveData<>();
+        isResponseOk = new MutableLiveData<>();
     }
 
     public MutableLiveData<UserDto> readPartner(){
@@ -36,7 +38,6 @@ public class PartnerRepository extends UserRepository {
                             UserDto userDto = mapper.readValue(response.toString(),UserDto.class);
                             userDtoMutableLiveData.setValue(userDto);
                         } catch (IOException e) {
-                            System.out.println("no se puede mapear");
                             e.printStackTrace();
                         }
                     }
@@ -44,7 +45,6 @@ public class PartnerRepository extends UserRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("error en la respuesta");
                         error.printStackTrace();
                     }
                 });
@@ -52,16 +52,64 @@ public class PartnerRepository extends UserRepository {
         return userDtoMutableLiveData;
     }
 
-    public void savePartner(final MutableLiveData<UserDto> userDtoMutableLiveData){
-        //TODO
+    public MutableLiveData<Boolean> savePartner(UserDto userInputDto) throws Exception {
+        isResponseOk.setValue(true);
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST, BASE_PARTNERS_URL, partnerRequest(userInputDto),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            userDto = mapper.readValue(response.toString(),UserDto.class);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        isResponseOk.setValue(false);
+                    }
+                });
+        requestQueue.add(request);
+        return isResponseOk;
     }
 
-    public void updatePartner(final MutableLiveData<UserDto> userDtoMutableLiveData){
-        //TODO
+    public MutableLiveData<Boolean> updatePartner(UserDto userInputDto) throws Exception {
+        isResponseOk.setValue(true);
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.PUT, BASE_PARTNERS_URL, partnerRequest(userInputDto),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            userDto = mapper.readValue(response.toString(),UserDto.class);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        isResponseOk.setValue(false);
+                    }
+                });
+        requestQueue.add(request);
+        return isResponseOk;
     }
 
     public void deletePartner(final MutableLiveData<UserDto> userDtoMutableLiveData){
         //TODO
+    }
+
+    private JSONObject partnerRequest (UserDto customerDto) throws Exception {
+        String json = mapper.writeValueAsString(customerDto);
+        System.out.println(json);
+        return new JSONObject(json);
     }
 
 

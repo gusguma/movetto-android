@@ -20,7 +20,24 @@ public class MotorcycleDto extends VehicleTypeDto {
     private String description;
 
     public MotorcycleDto() {
-        //Empty for Serializer.
+        setMaxVolume(0.13);
+        setMaxWeight(80.0);
+        setMaxLenght(50.0);
+        setMaxWidth(50.0);
+        setMaxHigh(50.0);
+        this.make = "";
+        this.model = "";
+        this.description = "";
+        this.setPlacesAvailable(1);
+        this.setVehicleTypeEnum(VehicleTypeEnum.MOTORCYCLE);
+    }
+
+    public MotorcycleDto (String registration, String make, String model, String description){
+        this();
+        this.setRegistration(registration);
+        this.make = make;
+        this.model = model;
+        this.description = description;
     }
 
     public String getMake() {
@@ -45,5 +62,14 @@ public class MotorcycleDto extends VehicleTypeDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "MotorcycleDto{" +
+                "make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

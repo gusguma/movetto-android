@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "uid"
 })
 public class UserMinimumDto {
-
     @JsonProperty("id")
     private int id;
     @JsonProperty("displayName")
@@ -80,6 +79,15 @@ public class UserMinimumDto {
         this.additionalProperties.put(name, value);
     }
 
-
+    @Override
+    public String toString() {
+        return "UserMinimumDto{" +
+                "id=" + id +
+                ", displayName='" + displayName + '\'' +
+                ", email='" + email + '\'' +
+                ", uid='" + uid + '\'' +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }
 

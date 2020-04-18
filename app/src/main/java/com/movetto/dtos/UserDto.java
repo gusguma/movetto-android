@@ -1,8 +1,5 @@
 package com.movetto.dtos;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -19,8 +16,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-
-import org.intellij.lang.annotations.Pattern;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -144,5 +139,19 @@ public class UserDto extends UserMinimumDto implements Serializable {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "phone='" + phone + '\'' +
+                ", customer=" + customer +
+                ", partner=" + partner +
+                ", roles=" + roles +
+                ", directions=" + directions +
+                ", registrationDate=" + registrationDate +
+                ", active=" + active +
+                ", additionalProperties=" + additionalProperties +
+                '}';
     }
 }

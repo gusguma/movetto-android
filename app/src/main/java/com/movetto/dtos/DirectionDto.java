@@ -12,6 +12,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import org.intellij.lang.annotations.Pattern;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -27,7 +28,10 @@ import java.time.LocalDateTime;
         "registrationDate",
         "active"
 })
-public class DirectionDto {
+public class DirectionDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @JsonProperty("id")
     private int id;
     @JsonProperty("street")
@@ -142,5 +146,21 @@ public class DirectionDto {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "DirectionDto{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", directionType=" + directionType +
+                ", coordinate=" + coordinate +
+                ", registrationDate=" + registrationDate +
+                ", active=" + active +
+                '}';
     }
 }

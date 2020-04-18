@@ -15,10 +15,11 @@ public class CustomerViewModel extends UserViewModel {
     private MutableLiveData<UserDto> customer;
     private MutableLiveData<Boolean> response;
     private CustomerRepository customerRepository;
+    private RequestQueue requestQueue;
 
     public CustomerViewModel(@NonNull Application application) {
         super(application);
-        RequestQueue requestQueue = Volley
+        requestQueue = Volley
                 .newRequestQueue(getApplication().getApplicationContext());
         customerRepository = new CustomerRepository(requestQueue);
         customer = new MutableLiveData<>();
@@ -30,18 +31,20 @@ public class CustomerViewModel extends UserViewModel {
         return customer;
     }
 
-    public MutableLiveData<Boolean> saveCustomer(UserDto userOutputDto) throws Exception {
-        return customerRepository.saveCustomer(userOutputDto);
+    public MutableLiveData<Boolean> saveCustomer(UserDto userDto) throws Exception {
+        return customerRepository.saveCustomer(userDto);
     }
 
-    public MutableLiveData<Boolean> updateCustomer(UserDto userOutputDto) throws Exception {
-        return customerRepository.updateCustomer(userOutputDto);
+    public MutableLiveData<Boolean> updateCustomer(UserDto userDto) throws Exception {
+        return customerRepository.updateCustomer(userDto);
     }
 
     public MutableLiveData<UserDto> deleteCustomer(){
-        customerRepository.deleteCustomer(userDto);
-        return userDto;
+        return null;
+        //TODO
     }
+
+
 
 
 

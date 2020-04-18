@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "maxLenght",
         "maxWidth",
         "maxHigh",
-        "placesAvailable"
+        "placesAvailable",
+        "vehicleTypeEnum"
 })
 public abstract class VehicleTypeDto extends VehicleDto {
     @JsonProperty("maxVolume")
@@ -26,9 +27,16 @@ public abstract class VehicleTypeDto extends VehicleDto {
     private double maxHigh; // cm
     @JsonProperty("placesAvailable")
     private int placesAvailable;
+    @JsonProperty("vehicleTypeEnum")
+    private VehicleTypeEnum vehicleTypeEnum;
+
 
     public VehicleTypeDto() {
         //Empty for Serializer.
+    }
+
+    public VehicleTypeDto(UserDto user) {
+        super();
     }
 
     public double getMaxVolume() {
@@ -71,11 +79,32 @@ public abstract class VehicleTypeDto extends VehicleDto {
         this.maxHigh = maxHigh;
     }
 
+    public VehicleTypeEnum getVehicleTypeEnum() {
+        return vehicleTypeEnum;
+    }
+
+    public void setVehicleTypeEnum(VehicleTypeEnum vehicleTypeEnum) {
+        this.vehicleTypeEnum = vehicleTypeEnum;
+    }
+
     public int getPlacesAvailable() {
         return placesAvailable;
     }
 
     public void setPlacesAvailable(int placesAvailable) {
         this.placesAvailable = placesAvailable;
+    }
+
+    @Override
+    public String toString() {
+        return "VehicleTypeDto{" +
+                "maxVolume=" + maxVolume +
+                ", maxWeight=" + maxWeight +
+                ", maxLenght=" + maxLenght +
+                ", maxWidth=" + maxWidth +
+                ", maxHigh=" + maxHigh +
+                ", placesAvailable=" + placesAvailable +
+                ", vehicleTypeEnum=" + vehicleTypeEnum +
+                '}';
     }
 }

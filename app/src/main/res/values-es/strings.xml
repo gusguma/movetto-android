@@ -84,10 +84,11 @@
     <string name="account_partner_register">Registro de Socio</string>
     <string name="account_register">Aqui puedes registrar tus datos</string>
     <string name="vehicle_register">Registro de Vehiculo</string>
-    <string name="vehicle_register_subtitle">Aqui tu puedes registrador tu vehiculo</string>
+    <string name="vehicle_register_subtitle">Aqui tu puedes registrar tu vehiculo</string>
     <string name="type">Tipo:</string>
     <string name="make">Marca:</string>
     <string name="model">Modelo:</string>
     <string name="description">Descripción:</string>
     <string name="registration">Matrícula:</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

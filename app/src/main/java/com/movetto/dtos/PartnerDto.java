@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -12,7 +14,9 @@ import java.util.Set;
         "driverId",
         "vehicles"
 })
-public class PartnerDto {
+public class PartnerDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @JsonProperty("partnerId")
     private String partnerId;
     @JsonProperty("driverId")
@@ -22,6 +26,7 @@ public class PartnerDto {
 
     public PartnerDto() {
         //Empty for Framework
+        vehicles = new HashSet<>();
     }
 
     public String getPartnerId() {
@@ -38,5 +43,22 @@ public class PartnerDto {
 
     public void setDriverId(String driverId) {
         this.driverId = driverId;
+    }
+
+    public Set<VehicleDto> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<VehicleDto> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    @Override
+    public String toString() {
+        return "PartnerDto{" +
+                "partnerId='" + partnerId + '\'' +
+                ", driverId='" + driverId + '\'' +
+                ", vehicles=" + vehicles +
+                '}';
     }
 }

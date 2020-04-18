@@ -97,6 +97,7 @@ public class AccountPartnerRegisterFragment extends Fragment
             public void onChanged(UserDto userDto) {
                 displayName.setText(userDto.getDisplayName());
                 email.setText(userDto.getEmail());
+                phone.setText(userDto.getPhone().toString());
                 userOutputDto = userDto;
             }
         });
@@ -113,16 +114,16 @@ public class AccountPartnerRegisterFragment extends Fragment
             if(isEmpty){
                 editText.setError(ErrorStrings.EMPTY);
             } else {
-                if (editText.getId() == R.id.account_customer_reg_cp_edit){
-                    if (!Validation.isPostalCodeValid(postalCode.getText().toString()))
+                if (editText.getId() == R.id.account_partner_reg_cp_edit){
+                    if (Validation.isPostalCodeValid(postalCode.getText().toString()))
                         postalCode.setError(ErrorStrings.INVALID_POSTAL_CODE);
                 }
-                if (editText.getId() == R.id.account_customer_reg_phone_edit) {
-                    if (!Validation.isPhoneValid(phone.getText().toString()))
+                if (editText.getId() == R.id.account_partner_reg_phone_edit) {
+                    if (Validation.isPhoneValid(phone.getText().toString()))
                         phone.setError(ErrorStrings.INVALID_PHONE_NUMBER);
                 }
-                if (editText.getId() == R.id.account_customer_reg_id_edit) {
-                    if (!Validation.isRegisterIdValid(partnerId.getText().toString()))
+                if (editText.getId() == R.id.account_partner_reg_id_edit) {
+                    if (Validation.isRegisterIdValid(partnerId.getText().toString()))
                         partnerId.setError(ErrorStrings.INVALID_REGISTER_ID);
                 }
             }
@@ -151,6 +152,7 @@ public class AccountPartnerRegisterFragment extends Fragment
         setPartnerDirection();
         userOutputDto.getDirections().add(directionOutputDto);
         userOutputDto.getPartner().setPartnerId(partnerId.getText().toString());
+        userOutputDto.getPartner().setDriverId(partnerId.getText().toString());
     }
 
     private void setPartnerDirection() {

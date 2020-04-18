@@ -31,41 +31,63 @@ public class AccountLandFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        customerViewModel =
-                new ViewModelProvider(this).get(CustomerViewModel.class);
-        partnerViewModel =
-                new ViewModelProvider(this).get(PartnerViewModel.class);
-        root = inflater.inflate(R.layout.fragment_account_land, container, false);
-        buttonCustomer = root.findViewById(R.id.account_land_customer_button);
-        buttonPartner = root.findViewById(R.id.account_land_partner_button);
-        customerDto = new UserDto();
-        partnerDto = new UserDto();
-        setButtonCustomer();
-        setButtonPartner();
+        setViewModels();
+        setLayout(inflater, container);
+        setComponents();
         setCustomerDataInput();
         setPartnerDataInput();
         return root;
     }
 
+    private void setViewModels() {
+        customerViewModel =
+                new ViewModelProvider(this).get(CustomerViewModel.class);
+        partnerViewModel =
+                new ViewModelProvider(this).get(PartnerViewModel.class);
+    }
+
+    private void setLayout(LayoutInflater inflater, ViewGroup container) {
+        root = inflater.inflate(R.layout.fragment_account_land, container, false);
+    }
+
+    private void setComponents() {
+        buttonCustomer = root.findViewById(R.id.account_land_customer_button);
+        buttonPartner = root.findViewById(R.id.account_land_partner_button);
+        customerDto = new UserDto();
+        partnerDto = new UserDto();
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setButtonCustomer();
-        setButtonPartner();
     }
 
-    private void setButtonCustomer(){
+    private void setButtonCustomerEmpty(){
         buttonCustomer.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
                         R.id.action_nav_account_to_nav_account_customer_empty,null)
         );
     }
 
-    private void setButtonPartner(){
+    private void setButtonCustomerExist(){
+        buttonCustomer.setOnClickListener(
+                Navigation.createNavigateOnClickListener(
+                        R.id.action_nav_account_to_nav_account_customer,null)
+        );
+    }
+
+    private void setButtonPartnerEmpty(){
         buttonPartner.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
                         R.id.action_nav_account_to_nav_account_partner_empty,null)
-            );
+        );
+    }
+
+    private void setButtonPartnerExist(){
+        buttonCustomer.setOnClickListener(
+                Navigation.createNavigateOnClickListener(
+                        R.id.action_nav_account_to_nav_account_customer,null)
+        );
     }
 
     private void setCustomerDataInput() {
@@ -74,10 +96,9 @@ public class AccountLandFragment extends Fragment {
             public void onChanged(UserDto userDto) {
                 customerDto = userDto;
                 if(customerDto != null){
-                    buttonCustomer.setOnClickListener(
-                            Navigation.createNavigateOnClickListener(
-                                    R.id.action_nav_account_to_nav_account_customer,null)
-                    );
+                    setButtonCustomerExist();
+                } else {
+                    setButtonCustomerEmpty();
                 }
             }
         });
@@ -89,10 +110,9 @@ public class AccountLandFragment extends Fragment {
             public void onChanged(UserDto userDto) {
                 partnerDto = userDto;
                 if(partnerDto != null){
-                    buttonPartner.setOnClickListener(
-                            Navigation.createNavigateOnClickListener(
-                                    R.id.action_nav_account_to_nav_account_partner,null)
-                    );
+                    setButtonPartnerExist();
+                } else {
+                    setButtonPartnerEmpty();
                 }
             }
         });

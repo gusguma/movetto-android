@@ -3,6 +3,7 @@ package com.movetto.dtos;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -10,14 +11,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "description"
 })
 public class BikeDto extends VehicleTypeDto {
-
     @JsonProperty("make")
     private String make;
     @JsonProperty("description")
     private String description;
 
     public BikeDto() {
-        //Empty for Serializer.
+        setMaxVolume(0.13);
+        setMaxWeight(15.0);
+        setMaxLenght(50.0);
+        setMaxWidth(50.0);
+        setMaxHigh(50.0);
+        this.make = "";
+        this.description = "";
+        this.setVehicleTypeEnum(VehicleTypeEnum.BIKE);
+    }
+
+    public BikeDto(String make, String description){
+        this();
+        this.make = make;
+        this.description = description;
     }
 
     public String getMake() {
@@ -34,5 +47,13 @@ public class BikeDto extends VehicleTypeDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "BikeDto{" +
+                "make='" + make + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

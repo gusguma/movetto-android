@@ -95,6 +95,7 @@ public class AccountCustomerRegisterFragment extends Fragment
             public void onChanged(UserDto userDto) {
                 displayName.setText(userDto.getDisplayName());
                 email.setText(userDto.getEmail());
+                phone.setText(userDto.getPhone().toString());
                 userOutputDto = userDto;
             }
         });
@@ -167,11 +168,7 @@ public class AccountCustomerRegisterFragment extends Fragment
         try {
             setCustomerDataOutput();
             if (isFormValidate()){
-                try {
-                    setResponseResult();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                setResponseResult();
             } else {
                 Toast.makeText(root.getContext()
                         ,"Verifique los datos del formulario",Toast.LENGTH_LONG).show();
@@ -182,28 +179,28 @@ public class AccountCustomerRegisterFragment extends Fragment
     }
 
     private void setResponseResult() throws Exception {
-        customerViewModel.updateCustomer(userOutputDto).observe(getViewLifecycleOwner(),
+        customerViewModel.saveCustomer(userOutputDto).observe(getViewLifecycleOwner(),
                 new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean responseResult) {
                         response = responseResult;
                         if (response) {
-                            getRegisterOkFragment();
+                            getRegisterOk();
                         } else {
-                            getRegisterErrorFragment();
+                            getRegisterError();
                         }
                     }
                 });
     }
 
-    private void getRegisterOkFragment() {
+    private void getRegisterOk() {
         //TODO make fragment OK
         Toast.makeText(root.getContext(),
                 "El registro de Cliente se ha realizado correctamente",
                 Toast.LENGTH_LONG).show();
     }
 
-    private void getRegisterErrorFragment() {
+    private void getRegisterError() {
         //TODO make fragment OK
         Toast.makeText(root.getContext(),
                 "No se ha podido realizar el registro",

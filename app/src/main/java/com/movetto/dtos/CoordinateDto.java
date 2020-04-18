@@ -31,4 +31,11 @@ public class CoordinateDto {
         this.longitude = longitude;
     }
 
+    @Override
+    public String toString() {
+        return "CoordinateDto{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 }

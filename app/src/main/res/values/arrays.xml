@@ -4,9 +4,16 @@
         <item>Reply</item>
         <item>Reply to all</item>
     </string-array>
-
     <string-array name="reply_values">
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="vehicles">
+        <item>Coche</item>
+        <item>Bicicleta</item>
+        <item>Motocicleta</item>
+        <item>Furgoneta</item>
+    </string-array>
+
 </resources>

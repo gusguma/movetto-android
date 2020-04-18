@@ -19,7 +19,6 @@ public class CustomerRepository extends UserRepository {
     private static final String BASE_CUSTOMERS_URL = BASE_USERS_URL + UrlHandler.CUSTOMERS_URL;
 
     private MutableLiveData<Boolean> isResponseOk;
-
     private MutableLiveData<UserDto> userDtoMutableLiveData;
 
     public CustomerRepository(RequestQueue requestQueue) {

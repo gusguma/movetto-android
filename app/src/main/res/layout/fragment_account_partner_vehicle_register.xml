@@ -41,6 +41,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_title" />
 
+    <View
+        android:id="@+id/account_vehicle_reg_divider_top"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_image" />
+
     <TextView
         android:id="@+id/account_vehicle_reg_type_label"
         android:layout_width="wrap_content"
@@ -48,7 +60,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:labelFor="@id/account_customer_reg_name_edit"
+        android:labelFor="@id/account_vehicle_reg_type_edit"
         android:text="@string/type"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         app:layout_constraintEnd_toStartOf="@+id/account_vehicle_reg_type_edit"
@@ -62,21 +74,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:entries="@array/vehicles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/account_vehicle_reg_type_label"
         app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_divider_top" />
-
-    <View
-        android:id="@+id/account_vehicle_reg_divider_top"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_image" />
 
     <View
         android:id="@+id/account_vehicle_reg_divider_top2"
@@ -92,86 +93,46 @@
         app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_type_edit" />
 
     <TextView
-        android:id="@+id/account_vehicle_reg_make_label"
+        android:id="@+id/account_vehicle_reg_name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:labelFor="@id/account_customer_reg_email_edit"
-        android:text="@string/make"
+        android:labelFor="@id/account_vehicle_reg_name_edit"
+        android:text="@string/name"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_vehicle_reg_make_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_vehicle_reg_name_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/account_vehicle_reg_make_edit"
+        android:id="@+id/account_vehicle_reg_name_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:enabled="false"
-        android:hint="@string/make"
+        android:enabled="true"
+        android:hint="@string/name"
         android:inputType="text"
-        android:labelFor="@id/account_customer_reg_email_label"
+        android:labelFor="@id/account_vehicle_reg_name_label"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/account_vehicle_reg_make_label"
-        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_divider_top2" />
+        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_divider_top2"
+        android:autofillHints="" />
 
     <TextView
-        android:id="@+id/account_vehicle_reg_model_label"
+        android:id="@+id/account_vehicle_reg_make_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/model"
+        android:labelFor="@id/account_vehicle_reg_make_edit"
+        android:text="@string/make"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_vehicle_reg_model_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_vehicle_reg_make_edit"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/account_vehicle_reg_model_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:enabled="true"
-        android:hint="@string/model"
-        android:inputType="text"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_vehicle_reg_make_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_make_edit" />
-
-    <TextView
-        android:id="@+id/account_vehicle_registration_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/registration"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_vehicle_reg_registration_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/account_vehicle_reg_registration_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/registration"
-        android:inputType="text|textPostalAddress"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/account_vehicle_reg_model_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_model_edit" />
 
     <TextView
         android:id="@+id/account_vehicle_reg_description_label"
@@ -190,26 +151,101 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:enabled="true"
         android:gravity="start|top"
         android:hint="@string/description"
         android:inputType="textMultiLine"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/account_vehicle_reg_description_label"
-        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_registration_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_make_edit"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/account_vehicle_reg_make_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/make"
+        android:inputType="text"
+        android:labelFor="@id/account_vehicle_reg_make_label"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/account_vehicle_reg_make_label"
+        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_name_edit"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/account_vehicle_reg_model_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/model"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_vehicle_reg_model_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/account_vehicle_reg_model_edit"
+        android:layout_width="263dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/model"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/account_vehicle_reg_make_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_description_edit" />
+
+    <TextView
+        android:id="@+id/account_vehicle_reg_registration_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/registration"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_vehicle_reg_registration_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/account_vehicle_reg_registration_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="start|top"
+        android:hint="@string/registration"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/account_vehicle_reg_model_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_model_edit"
+        android:autofillHints="" />
 
     <View
         android:id="@+id/account_vehicle_reg_divider_below"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/account_vehicle_reg_save_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_vehicle_reg_description_edit" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/account_vehicle_reg_save_button"

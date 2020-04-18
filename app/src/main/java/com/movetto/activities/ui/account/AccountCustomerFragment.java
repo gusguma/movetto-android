@@ -213,6 +213,8 @@ public class AccountCustomerFragment extends Fragment
         });
     }
 
+
+
     private void getRegisterOkFragment() {
         //TODO make fragment OK
         Toast.makeText(root.getContext(),
