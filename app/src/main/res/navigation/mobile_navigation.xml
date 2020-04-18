@@ -162,12 +162,28 @@
         android:id="@+id/nav_account_customer"
         android:name="com.movetto.activities.ui.account.AccountCustomerFragment"
         android:label="Cuenta de Cliente"
-        tools:layout="@layout/fragment_account_customer" />
+        tools:layout="@layout/fragment_account_customer" >
+        <action
+            android:id="@+id/action_nav_account_customer_to_nav_account_reg_result"
+            app:destination="@id/nav_account_reg_result"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/nav_account_partner"
         android:name="com.movetto.activities.ui.account.AccountPartnerFragment"
         android:label="Cuenta de Socio"
-        tools:layout="@layout/fragment_account_partner" />
+        tools:layout="@layout/fragment_account_partner" >
+        <action
+            android:id="@+id/action_nav_account_partner_to_nav_account_reg_result"
+            app:destination="@id/nav_account_reg_result"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <activity
         android:id="@+id/nav_account_reg_result"
         android:name="com.movetto.activities.ui.account.AccountRegisterResultActivity"
@@ -180,6 +196,10 @@
         tools:layout="@layout/fragment_account_partner_vehicle_register">
         <action
             android:id="@+id/action_nav_account_reg_vehicle_to_nav_account_reg_result"
-            app:destination="@id/nav_account_reg_result" />
+            app:destination="@id/nav_account_reg_result"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>

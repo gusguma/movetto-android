@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.dtos.CustomerDto;
@@ -20,6 +21,8 @@ import com.movetto.dtos.UserDto;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;
 import com.movetto.view_models.CustomerViewModel;
+
+import java.util.Objects;
 
 public class AccountCustomerRegisterFragment extends Fragment
         implements View.OnFocusChangeListener, View.OnClickListener {
@@ -185,25 +188,37 @@ public class AccountCustomerRegisterFragment extends Fragment
                     public void onChanged(Boolean responseResult) {
                         response = responseResult;
                         if (response) {
-                            getRegisterOk();
+                            getRegisterOkFragment();
                         } else {
-                            getRegisterError();
+                            getRegisterErrorFragment();
                         }
                     }
                 });
     }
 
-    private void getRegisterOk() {
-        //TODO make fragment OK
+    private void getRegisterOkFragment() {
+        Bundle data = new Bundle();
+        data.putInt("image", R.drawable.ic_check_circle_black_24dp);
+        data.putString("title", "Cliente Guardado");
+        data.putString("subtitle", "El registro de Cliente se ha completado correctamente.");
+        Navigation.findNavController(root).navigate(
+                R.id.action_nav_account_customer_reg_to_nav_account_reg_result, data);
         Toast.makeText(root.getContext(),
                 "El registro de Cliente se ha realizado correctamente",
                 Toast.LENGTH_LONG).show();
+        Objects.requireNonNull(getActivity()).finish();
     }
 
-    private void getRegisterError() {
-        //TODO make fragment OK
+    private void getRegisterErrorFragment() {
+        Bundle data = new Bundle();
+        data.putInt("image", R.drawable.ic_warning_black_24dp);
+        data.putString("title", "Hemos tenido un problema");
+        data.putString("subtitle", "El registro de Cliente no se ha podido completar.");
+        Navigation.findNavController(root).navigate(
+                R.id.action_nav_account_customer_reg_to_nav_account_reg_result, data);
         Toast.makeText(root.getContext(),
-                "No se ha podido realizar el registro",
+                "No se ha podido registrar el cliente",
                 Toast.LENGTH_LONG).show();
+        Objects.requireNonNull(getActivity()).finish();
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;
 import com.movetto.view_models.CustomerViewModel;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class AccountCustomerFragment extends Fragment
@@ -213,16 +215,28 @@ public class AccountCustomerFragment extends Fragment
     }
 
     private void getRegisterOkFragment() {
-        //TODO make fragment OK
+        Bundle data = new Bundle();
+        data.putInt("image", R.drawable.ic_check_circle_black_24dp);
+        data.putString("title", "Cliente Actualizado");
+        data.putString("subtitle", "El cliente se ha actualizado correctamente.");
+        Navigation.findNavController(root).navigate(
+                R.id.action_nav_account_customer_to_nav_account_reg_result, data);
         Toast.makeText(root.getContext(),
-                "El registro de Cliente se ha realizado correctamente",
+                "Cliente Actualizado",
                 Toast.LENGTH_LONG).show();
+        Objects.requireNonNull(getActivity()).finish();
     }
 
     private void getRegisterErrorFragment() {
-        //TODO make fragment OK
+        Bundle data = new Bundle();
+        data.putInt("image", R.drawable.ic_warning_black_24dp);
+        data.putString("title", "Hemos tenido un problema");
+        data.putString("subtitle", "El cliente no se ha podido actualizar.");
+        Navigation.findNavController(root).navigate(
+                R.id.action_nav_account_customer_to_nav_account_reg_result, data);
         Toast.makeText(root.getContext(),
-                "No se ha podido realizar el registro",
+                "No se ha podido actualizar el Cliente",
                 Toast.LENGTH_LONG).show();
+        Objects.requireNonNull(getActivity()).finish();
     }
 }
