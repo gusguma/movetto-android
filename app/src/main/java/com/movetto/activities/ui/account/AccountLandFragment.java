@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.movetto.R;
+import com.movetto.dtos.CustomerDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.view_models.CustomerViewModel;
 import com.movetto.view_models.PartnerViewModel;
@@ -34,8 +35,8 @@ public class AccountLandFragment extends Fragment {
         setViewModels();
         setLayout(inflater, container);
         setComponents();
-        setCustomerDataInput();
-        setPartnerDataInput();
+        setButtonCustomerEmpty();
+        setButtonPartnerEmpty();
         return root;
     }
 
@@ -53,13 +54,13 @@ public class AccountLandFragment extends Fragment {
     private void setComponents() {
         buttonCustomer = root.findViewById(R.id.account_land_customer_button);
         buttonPartner = root.findViewById(R.id.account_land_partner_button);
-        customerDto = new UserDto();
-        partnerDto = new UserDto();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setCustomerDataInput();
+        setPartnerDataInput();
     }
 
     private void setButtonCustomerEmpty(){
@@ -84,9 +85,9 @@ public class AccountLandFragment extends Fragment {
     }
 
     private void setButtonPartnerExist(){
-        buttonCustomer.setOnClickListener(
+        buttonPartner.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                        R.id.action_nav_account_to_nav_account_customer,null)
+                        R.id.action_nav_account_to_nav_account_partner,null)
         );
     }
 
@@ -97,8 +98,6 @@ public class AccountLandFragment extends Fragment {
                 customerDto = userDto;
                 if(customerDto != null){
                     setButtonCustomerExist();
-                } else {
-                    setButtonCustomerEmpty();
                 }
             }
         });
@@ -111,8 +110,6 @@ public class AccountLandFragment extends Fragment {
                 partnerDto = userDto;
                 if(partnerDto != null){
                     setButtonPartnerExist();
-                } else {
-                    setButtonPartnerEmpty();
                 }
             }
         });

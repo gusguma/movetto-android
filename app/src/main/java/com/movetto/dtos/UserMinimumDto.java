@@ -33,7 +33,6 @@ public class UserMinimumDto {
     }
 
     public UserMinimumDto(String displayName, String email, String uid) {
-        super();
         this.displayName = displayName;
         this.email = email;
         this.uid = uid;

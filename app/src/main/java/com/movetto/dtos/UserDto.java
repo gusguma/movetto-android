@@ -19,6 +19,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+        "id",
         "phone",
         "customer",
         "partner",
@@ -30,7 +31,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 public class UserDto extends UserMinimumDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @JsonProperty("phone")
     private String phone;
     @JsonProperty("customer")
@@ -42,6 +42,7 @@ public class UserDto extends UserMinimumDto implements Serializable {
     private Set<Role> roles = null;
     @JsonProperty("directions")
     private Set<DirectionDto> directions = null;
+
     @JsonProperty("registrationDate")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)

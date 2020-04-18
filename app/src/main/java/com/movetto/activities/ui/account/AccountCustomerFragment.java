@@ -116,7 +116,6 @@ public class AccountCustomerFragment extends Fragment
         Set<DirectionDto> directionDtos = user.getDirections();
         for(DirectionDto direction:directionDtos){
             if(direction.getDirectionType() == DirectionType.CUSTOMER){
-                directionDtos.remove(direction);
                 directionOutputDto = direction;
             }
         }
@@ -212,8 +211,6 @@ public class AccountCustomerFragment extends Fragment
             }
         });
     }
-
-
 
     private void getRegisterOkFragment() {
         //TODO make fragment OK

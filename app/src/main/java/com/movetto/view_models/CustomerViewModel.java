@@ -15,11 +15,10 @@ public class CustomerViewModel extends UserViewModel {
     private MutableLiveData<UserDto> customer;
     private MutableLiveData<Boolean> response;
     private CustomerRepository customerRepository;
-    private RequestQueue requestQueue;
 
     public CustomerViewModel(@NonNull Application application) {
         super(application);
-        requestQueue = Volley
+        RequestQueue requestQueue = Volley
                 .newRequestQueue(getApplication().getApplicationContext());
         customerRepository = new CustomerRepository(requestQueue);
         customer = new MutableLiveData<>();
