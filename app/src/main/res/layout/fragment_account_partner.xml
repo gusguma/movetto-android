@@ -19,26 +19,26 @@
         app:srcCompat="@drawable/ic_account_partner_register_colored" />
 
     <TextView
-        android:id="@+id/account_partner_name"
+        android:id="@+id/account_partner_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/account_manage_partner"
         android:textAppearance="@style/TextAppearance.Movetto.Headline6"
-        app:layout_constraintBottom_toTopOf="@+id/account_partner_email"
+        app:layout_constraintBottom_toTopOf="@+id/account_partner_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/account_partner_email"
+        android:id="@+id/account_partner_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/account_update"
         android:textAppearance="@style/TextAppearance.Movetto.Caption"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_partner_name" />
+        app:layout_constraintTop_toBottomOf="@+id/account_partner_title" />
 
     <View
         android:id="@+id/account_partner_divider_top"
@@ -139,8 +139,37 @@
         app:layout_constraintStart_toStartOf="@+id/account_partner_email_edit"
         app:layout_constraintTop_toBottomOf="@+id/account_partner_email_edit" />
 
+
+    <TextView
+        android:id="@+id/account_partner_id_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/social_security_number"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+
+        app:layout_constraintBaseline_toBaselineOf="@+id/account_partner_id_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/account_partner_id_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/social_security_number"
+        android:inputType="phone"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/account_partner_email_edit"
+        app:layout_constraintTop_toBottomOf="@+id/account_partner_phone_edit" />
+
     <Button
-        android:id="@+id/account_partner_reg_save_button"
+        android:id="@+id/account_partner_save_button"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -152,31 +181,47 @@
         android:insetBottom="0dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:text="@string/fui_button_text_save"
+        android:text="@string/Update"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="391dp"
-        android:layout_height="wrap_content"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/account_partner_view_pager"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/account_partner_save_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_partner_phone_edit">
+        app:layout_constraintTop_toBottomOf="@+id/account_partner_id_edit"
+        app:layout_constraintVertical_bias="0.571">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/account_partner_tab_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dirección" />
+            android:layout_gravity="top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account_partner_id_edit">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vehiculos" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/account_partner_tab_item_direccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/direccion" />
 
-    </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/account_partner_tab_item_vehicles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vehiculos" />
 
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.viewpager.widget.ViewPager>
 </androidx.constraintlayout.widget.ConstraintLayout>
