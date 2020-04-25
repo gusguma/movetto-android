@@ -37,6 +37,10 @@ public class UserMinimumDto {
         this.email = email;
         this.uid = uid;
     }
+    @JsonProperty("id")
+    public int getId() {
+        return id;
+    }
 
     @JsonProperty("displayName")
     public String getDisplayName() {

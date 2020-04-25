@@ -2,11 +2,12 @@ package com.movetto.repositories;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.android.volley.Request;
+import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.movetto.dtos.UserDto;
 import com.movetto.handler.UrlHandler;
 
@@ -30,7 +31,7 @@ public class CustomerRepository extends UserRepository {
     public MutableLiveData<UserDto> readCustomer(){
         String uri = BASE_CUSTOMERS_URL + user.getUid();
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET, uri, null,
+                Method.GET, uri, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -53,16 +54,18 @@ public class CustomerRepository extends UserRepository {
     }
 
     public MutableLiveData<Boolean> saveCustomer(UserDto userInputDto) throws Exception {
-        isResponseOk.setValue(true);
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.POST, BASE_CUSTOMERS_URL, customerRequest(userInputDto),
+                Method.POST, BASE_CUSTOMERS_URL, customerRequest(userInputDto),
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             try {
-                                userDto = mapper.readValue(response.toString(),UserDto.class);
+                                UserDto userDto = mapper.readValue(response.toString(),UserDto.class);
+                                if ((userDto != null))
+                                    isResponseOk.setValue(true);
                             } catch (IOException e) {
                                 e.printStackTrace();
+                                isResponseOk.setValue(false);
                             }
                         }
                     },
@@ -78,16 +81,18 @@ public class CustomerRepository extends UserRepository {
     }
 
     public MutableLiveData<Boolean> updateCustomer(UserDto userInputDto) throws Exception {
-        isResponseOk.setValue(true);
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.PUT, BASE_CUSTOMERS_URL, customerRequest(userInputDto),
+                Method.PUT, BASE_CUSTOMERS_URL, customerRequest(userInputDto),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            userDto = mapper.readValue(response.toString(),UserDto.class);
+                            UserDto userDto = mapper.readValue(response.toString(),UserDto.class);
+                            if ((userDto != null))
+                                isResponseOk.setValue(true);
                         } catch (IOException e) {
                             e.printStackTrace();
+                            isResponseOk.setValue(false);
                         }
                     }
                 },
@@ -100,11 +105,28 @@ public class CustomerRepository extends UserRepository {
                 });
         requestQueue.add(request);
         return isResponseOk;
-
     }
 
-    public void deleteCustomer(final MutableLiveData<UserDto> userDtoMutableLiveData){
-        //TODO
+    public MutableLiveData<Boolean> deleteCustomer(int id){
+        JsonRequest request = new JsonObjectRequest(
+                Method.DELETE, BASE_CUSTOMERS_URL + id, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String res = response.toString();
+                        if (!res.isEmpty()){
+                            isResponseOk.setValue(true);
+                        } else {
+                            isResponseOk.setValue(false);
+                        }
+                    }},
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        isResponseOk.setValue(false);
+                    }
+                });
+        return isResponseOk;
     }
 
     private JSONObject customerRequest (UserDto customerDto) throws Exception {

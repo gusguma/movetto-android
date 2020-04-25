@@ -10,9 +10,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.movetto.activities.ui.account.AccountPartnerDirectionFragment;
 import com.movetto.activities.ui.account.AccountPartnerVehiclesFragment;
+import com.movetto.activities.ui.account.AccountPartnerDataFragment;
 
 public class AccountPartnerAdapter extends FragmentPagerAdapter {
 
+    private static final String DATA = "Mis Datos";
     private static final String DIRECTION = "Dirección";
     private static final String VEHICLES = "Vehiculos";
 
@@ -24,7 +26,7 @@ public class AccountPartnerAdapter extends FragmentPagerAdapter {
         super(fm, behavior);
         this.behavior = behavior;
         this.context = context;
-        titles = new String[]{DIRECTION, VEHICLES};
+        titles = new String[]{DATA,DIRECTION, VEHICLES};
     }
 
     @Nullable
@@ -38,8 +40,10 @@ public class AccountPartnerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new AccountPartnerDirectionFragment();
+                return new AccountPartnerDataFragment();
             case 1:
+                return new AccountPartnerDirectionFragment();
+            case 2:
                 return new AccountPartnerVehiclesFragment();
             default:
                 return null;

@@ -52,123 +52,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_partner_image" />
 
-    <TextView
-        android:id="@+id/account_partner_name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:labelFor="@id/account_customer_reg_name_edit"
-        android:text="@string/name"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_partner_name_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/account_partner_name_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:enabled="true"
-        android:inputType="textPersonName"
-        android:labelFor="@id/account_customer_reg_name_label"
-        android:text="@string/name"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/account_partner_name_label"
-        app:layout_constraintTop_toBottomOf="@+id/account_partner_divider_top" />
-
-    <TextView
-        android:id="@+id/account_partner_email_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:labelFor="@id/account_customer_reg_email_edit"
-        android:text="@string/email"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_partner_email_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/account_partner_email_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:enabled="false"
-        android:inputType="textEmailAddress"
-        android:labelFor="@id/account_customer_reg_email_label"
-        android:text="@string/email"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/account_partner_name_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_partner_name_edit"
-        android:autofillHints="" />
-
-    <TextView
-        android:id="@+id/account_partner_phone_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/telephone"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_partner_phone_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/account_partner_phone_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:enabled="true"
-        android:hint="@string/telephone"
-        android:inputType="phone"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_partner_email_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_partner_email_edit" />
-
-
-    <TextView
-        android:id="@+id/account_partner_id_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/social_security_number"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-
-        app:layout_constraintBaseline_toBaselineOf="@+id/account_partner_id_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/account_partner_id_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/social_security_number"
-        android:inputType="phone"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/account_partner_email_edit"
-        app:layout_constraintTop_toBottomOf="@+id/account_partner_phone_edit" />
-
-    <Button
+   <Button
         android:id="@+id/account_partner_save_button"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
@@ -190,16 +74,15 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/account_partner_view_pager"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="395dp"
+        android:layout_height="501dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/account_partner_save_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_partner_id_edit"
-        app:layout_constraintVertical_bias="0.571">
+        app:layout_constraintTop_toBottomOf="@+id/account_partner_divider_top">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/account_partner_tab_layout"
@@ -209,6 +92,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/account_partner_id_edit">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/account_partner_tab_item_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mis Datos" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/account_partner_tab_item_direccion"

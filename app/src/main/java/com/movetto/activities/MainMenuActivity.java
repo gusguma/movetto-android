@@ -66,7 +66,6 @@ public class MainMenuActivity extends AppCompatActivity{
         System.out.println("El usuario es " + user.getUid());
         checkUserDatabase();
         actionBarBuilder();
-        floatingActionButtonBuilder();
         setmAppBarConfiguration();
         controllerBuilder();
         userDataUIBuilder();
@@ -89,17 +88,6 @@ public class MainMenuActivity extends AppCompatActivity{
     private void actionBarBuilder(){
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    }
-
-    private void floatingActionButtonBuilder(){
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     private void setmAppBarConfiguration(){

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
@@ -18,10 +19,12 @@ import com.google.android.material.tabs.TabLayout;
 import com.movetto.R;
 import com.movetto.adapters.AccountPartnerAdapter;
 import com.movetto.dtos.DirectionDto;
+import com.movetto.dtos.DirectionType;
 import com.movetto.dtos.UserDto;
 import com.movetto.view_models.PartnerViewModel;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class AccountPartnerFragment extends Fragment
         implements TabLayout.OnTabSelectedListener,
@@ -34,15 +37,11 @@ public class AccountPartnerFragment extends Fragment
     private ViewPager viewPager;
     private AccountPartnerAdapter adapter;
 
-    private EditText displayName;
-    private EditText email;
-    private EditText phone;
     private EditText street;
     private EditText postalCode;
     private EditText city;
     private EditText state;
     private EditText country;
-    private EditText customerId;
     private UserDto userOutputDto;
     private DirectionDto directionOutputDto;
     private Button buttonSave;
@@ -74,16 +73,11 @@ public class AccountPartnerFragment extends Fragment
         tabLayout.setupWithViewPager(viewPager);
     }
     private void setComponents() {
-        displayName = root.findViewById(R.id.account_partner_name_edit);
-        email = root.findViewById(R.id.account_partner_email_edit);
-        phone = root.findViewById(R.id.account_partner_phone_edit);
         street = root.findViewById(R.id.account_partner_street_edit);
         postalCode = root.findViewById(R.id.account_partner_cp_edit);
         city = root.findViewById(R.id.account_partner_city_edit);
         state = root.findViewById(R.id.account_partner_state_edit);
         country = root.findViewById(R.id.account_partner_country_edit);
-        customerId = root.findViewById(R.id.account_partner_id_edit);
-        customerId.setEnabled(false);
         buttonSave = root.findViewById(R.id.account_partner_save_button);
     }
 
@@ -116,11 +110,27 @@ public class AccountPartnerFragment extends Fragment
 
     @Override
     public void onClick(View v) {
-
+        //Nothing to Do
     }
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
+        //Nothing to Do
+    }
 
+    public UserDto getUserOutputDto() {
+        return userOutputDto;
+    }
+
+    public void setUserOutputDto(UserDto userOutputDto) {
+        this.userOutputDto = userOutputDto;
+    }
+
+    public DirectionDto getDirectionOutputDto() {
+        return directionOutputDto;
+    }
+
+    public void setDirectionOutputDto(DirectionDto directionOutputDto) {
+        this.directionOutputDto = directionOutputDto;
     }
 }

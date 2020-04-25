@@ -38,9 +38,8 @@ public class CustomerViewModel extends UserViewModel {
         return customerRepository.updateCustomer(userDto);
     }
 
-    public MutableLiveData<UserDto> deleteCustomer(){
-        return null;
-        //TODO
+    public MutableLiveData<Boolean> deleteCustomer(UserDto userDto){
+        return customerRepository.deleteCustomer(userDto.getId());
     }
 
 
