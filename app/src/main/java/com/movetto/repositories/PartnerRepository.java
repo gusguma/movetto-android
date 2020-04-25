@@ -53,16 +53,18 @@ public class PartnerRepository extends UserRepository {
     }
 
     public MutableLiveData<Boolean> savePartner(UserDto userInputDto) throws Exception {
-        isResponseOk.setValue(true);
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST, BASE_PARTNERS_URL, partnerRequest(userInputDto),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            userDto = mapper.readValue(response.toString(),UserDto.class);
+                            UserDto userDto = mapper.readValue(response.toString(),UserDto.class);
+                            if ((userDto != null))
+                                isResponseOk.setValue(true);
                         } catch (IOException e) {
                             e.printStackTrace();
+                            isResponseOk.setValue(false);
                         }
                     }
                 },
@@ -78,16 +80,18 @@ public class PartnerRepository extends UserRepository {
     }
 
     public MutableLiveData<Boolean> updatePartner(UserDto userInputDto) throws Exception {
-        isResponseOk.setValue(true);
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.PUT, BASE_PARTNERS_URL, partnerRequest(userInputDto),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            userDto = mapper.readValue(response.toString(),UserDto.class);
+                            UserDto userDto = mapper.readValue(response.toString(),UserDto.class);
+                            if ((userDto != null))
+                                isResponseOk.setValue(true);
                         } catch (IOException e) {
                             e.printStackTrace();
+                            isResponseOk.setValue(false);
                         }
                     }
                 },

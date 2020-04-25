@@ -103,4 +103,6 @@
     <string name="type">Type:</string>
     <string name="vehicle_register">Vehicle Register</string>
     <string name="vehicle_register_subtitle">" Here you can register your vehicle"</string>
+    <string name="direccion">direccion</string>
+    <string name="vehiculos">vehiculos</string>
 </resources>

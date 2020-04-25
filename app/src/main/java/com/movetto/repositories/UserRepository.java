@@ -32,7 +32,7 @@ public class UserRepository {
 
     protected FirebaseUser user;
     protected RequestQueue requestQueue;
-    protected UserDto userDto;
+    private UserDto userDto;
     protected ObjectMapper mapper;
 
     public UserRepository(RequestQueue requestQueue){

@@ -32,8 +32,8 @@ public class AccountCustomerFragment extends Fragment
     private View root;
     private CustomerViewModel customerViewModel;
 
-    private EditText displayNameForm;
-    private EditText emailForm;
+    private EditText displayName;
+    private EditText email;
     private EditText phone;
     private EditText street;
     private EditText postalCode;
@@ -70,8 +70,8 @@ public class AccountCustomerFragment extends Fragment
     }
 
     private void setComponents() {
-        displayNameForm = root.findViewById(R.id.account_customer_name_edit);
-        emailForm = root.findViewById(R.id.account_customer_email_edit);
+        displayName = root.findViewById(R.id.account_customer_name_edit);
+        email = root.findViewById(R.id.account_customer_email_edit);
         phone = root.findViewById(R.id.account_customer_phone_edit);
         street = root.findViewById(R.id.account_customer_street_edit);
         postalCode = root.findViewById(R.id.account_customer_cp_edit);
@@ -84,7 +84,7 @@ public class AccountCustomerFragment extends Fragment
     }
 
     private void setFormFieldsListener() {
-        displayNameForm.setOnFocusChangeListener(this);
+        displayName.setOnFocusChangeListener(this);
         phone.setOnFocusChangeListener(this);
         street.setOnFocusChangeListener(this);
         postalCode.setOnFocusChangeListener(this);
@@ -101,8 +101,8 @@ public class AccountCustomerFragment extends Fragment
             public void onChanged(UserDto userDto) {
                 userOutputDto = userDto;
                 DirectionDto customerDirection = getCustomerDirection(userDto);
-                displayNameForm.setText(userDto.getDisplayName());
-                emailForm.setText(userDto.getEmail());
+                displayName.setText(userDto.getDisplayName());
+                email.setText(userDto.getEmail());
                 phone.setText((String)userDto.getPhone());
                 street.setText(customerDirection.getStreet());
                 postalCode.setText(customerDirection.getPostalCode());
@@ -154,7 +154,7 @@ public class AccountCustomerFragment extends Fragment
     private boolean isFormValidate(){
         boolean isValidate = true;
         EditText[] editTexts = new EditText[]{
-                displayNameForm,phone,street,postalCode,city,
+                displayName,phone,street,postalCode,city,
                 state,country
         };
         for (EditText editText:editTexts) {
@@ -167,7 +167,7 @@ public class AccountCustomerFragment extends Fragment
     }
 
     private void setCustomerDataOutput() {
-        userOutputDto.setDisplayName(displayNameForm.getText().toString());
+        userOutputDto.setDisplayName(displayName.getText().toString());
         userOutputDto.setPhone(phone.getText().toString());
         userOutputDto.setCustomer(new CustomerDto());
         setCustomerDirection();
