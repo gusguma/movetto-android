@@ -1,6 +1,5 @@
 package com.movetto.adapters;
 
-import android.util.ArraySet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,8 @@ import java.util.List;
 public class AccountPartnerVehiclesAdapter extends
         RecyclerView.Adapter<AccountPartnerVehiclesAdapter.VehicleHolder> {
 
-    private List<VehicleDto> vehicleDtoList = new ArrayList<>();
+    private List<VehicleDto> vehicles = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -35,7 +35,7 @@ public class AccountPartnerVehiclesAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull VehicleHolder holder, int position) {
-        VehicleDto vehicle = vehicleDtoList.get(position);
+        VehicleDto vehicle = vehicles.get(position);
         if (vehicle.getClass() == BikeDto.class)
             setBike(vehicle, holder);
         if (vehicle.getClass() == CarDto.class)
@@ -49,7 +49,7 @@ public class AccountPartnerVehiclesAdapter extends
 
     @Override
     public int getItemCount() {
-        return vehicleDtoList.size();
+        return vehicles.size();
     }
 
     private void setBike(VehicleDto vehicleDto, VehicleHolder holder){
@@ -80,11 +80,23 @@ public class AccountPartnerVehiclesAdapter extends
     }
 
     public void setVehicles(List<VehicleDto> vehicleDtoList) {
-        this.vehicleDtoList = vehicleDtoList;
+        this.vehicles = vehicleDtoList;
         notifyDataSetChanged();
     }
 
-    public class VehicleHolder extends RecyclerView.ViewHolder {
+    public VehicleDto getVehicleAt(int position){
+        return vehicles.get(position);
+    }
+
+    public List<VehicleDto> getVehicles() {
+        return vehicles;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
+    class VehicleHolder extends RecyclerView.ViewHolder {
         private ImageView icon;
         private TextView name;
         private TextView makeModel;
@@ -94,6 +106,19 @@ public class AccountPartnerVehiclesAdapter extends
             icon = itemView.findViewById(R.id.account_partner_vehicles_icon);
             name = itemView.findViewById(R.id.account_partner_vehicles_title);
             makeModel = itemView.findViewById(R.id.account_partner_vehicles_subtitle);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(vehicles.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(VehicleDto vehicle);
     }
 }

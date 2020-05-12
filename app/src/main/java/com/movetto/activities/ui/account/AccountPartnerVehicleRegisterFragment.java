@@ -23,11 +23,15 @@ import com.movetto.dtos.CarDto;
 import com.movetto.dtos.MotorcycleDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.VanDto;
+import com.movetto.dtos.VehicleDto;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;
 import com.movetto.view_models.PartnerViewModel;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
+import java.util.Set;
 
 public class AccountPartnerVehicleRegisterFragment extends Fragment
         implements AdapterView.OnItemSelectedListener,
@@ -50,9 +54,11 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
     private EditText model;
     private EditText registration;
     private String vehicleSelected;
+    private VehicleDto vehicleDto;
 
     private UserDto userOutputDto;
     private Button buttonSave;
+    private Button buttonDelete;
     private boolean response;
 
     public AccountPartnerVehicleRegisterFragment() {
@@ -60,7 +66,7 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setViewModels();
         setLayout(inflater,container);
@@ -78,7 +84,6 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
     }
 
     private void setComponents() {
-        setUserData();
         vehicleType = root.findViewById(R.id.account_vehicle_reg_type_edit);
         name = root.findViewById(R.id.account_vehicle_reg_name_edit);
         make = root.findViewById(R.id.account_vehicle_reg_make_edit);
@@ -86,8 +91,11 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
         registration = root.findViewById(R.id.account_vehicle_reg_registration_edit);
         description = root.findViewById(R.id.account_vehicle_reg_description_edit);
         buttonSave = root.findViewById(R.id.account_vehicle_reg_save_button);
+        buttonDelete = root.findViewById(R.id.account_vehicle_reg_delete_button);
+        buttonDelete.setVisibility(View.GONE);
         modelLabel = root.findViewById(R.id.account_vehicle_reg_model_label);
         registrationLabel = root.findViewById(R.id.account_vehicle_reg_registration_label);
+        setUserData();
     }
 
     private void setListeners(){
@@ -98,6 +106,7 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
         registration.setOnFocusChangeListener(this);
         description.setOnFocusChangeListener(this);
         buttonSave.setOnClickListener(this);
+        buttonDelete.setOnClickListener(this);
     }
 
     private void setUserData(){
@@ -105,58 +114,138 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
         if(data != null && data.getSerializable("user") != null) {
             userOutputDto = (UserDto) data.getSerializable("user");
         }
+        if (data != null && data.getInt("id") != 0){
+            vehicleType.setEnabled(false);
+            registration.setEnabled(false);
+            buttonDelete.setVisibility(View.VISIBLE);
+            getVehicleUpdateData();
+        }
     }
 
-    private void setVehicleData(){
+    private void getVehicleUpdateData(){
+        int id = data.getInt("id");
+        Set<VehicleDto> vehicles = userOutputDto.getPartner().getVehicles();
+        for(VehicleDto vehicle : vehicles){
+            if (vehicle.getId() == id){
+                vehicleDto = vehicle;
+                setVehicleFormData();
+            }
+        }
+    }
+
+    private void setVehicleFormData(){
+        if (vehicleDto.getClass() == BikeDto.class){
+            setBikeFormData((BikeDto)vehicleDto);
+        }
+        if (vehicleDto.getClass() == CarDto.class){
+            setCarFormData((CarDto)vehicleDto);
+        }
+        if (vehicleDto.getClass() == MotorcycleDto.class){
+            setMotorcycleFormData((MotorcycleDto)vehicleDto);
+        }
+        if (vehicleDto.getClass() == VanDto.class){
+            setVanFormData((VanDto)vehicleDto);
+        }
+    }
+
+    private void setBikeFormData(BikeDto bike){
+        vehicleType.setSelection(0);
+        name.setText(bike.getName());
+        make.setText(bike.getMake());
+        description.setText(bike.getDescription());
+    }
+
+    private void setCarFormData(CarDto car){
+        vehicleType.setSelection(1);
+        name.setText(car.getName());
+        make.setText(car.getMake());
+        model.setText(car.getModel());
+        registration.setText(car.getRegistration());
+        description.setText(car.getDescription());
+    }
+
+    private void setMotorcycleFormData(MotorcycleDto motorcycle){
+        vehicleType.setSelection(2);
+        name.setText(motorcycle.getName());
+        make.setText(motorcycle.getMake());
+        model.setText(motorcycle.getModel());
+        registration.setText(motorcycle.getRegistration());
+        description.setText(motorcycle.getDescription());
+    }
+
+    private void setVanFormData(VanDto van){
+        vehicleType.setSelection(3);
+        name.setText(van.getName());
+        make.setText(van.getMake());
+        model.setText(van.getModel());
+        registration.setText(van.getRegistration());
+        description.setText(van.getDescription());
+    }
+
+    private VehicleDto setVehicleData(){
         if(vehicleSelected.equals(BIKE))
-            setBikeData();
+            vehicleDto = setBikeData();
         if (vehicleSelected.equals(CAR))
-            setCarData();
+            vehicleDto = setCarData();
         if (vehicleSelected.equals(MOTORCYCLE))
-            setMotorcycleData();
+            vehicleDto = setMotorcycleData();
         if (vehicleSelected.equals(VAN))
-            setVanData();
+            vehicleDto = setVanData();
+        return vehicleDto;
     }
 
-    private void setBikeData() {
-        BikeDto bikeDto = new BikeDto(
-                make.getText().toString(),
-                description.getText().toString());
-        bikeDto.setName(name.getText().toString());
-        userOutputDto.getPartner().getVehicles().add(bikeDto);
+    private BikeDto setBikeData() {
+        if (vehicleDto == null){
+            vehicleDto = new BikeDto();
+        }
+        BikeDto bike = (BikeDto) vehicleDto;
+        bike.setName(name.getText().toString());
+        bike.setMake(make.getText().toString());
+        bike.setDescription(description.getText().toString());
+        bike.setActive(true);
+        return bike;
     }
 
-    private void setCarData() {
-        CarDto carDto = new CarDto(
-                registration.getText().toString(),
-                make.getText().toString(),
-                model.getText().toString(),
-                description.getText().toString()
-        );
-        carDto.setName(name.getText().toString());
-        userOutputDto.getPartner().getVehicles().add(carDto);
+    private CarDto setCarData() {
+        if (vehicleDto == null){
+            vehicleDto = new CarDto();
+        }
+        CarDto car = (CarDto) vehicleDto;
+        car.setName(name.getText().toString());
+        car.setMake(make.getText().toString());
+        car.setModel(model.getText().toString());
+        car.setDescription(description.getText().toString());
+        car.setRegistration(registration.getText().toString());
+        car.setActive(true);
+        return car;
     }
 
-    private void setMotorcycleData() {
-        MotorcycleDto motorcycleDto = new MotorcycleDto(
-                registration.getText().toString(),
-                make.getText().toString(),
-                model.getText().toString(),
-                description.getText().toString()
-        );
-        motorcycleDto.setName(name.getText().toString());
-        userOutputDto.getPartner().getVehicles().add(motorcycleDto);
+    private MotorcycleDto setMotorcycleData() {
+        if (vehicleDto == null){
+            vehicleDto = new MotorcycleDto();
+        }
+        MotorcycleDto motorcycle = (MotorcycleDto) vehicleDto;
+        motorcycle.setName(name.getText().toString());
+        motorcycle.setMake(make.getText().toString());
+        motorcycle.setModel(model.getText().toString());
+        motorcycle.setDescription(description.getText().toString());
+        motorcycle.setRegistration(registration.getText().toString());
+        motorcycle.setActive(true);
+        return motorcycle;
     }
 
-    private void setVanData() {
-        VanDto vanDto = new VanDto(
-                registration.getText().toString(),
-                make.getText().toString(),
-                model.getText().toString(),
-                description.getText().toString()
-        );
-        vanDto.setName(name.getText().toString());
-        userOutputDto.getPartner().getVehicles().add(vanDto);
+    private VanDto setVanData() {
+        if (vehicleDto == null){
+            vehicleDto = new VanDto();
+        }
+        VanDto van = (VanDto) vehicleDto;
+        van.setName(name.getText().toString());
+        van.setMake(make.getText().toString());
+        van.setModel(model.getText().toString());
+        van.setDescription(description.getText().toString());
+        van.setRegistration(registration.getText().toString());
+        van.setActive(true);
+        return van;
     }
 
     private boolean isFormValidate(){
@@ -197,8 +286,10 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
         vehicleSelected = parent.getItemAtPosition(position).toString();
         if (vehicleSelected.equals(BIKE)){
             registrationLabel.setVisibility(View.INVISIBLE);
+            registration.setText("-");
             registration.setVisibility(View.INVISIBLE);
             modelLabel.setVisibility(View.INVISIBLE);
+            model.setText("-");
             model.setVisibility(View.INVISIBLE);
         } else {
             registrationLabel.setVisibility(View.VISIBLE);
@@ -215,10 +306,22 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.account_vehicle_reg_delete_button){
+            try {
+                deleteVehicle();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (v.getId() == R.id.account_vehicle_reg_save_button){
+            setButtonSaveListener();
+        }
+    }
+
+    private void setButtonSaveListener(){
         try {
-            setVehicleData();
             if (isFormValidate()){
-                setResponseResult();
+                checkPartner();
             } else {
                 Toast.makeText(root.getContext()
                         ,"Verifique los datos del formulario",Toast.LENGTH_LONG).show();
@@ -228,7 +331,41 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
         }
     }
 
-    private void setResponseResult() throws Exception {
+    private void checkPartner() throws Exception {
+        if (userOutputDto.getPartner().getVehicles().isEmpty()){
+            vehicleDto = setVehicleData();
+            userOutputDto.getPartner().getVehicles().add(vehicleDto);
+            savePartner();
+        } else {
+            updateVehicle();
+        }
+    }
+
+    private void updateVehicle() throws Exception {
+        Set<VehicleDto> vehicles = userOutputDto.getPartner().getVehicles();
+        for (VehicleDto vehicle : vehicles){
+            if (vehicle.getId() == data.getInt("id")){
+                vehicleDto = vehicle;
+            }
+        }
+        vehicleDto = setVehicleData();
+        vehicleDto.setId(data.getInt("id"));
+        userOutputDto.getPartner().getVehicles().add(vehicleDto);
+        updatePartner();
+    }
+
+    private void deleteVehicle() throws Exception {
+        Set<VehicleDto> vehicles = userOutputDto.getPartner().getVehicles();
+        for (VehicleDto vehicle : vehicles){
+            if (vehicle.getId() == data.getInt("id")){
+                vehicles.remove(vehicle);
+            }
+        }
+        userOutputDto.getPartner().setVehicles(vehicles);
+        updatePartner();
+    }
+
+    private void savePartner() throws Exception {
         partnerViewModel.savePartner(userOutputDto).observe(getViewLifecycleOwner(),
                 new Observer<Boolean>() {
                     @Override
@@ -238,6 +375,21 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
                             getRegisterOkFragment();
                         } else {
                             getRegisterErrorFragment();
+                        }
+                    }
+                });
+    }
+
+    private void updatePartner() throws Exception {
+        partnerViewModel.updatePartner(userOutputDto).observe(getViewLifecycleOwner(),
+                new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean responseResult) {
+                        response = responseResult;
+                        if (response) {
+                            getUpdateOk();
+                        } else {
+                            getUpdateError();
                         }
                     }
                 });
@@ -268,5 +420,19 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
                 "No se ha podido realizar el registro",
                 Toast.LENGTH_LONG).show();
         Objects.requireNonNull(getActivity()).finish();
+    }
+
+    private void getUpdateOk() {
+        Navigation.findNavController(root).navigate(
+                R.id.action_nav_account_reg_vehicle_to_nav_account_partner);
+        Toast.makeText(root.getContext(),
+                "El registro de Vehiculo se ha realizado correctamente",
+                Toast.LENGTH_LONG).show();
+    }
+
+    private void getUpdateError() {
+        Toast.makeText(root.getContext(),
+                "No se ha podido registrar el Vehículo",
+                Toast.LENGTH_LONG).show();
     }
 }

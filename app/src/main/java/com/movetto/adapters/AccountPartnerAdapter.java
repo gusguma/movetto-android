@@ -6,13 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.movetto.activities.ui.account.AccountPartnerDirectionFragment;
 import com.movetto.activities.ui.account.AccountPartnerVehiclesFragment;
 import com.movetto.activities.ui.account.AccountPartnerDataFragment;
 
-public class AccountPartnerAdapter extends FragmentPagerAdapter {
+public class AccountPartnerAdapter extends FragmentStatePagerAdapter {
 
     private static final String DATA = "Mis Datos";
     private static final String DIRECTION = "Dirección";

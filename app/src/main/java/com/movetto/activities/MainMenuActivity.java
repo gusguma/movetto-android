@@ -9,8 +9,6 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
 import android.view.MenuItem;
@@ -24,11 +22,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.movetto.R;
-import com.movetto.activities.ui.account.AccountPartnerVehicleRegisterFragment;
 import com.movetto.view_models.PartnerViewModel;
 import com.movetto.view_models.UserViewModel;
 
@@ -94,7 +90,7 @@ public class MainMenuActivity extends AppCompatActivity{
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_shipments, R.id.nav_travel, R.id.nav_packages,
+                R.id.nav_shipments_empty, R.id.nav_travel, R.id.nav_packages,
                 R.id.nav_travellers,R.id.nav_news, R.id.nav_account, R.id.nav_wallet)
                 .setDrawerLayout(drawerLayout)
                 .build();

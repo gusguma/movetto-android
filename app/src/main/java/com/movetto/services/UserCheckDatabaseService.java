@@ -1,8 +1,7 @@
-package com.movetto.services.user_services;
+package com.movetto.services;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;

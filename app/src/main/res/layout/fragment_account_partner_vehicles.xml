@@ -13,4 +13,12 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/vehicle_item"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/account_partner_add_vehicle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="32dp"
+        android:src="@drawable/ic_add_black_24dp" />
+
 </FrameLayout>

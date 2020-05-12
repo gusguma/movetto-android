@@ -31,7 +31,6 @@ public class AccountCustomerFragment extends Fragment
 
     private View root;
     private CustomerViewModel customerViewModel;
-
     private EditText displayName;
     private EditText email;
     private EditText phone;
@@ -127,28 +126,35 @@ public class AccountCustomerFragment extends Fragment
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         EditText editText = (EditText) v;
-        boolean focus = editText.hasFocus();
-        boolean isEmpty = editText.getText().toString().isEmpty();
-        if (focus) {
+        if (editText.hasFocus())
             editText.setError(null);
-        } else {
-            if(isEmpty){
-                editText.setError(ErrorStrings.EMPTY);
-            } else {
-                if (editText.getId() == R.id.account_customer_cp_edit){
-                    if (!Validation.isPostalCodeValid(postalCode.getText().toString()))
-                        postalCode.setError(ErrorStrings.INVALID_POSTAL_CODE);
-                }
-                if (editText.getId() == R.id.account_customer_phone_edit) {
-                    if (!Validation.isPhoneValid(phone.getText().toString()))
-                        phone.setError(ErrorStrings.INVALID_PHONE_NUMBER);
-                }
-                if (editText.getId() == R.id.account_customer_id_edit) {
-                    if (!Validation.isRegisterIdValid(customerId.getText().toString()))
-                        customerId.setError(ErrorStrings.INVALID_REGISTER_ID);
-                }
-            }
+        if(editText.getText().toString().isEmpty()){
+            editText.setError(ErrorStrings.EMPTY);
         }
+        if(editText.getId() == R.id.account_customer_cp_edit){
+            isPostalCodeValid();
+        }
+        if (editText.getId() == R.id.account_customer_phone_edit) {
+            isPhoneValid();
+        }
+        if (editText.getId() == R.id.account_customer_id_edit) {
+            isCustomerIdValid();
+        }
+    }
+
+    private void isPostalCodeValid(){
+        if (!Validation.isPostalCodeValid(postalCode.getText().toString()))
+            postalCode.setError(ErrorStrings.INVALID_POSTAL_CODE);
+    }
+
+    private void isPhoneValid(){
+        if (!Validation.isPhoneValid(phone.getText().toString()))
+            phone.setError(ErrorStrings.INVALID_PHONE_NUMBER);
+    }
+
+    private void isCustomerIdValid(){
+        if (!Validation.isRegisterIdValid(customerId.getText().toString()))
+            customerId.setError(ErrorStrings.INVALID_REGISTER_ID);
     }
 
     private boolean isFormValidate(){

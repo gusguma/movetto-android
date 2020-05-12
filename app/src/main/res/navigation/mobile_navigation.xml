@@ -6,13 +6,27 @@
     app:startDestination="@+id/nav_news">
 
     <fragment
-        android:id="@+id/nav_shipments"
-        android:name="com.movetto.activities.ui.shipments.ShipmentsLandFragment"
+        android:id="@+id/nav_shipments_empty"
+        android:name="com.movetto.activities.ui.shipments.ShipmentsEmptyFragment"
         android:label="@string/shipments"
-        tools:layout="@layout/fragment_shipment_land">
+        tools:layout="@layout/fragment_shipment_empty">
         <action
-            android:id="@+id/action_nav_shipments_to_nav_shipments_create"
-            app:destination="@id/nav_shipments_create"
+            android:id="@+id/action_nav_shipments_empty_to_nav_shipments_list"
+            app:destination="@id/nav_shipments_list"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_shipments_empty_to_nav_shipments_start"
+            app:destination="@id/nav_shipments_start"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_shipments_empty_to_nav_account_customer_empty"
+            app:destination="@id/nav_account_customer_empty"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -83,10 +97,18 @@
         android:label="Noticias"
         tools:layout="@layout/fragment_news" />
     <fragment
-        android:id="@+id/nav_shipments_create"
-        android:name="com.movetto.activities.ui.shipments.ShipmentCreateFragment"
-        android:label="@string/new_shipment"
-        tools:layout="@layout/fragment_shipment_create" />
+        android:id="@+id/nav_shipments_start"
+        android:name="com.movetto.activities.ui.shipments.ShipmentStartFragment"
+        android:label="@string/pick_up_address"
+        tools:layout="@layout/fragment_shipment_start">
+        <action
+            android:id="@+id/action_nav_shipments_start_to_nav_shipment_end"
+            app:destination="@id/nav_shipment_end"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/nav_travel_create"
         android:name="com.movetto.activities.ui.travel.TravelCreateFragment"
@@ -183,6 +205,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_account_partner_to_nav_account_reg_vehicle"
+            app:destination="@id/nav_account_reg_vehicle"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <activity
         android:id="@+id/nav_account_reg_result"
@@ -201,5 +230,26 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_account_reg_vehicle_to_nav_account_partner"
+            app:destination="@id/nav_account_partner"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_shipment_end"
+        android:name="com.movetto.activities.ui.shipments.ShipmentEndFragment"
+        android:label="@string/delivery_address"
+        tools:layout="@layout/fragment_shipment_end" />
+    <fragment
+        android:id="@+id/nav_shipments_list"
+        android:name="com.movetto.activities.ui.shipments.ShipmentListFragment"
+        android:label="Listado de Envíos"
+        tools:layout="@layout/fragment_shipment_list" >
+        <action
+            android:id="@+id/action_nav_shipments_list_to_nav_shipments_start"
+            app:destination="@id/nav_shipments_start" />
     </fragment>
 </navigation>
