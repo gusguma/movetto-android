@@ -53,7 +53,7 @@
     <string name="news">News</string>
     <string name="shipment_list">Shipment List</string>
     <string name="new_shipment">New Shipment</string>
-    <string name="shipment_subtitle">" In this section, you can add, display and view the status of all your shipments."</string>
+    <string name="shipment_subtitle_empty">" Currently you do not have any shipment, press the Continue button to create one, or Later to Exit."</string>
     <string name="shipment_land_image_description">Shipment Image</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -104,5 +104,10 @@
     <string name="vehicle_register">Vehicle Register</string>
     <string name="vehicle_register_subtitle">" Here you can register your vehicle"</string>
     <string name="direccion">direccion</string>
-    <string name="vehiculos">vehiculos</string>
+    <string name="vehiculos">vehicles</string>
+    <string name="data">My Data</string>
+    <string name="pick_up_address">Pick Up Address</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="shipment_image_description">Shipment Image</string>
+    <string name="shipment_subtitle_create">Address where we will collect the shipment</string>
 </resources>

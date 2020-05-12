@@ -8,5 +8,7 @@ public class UrlHandler {
     public static final String PARTNERS_URL = "partners/";
     public static final String DIRECTIONS_URL = "directions/";
     public static final String VEHICLES_URL = "vehicles/";
+    public static final String NEWS_URL = "news/";
+    public static final String SHIPMENTS_URL = "shipments/";
 
 }

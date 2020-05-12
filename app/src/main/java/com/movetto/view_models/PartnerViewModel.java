@@ -30,12 +30,12 @@ public class PartnerViewModel extends UserViewModel {
         return partner;
     }
 
-    public MutableLiveData<Boolean> savePartner(UserDto userOutputDto) throws Exception {
-        return partnerRepository.savePartner(userOutputDto);
+    public MutableLiveData<Boolean> savePartner(UserDto user) throws Exception {
+        return partnerRepository.savePartner(user);
     }
 
-    public MutableLiveData<Boolean> updatePartner(UserDto userOutputDto) throws Exception {
-        return partnerRepository.updatePartner(userOutputDto);
+    public MutableLiveData<Boolean> updatePartner(UserDto user) throws Exception {
+        return partnerRepository.updatePartner(user);
     }
 
     public MutableLiveData<UserDto> deletePartner(){

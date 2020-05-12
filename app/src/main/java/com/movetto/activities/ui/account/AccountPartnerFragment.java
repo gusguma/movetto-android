@@ -3,15 +3,12 @@ package com.movetto.activities.ui.account;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.material.tabs.TabLayout;
@@ -19,12 +16,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.movetto.R;
 import com.movetto.adapters.AccountPartnerAdapter;
 import com.movetto.dtos.DirectionDto;
-import com.movetto.dtos.DirectionType;
 import com.movetto.dtos.UserDto;
 import com.movetto.view_models.PartnerViewModel;
-
-import java.util.Objects;
-import java.util.Set;
 
 public class AccountPartnerFragment extends Fragment
         implements TabLayout.OnTabSelectedListener,
@@ -44,8 +37,6 @@ public class AccountPartnerFragment extends Fragment
     private EditText country;
     private UserDto userOutputDto;
     private DirectionDto directionOutputDto;
-    private Button buttonSave;
-    private Boolean response;
 
     public AccountPartnerFragment() {
         // Required empty public constructor
@@ -78,14 +69,11 @@ public class AccountPartnerFragment extends Fragment
         city = root.findViewById(R.id.account_partner_city_edit);
         state = root.findViewById(R.id.account_partner_state_edit);
         country = root.findViewById(R.id.account_partner_country_edit);
-        buttonSave = root.findViewById(R.id.account_partner_save_button);
     }
 
     private void setAdapter(){
-        FragmentManager fragmentManager = Objects.requireNonNull(getActivity())
-                .getSupportFragmentManager();
-        adapter = new AccountPartnerAdapter(fragmentManager
-                ,tabLayout.getTabCount(), getContext());
+        adapter = new AccountPartnerAdapter(
+                getChildFragmentManager(),tabLayout.getTabCount(), getContext());
         viewPager.setAdapter(adapter);
     }
 
@@ -116,21 +104,5 @@ public class AccountPartnerFragment extends Fragment
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         //Nothing to Do
-    }
-
-    public UserDto getUserOutputDto() {
-        return userOutputDto;
-    }
-
-    public void setUserOutputDto(UserDto userOutputDto) {
-        this.userOutputDto = userOutputDto;
-    }
-
-    public DirectionDto getDirectionOutputDto() {
-        return directionOutputDto;
-    }
-
-    public void setDirectionOutputDto(DirectionDto directionOutputDto) {
-        this.directionOutputDto = directionOutputDto;
     }
 }

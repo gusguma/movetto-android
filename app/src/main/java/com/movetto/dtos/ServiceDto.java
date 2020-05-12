@@ -2,7 +2,7 @@ package com.movetto.dtos;
 
 import java.time.LocalDateTime;
 
-public class ServiceDto {
+public abstract class ServiceDto {
 
     private int id;
     private DirectionDto startDirection;

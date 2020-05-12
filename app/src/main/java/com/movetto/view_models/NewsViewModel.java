@@ -1,19 +1,33 @@
 package com.movetto.view_models;
 
-import androidx.lifecycle.LiveData;
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class NewsViewModel extends ViewModel {
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.movetto.dtos.NewsDto;
+import com.movetto.repositories.NewsRepository;
 
-    private MutableLiveData<String> mText;
+import java.util.List;
 
-    public NewsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is news fragment");
+public class NewsViewModel extends AndroidViewModel {
+
+    private NewsRepository newsRepository;
+    private MutableLiveData<List<NewsDto>> news;
+
+    public NewsViewModel(@NonNull Application application) {
+        super(application);
+        RequestQueue requestQueue = Volley
+                .newRequestQueue(getApplication().getApplicationContext());
+        newsRepository = new NewsRepository(requestQueue);
+        news = new MutableLiveData<>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public MutableLiveData<List<NewsDto>> readNews() {
+        news = newsRepository.readNews();
+        return news;
     }
 }

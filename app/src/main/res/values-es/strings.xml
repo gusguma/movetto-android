@@ -43,7 +43,7 @@
     <string name="news">Novedades</string>
     <string name="shipment_list">Listado Envíos</string>
     <string name="new_shipment">Nuevo Envío</string>
-    <string name="shipment_subtitle" >En esta sección, podrás añadir, mostrar y ver el estado de todos tus envíos.</string>
+    <string name="shipment_subtitle_empty">Actualmente no dispones de ningún envío, pulsa el botón Continuar para crear uno, o Mas Tarde para Salir.</string>
     <string name="shipment_land_image_description">Imagen Envios</string>
     <string name="travels">Mis Viajes</string>
     <string name="travel_subtitle">En esta sección, podrás añadir, mostrar y ver el estado de todos tus viajes.</string>
@@ -92,4 +92,10 @@
     <string name="registration">Matrícula:</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="direccion">direccion</string>
+    <string name="vehiculos">vehiculos</string>
+    <string name="data">Mis Datos</string>
+    <string name="pick_up_address">Dirección de Recogida</string>
+    <string name="delivery_address">Dirección de Entrega</string>
+    <string name="shipment_image_description">Imagen Envio</string>
+    <string name="shipment_subtitle_create">Direccion donde recogeremos el envío</string>
 </resources>
