@@ -97,5 +97,15 @@
     <string name="pick_up_address">Dirección de Recogida</string>
     <string name="delivery_address">Dirección de Entrega</string>
     <string name="shipment_image_description">Imagen Envio</string>
-    <string name="shipment_subtitle_create">Direccion donde recogeremos el envío</string>
+    <string name="shipment_subtitle_start">Direccion donde recogeremos el envío</string>
+    <string name="shipment_subtitle_end">Direccion donde entregaremos el envio</string>
+    <string name="shipment_package_title">Datos del Paquete</string>
+    <string name="shipment_package_subtitle">"Introduce los datos del paquete "</string>
+    <string name="width">Ancho:</string>
+    <string name="lenght">Largo:</string>
+    <string name="weight">Peso:</string>
+    <string name="height">Alto:</string>
+    <string name="enter_value_cm">Introduzca el valor en cm.</string>
+    <string name="enter_value_kg">Introduzca el valor en kg.</string>
+    <string name="shipment_management">Aquí puedes gestionar tus envíos</string>
 </resources>

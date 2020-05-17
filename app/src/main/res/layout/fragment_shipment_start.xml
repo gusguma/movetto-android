@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/shipment_image_description"
-        android:src="@drawable/ic_shipment_start_direction"
+        android:src="@drawable/ic_shipment_start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="@string/shipment_subtitle_create"
+        android:text="@string/shipment_subtitle_start"
         android:textAppearance="@style/TextAppearance.Movetto.Caption"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shipment_start_title" />
@@ -52,92 +52,6 @@
         app:layout_constraintTop_toBottomOf="@+id/shipment_start_image" />
 
     <TextView
-        android:id="@+id/shipment_start_customer_name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:labelFor="@id/shipment_start_customer_name_edit"
-        android:text="@string/name"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_start_customer_name_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/shipment_start_customer_name_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:enabled="false"
-        android:inputType="textPersonName"
-        android:labelFor="@id/account_customer_reg_name_label"
-        android:text="@string/name"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/shipment_start_customer_name_label"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_start_customer_divider_top" />
-
-    <TextView
-        android:id="@+id/shipment_start_customer_email_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:labelFor="@id/account_customer_email_edit"
-        android:text="@string/email"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_start_customer_email_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/shipment_start_customer_email_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:enabled="false"
-        android:inputType="textEmailAddress"
-        android:labelFor="@id/account_customer_email_label"
-        android:text="@string/email"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/shipment_start_customer_name_edit"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_start_customer_name_edit" />
-
-    <TextView
-        android:id="@+id/shipment_start_customer_phone_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/telephone"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_start_customer_phone_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/shipment_start_customer_phone_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/telephone"
-        android:inputType="phone"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/shipment_start_customer_email_edit"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_start_customer_email_edit" />
-
-    <TextView
         android:id="@+id/shipment_start_customer_street_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -151,6 +65,7 @@
         android:id="@+id/shipment_start_customer_street_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:enabled="true"
@@ -159,8 +74,8 @@
         android:inputType="textMultiLine|textPostalAddress"
         android:textAppearance="@style/TextAppearance.Movetto.Body2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/shipment_start_customer_phone_edit"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_start_customer_phone_edit" />
+        app:layout_constraintStart_toStartOf="@+id/shipment_start_customer_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_start_customer_divider_top" />
 
     <TextView
         android:id="@+id/shipment_start_customer_cp_label"
@@ -266,32 +181,6 @@
         app:layout_constraintStart_toStartOf="@+id/shipment_start_customer_cp_edit"
         app:layout_constraintTop_toBottomOf="@+id/shipment_start_customer_state_edit" />
 
-    <TextView
-        android:id="@+id/shipment_start_customer_id_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/social_security_number"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_start_customer_id_edit"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/shipment_start_customer_id_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:enabled="true"
-        android:hint="@string/social_security_number"
-        android:inputType="textPersonName"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        android:theme="?attr/textInputStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/shipment_start_customer_cp_edit"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_start_customer_country_edit" />
-
     <View
         android:id="@+id/shipment_start_customer_divider_below"
         android:layout_width="0dp"
@@ -302,10 +191,10 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shipment_start_customer_id_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/shipment_start_customer_country_edit" />
 
     <Button
-        android:id="@+id/shipment_start_customer_save_button"
+        android:id="@+id/shipment_start_customer_continue_button"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -317,7 +206,7 @@
         android:insetBottom="0dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:text="@string/fui_button_text_save"
+        android:text="@string/continued"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

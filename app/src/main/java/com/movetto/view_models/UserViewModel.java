@@ -8,9 +8,12 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.movetto.dtos.UserDto;
 import com.movetto.repositories.CustomerRepository;
 import com.movetto.repositories.UserRepository;
+
+import org.json.JSONException;
 
 public class UserViewModel extends AndroidViewModel {
 
@@ -26,13 +29,26 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<UserDto> readUser(){
-        userRepository.readUser(userDto);
+        userRepository.readUser(this.userDto);
         return userDto;
     }
 
-    public MutableLiveData<UserDto> updateUser(){
-        userRepository.updateUser(userDto);
-        return userDto;
+    public MutableLiveData<UserDto> readUserByEmail(UserDto user) {
+        return userRepository.readUserByEmail(user);
+    }
+
+    public MutableLiveData<UserDto> saveUser(UserDto userDto) throws Exception {
+        this.userDto.setValue(userDto);
+        userRepository.saveUser(this.userDto);
+        return this.userDto;
+    }
+
+    public MutableLiveData<UserDto> saveUserByEmail(UserDto user) throws Exception {
+        return userRepository.saveUserByEmail(user);
+    }
+
+    public MutableLiveData<UserDto> updateUser(UserDto user) throws Exception {
+        return userRepository.updateUser(user);
     }
 
     public MutableLiveData<UserDto> deleteUser(){

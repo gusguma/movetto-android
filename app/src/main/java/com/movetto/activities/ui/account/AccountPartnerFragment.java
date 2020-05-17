@@ -25,18 +25,8 @@ public class AccountPartnerFragment extends Fragment
         View.OnClickListener {
 
     private View root;
-    private PartnerViewModel partnerViewModel;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private AccountPartnerAdapter adapter;
-
-    private EditText street;
-    private EditText postalCode;
-    private EditText city;
-    private EditText state;
-    private EditText country;
-    private UserDto userOutputDto;
-    private DirectionDto directionOutputDto;
 
     public AccountPartnerFragment() {
         // Required empty public constructor
@@ -45,16 +35,10 @@ public class AccountPartnerFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setViewModels();
         setLayout(inflater, container);
         setAdapter();
-        setComponents();
         setListeners();
         return root;
-    }
-
-    private void setViewModels() {
-        partnerViewModel = new ViewModelProvider(this).get(PartnerViewModel.class);
     }
 
     private void setLayout(LayoutInflater inflater, ViewGroup container) {
@@ -63,17 +47,10 @@ public class AccountPartnerFragment extends Fragment
         viewPager = root.findViewById(R.id.account_partner_view_pager);
         tabLayout.setupWithViewPager(viewPager);
     }
-    private void setComponents() {
-        street = root.findViewById(R.id.account_partner_street_edit);
-        postalCode = root.findViewById(R.id.account_partner_cp_edit);
-        city = root.findViewById(R.id.account_partner_city_edit);
-        state = root.findViewById(R.id.account_partner_state_edit);
-        country = root.findViewById(R.id.account_partner_country_edit);
-    }
 
     private void setAdapter(){
-        adapter = new AccountPartnerAdapter(
-                getChildFragmentManager(),tabLayout.getTabCount(), getContext());
+        AccountPartnerAdapter adapter = new AccountPartnerAdapter(
+                getChildFragmentManager(), tabLayout.getTabCount(), getContext());
         viewPager.setAdapter(adapter);
     }
 

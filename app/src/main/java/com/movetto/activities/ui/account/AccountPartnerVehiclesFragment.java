@@ -116,5 +116,4 @@ public class AccountPartnerVehiclesFragment extends Fragment {
         Navigation.findNavController(root).navigate(
                 R.id.action_nav_account_partner_to_nav_account_reg_vehicle, bundle);
     }
-
 }

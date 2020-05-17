@@ -15,8 +15,10 @@
             app:destination="@id/nav_shipments_list"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="false"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_news" />
         <action
             android:id="@+id/action_nav_shipments_empty_to_nav_shipments_start"
             app:destination="@id/nav_shipments_start"
@@ -242,14 +244,56 @@
         android:id="@+id/nav_shipment_end"
         android:name="com.movetto.activities.ui.shipments.ShipmentEndFragment"
         android:label="@string/delivery_address"
-        tools:layout="@layout/fragment_shipment_end" />
+        tools:layout="@layout/fragment_shipment_end" >
+        <action
+            android:id="@+id/action_nav_shipment_end_to_nav_shipment_add_update_package"
+            app:destination="@id/nav_shipment_add_update_package" />
+    </fragment>
     <fragment
         android:id="@+id/nav_shipments_list"
         android:name="com.movetto.activities.ui.shipments.ShipmentListFragment"
         android:label="Listado de Envíos"
         tools:layout="@layout/fragment_shipment_list" >
         <action
+            android:id="@+id/action_nav_shipments_list_to_nav_shipment_detail"
+            app:destination="@id/nav_shipment_detail" />
+        <action
             android:id="@+id/action_nav_shipments_list_to_nav_shipments_start"
-            app:destination="@id/nav_shipments_start" />
+            app:destination="@id/nav_shipments_start"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_shipment_add_update_package"
+        android:name="com.movetto.activities.ui.shipments.ShipmentAddUpdatePackageFragment"
+        android:label="Añadir o Modificar Paquete"
+        tools:layout="@layout/fragment_shipment_add_update_package">
+        <action
+            android:id="@+id/action_nav_shipment_add_update_package_to_nav_shipment_detail"
+            app:destination="@id/nav_shipment_detail"
+            app:popUpTo="@id/nav_shipments_list" />
+        <action
+            android:id="@+id/action_nav_shipment_add_update_package_to_nav_shipments_empty"
+            app:destination="@id/nav_shipments_empty"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_shipments_empty" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_shipment_detail"
+        android:name="com.movetto.activities.ui.shipments.ShipmentDetailFragment"
+        android:label="Detalle del Envío"
+        tools:layout="@layout/fragment_shipment_detail" >
+        <action
+            android:id="@+id/action_nav_shipment_detail_to_nav_shipment_add_update_package"
+            app:destination="@id/nav_shipment_add_update_package" />
+        <action
+            android:id="@+id/action_nav_shipment_detail_to_nav_shipments_empty"
+            app:destination="@id/nav_shipments_empty"
+            app:popUpTo="@id/nav_account_partner_empty" />
     </fragment>
 </navigation>

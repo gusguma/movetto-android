@@ -1,5 +1,7 @@
 package com.movetto.dtos.validations;
 
+import android.util.Patterns;
+
 public class Validation {
 
     public Validation(){
@@ -22,7 +24,7 @@ public class Validation {
         return registration.matches(Pattern.REGISTRATION_ID);
     }
 
-
-
-
+    public static boolean isEmailValid(CharSequence target) {
+        return Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
 }

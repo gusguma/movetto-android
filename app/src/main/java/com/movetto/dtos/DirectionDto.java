@@ -59,7 +59,9 @@ public class DirectionDto implements Serializable {
     private boolean active;
 
     public DirectionDto() {
-        coordinate = new CoordinateDto();
+        this.coordinate = new CoordinateDto();
+        this.registrationDate = LocalDateTime.now();
+        this.active = true;
     }
 
     public DirectionDto(DirectionType directionType) {

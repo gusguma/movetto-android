@@ -1,5 +1,6 @@
 package com.movetto.dtos;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "email",
         "uid"
 })
-public class UserMinimumDto {
+public class UserMinimumDto implements Serializable {
     @JsonProperty("id")
     private int id;
     @JsonProperty("displayName")

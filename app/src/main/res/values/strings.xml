@@ -53,7 +53,7 @@
     <string name="news">News</string>
     <string name="shipment_list">Shipment List</string>
     <string name="new_shipment">New Shipment</string>
-    <string name="shipment_subtitle_empty">" Currently you do not have any shipment, press the Continue button to create one, or Later to Exit."</string>
+    <string name="shipment_subtitle_empty">Currently you do not have any shipment, press the Continue button to create one, or Later to Exit.</string>
     <string name="shipment_land_image_description">Shipment Image</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -109,5 +109,18 @@
     <string name="pick_up_address">Pick Up Address</string>
     <string name="delivery_address">Delivery Address</string>
     <string name="shipment_image_description">Shipment Image</string>
-    <string name="shipment_subtitle_create">Address where we will collect the shipment</string>
+    <string name="shipment_subtitle_start">Address where we will collect the shipment</string>
+    <string name="shipment_subtitle_end">" Address where we will deliver the shipment"</string>
+    <string name="shipment_package_title">Package Data</string>
+    <string name="shipment_package_subtitle">Enter the package details</string>
+    <string name="width">Width:</string>
+    <string name="lenght">Lenght:</string>
+    <string name="weight">Weight:</string>
+    <string name="height">Height:</string>
+    <string name="enter_value_cm">Enter Value in cm.</string>
+    <string name="enter_value_kg">Enter Value in kg</string>
+    <string name="shipment_management">Here you can manage your shipments</string>
+    <string name="san_sebastian_de_los_reyes">San Sebastian de los Reyes</string>
+    <string name="valencia">Valencia</string>
+    <string name="xx">XX</string>
 </resources>

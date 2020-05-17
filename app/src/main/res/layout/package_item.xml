@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/packages_list_number_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/packages_list_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="XXXXXXXXXXX"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            app:layout_constraintEnd_toStartOf="@+id/packages_list_edit_button"
+            app:layout_constraintStart_toEndOf="@+id/packages_list_number_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/packages_list_weight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="XXX,XX"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            app:layout_constraintStart_toEndOf="@+id/packages_list_weight_icon"
+            app:layout_constraintTop_toBottomOf="@+id/packages_list_number" />
+
+        <TextView
+            android:id="@+id/packages_list_volume"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="XXX,XXX"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            app:layout_constraintStart_toEndOf="@+id/packages_list_weight_icon2"
+            app:layout_constraintTop_toBottomOf="@+id/packages_list_number" />
+
+        <ImageView
+            android:id="@+id/packages_list_weight_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="left"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/packages_list_number"
+            app:srcCompat="@drawable/ic_weight" />
+
+        <ImageView
+            android:id="@+id/packages_list_weight_icon2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/packages_list_weight"
+            app:layout_constraintTop_toBottomOf="@+id/packages_list_number"
+            app:srcCompat="@drawable/ic_packages_linear_black" />
+
+        <Button
+            android:id="@+id/packages_list_edit_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="Editar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.492" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
