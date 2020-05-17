@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/account_partner_vehicles_icon3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_shipment_add_edit_package"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <ImageView
+            android:id="@+id/account_partner_vehicles_icon4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_weight"
+            app:layout_constraintStart_toEndOf="@+id/shipment_list_packages_count"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <ImageView
+            android:id="@+id/account_partner_vehicles_icon6"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="left"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_remove_red_eye_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <ImageView
+            android:id="@+id/account_partner_vehicles_icon5"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_flag"
+            app:layout_constraintStart_toEndOf="@+id/shipment_list_weight_count"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <ImageView
+            android:id="@+id/account_partner_vehicles_icon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_shipment_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/account_partner_vehicles_icon2"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_shipment_finish"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account_partner_vehicles_icon" />
+
+        <TextView
+            android:id="@+id/shipment_list_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:text="Daganzo de Arriba"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/account_partner_vehicles_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/shipment_list_start_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Madrid"
+            android:textAppearance="@style/TextAppearance.Movetto.Caption"
+            app:layout_constraintStart_toStartOf="@+id/shipment_list_start"
+            app:layout_constraintTop_toBottomOf="@+id/shipment_list_start" />
+
+        <TextView
+            android:id="@+id/shipment_list_end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:text="Daganzo de Arriba"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/account_partner_vehicles_icon2"
+            app:layout_constraintTop_toBottomOf="@+id/shipment_list_start_subtitle" />
+
+        <TextView
+            android:id="@+id/shipment_list_end_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Madrid"
+            android:textAppearance="@style/TextAppearance.Movetto.Caption"
+            app:layout_constraintStart_toStartOf="@+id/shipment_list_end"
+            app:layout_constraintTop_toBottomOf="@+id/shipment_list_end" />
+
+        <TextView
+            android:id="@+id/shipment_list_packages_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="@string/xx"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/account_partner_vehicles_icon3"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/shipment_list_weight_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="XXX"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/account_partner_vehicles_icon4"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/shipment_list_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="Grabado"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/account_partner_vehicles_icon5"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="375dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/shipment_list_end_subtitle"
+            tools:layout_editor_absoluteX="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

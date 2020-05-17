@@ -1,14 +1,302 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ui.shipments.ShipmentEndFragment">
+    tools:context=".activities.ui.account.AccountCustomerRegisterFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/shipment_end_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/shipment_image_description"
+        android:src="@drawable/ic_shipment_finish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/shipment_end_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/delivery_address"
+        android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+        app:layout_constraintBottom_toTopOf="@+id/shipment_end_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/shipment_end_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/shipment_subtitle_end"
+        android:textAppearance="@style/TextAppearance.Movetto.Caption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_title" />
+
+    <View
+        android:id="@+id/shipment_end_divider_top"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_image" />
+
+    <TextView
+        android:id="@+id/shipment_end_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/name"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_end_name_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_end_name_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="start|top"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/shipment_end_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_divider_top"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/shipment_end_email_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/email"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_end_email_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_end_email_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="start|top"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/shipment_end_name_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_name_edit"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/shipment_end_phone_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/telephone"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_end_phone_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_end_phone_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="start|top"
+        android:hint="@string/telephone"
+        android:inputType="phone"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/shipment_end_email_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_email_edit"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/shipment_end_street_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/Street"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_end_street_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_end_street_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="start|top"
+        android:hint="@string/Street"
+        android:inputType="textPostalAddress"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/shipment_end_phone_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_phone_edit"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/shipment_end_customer_cp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/postal_code"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_end_cp_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_end_cp_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/postal_code"
+        android:inputType="number"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/shipment_end_street_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_street_edit"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/shipment_end_city_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/city"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_end_city_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_end_city_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/city"
+        android:inputType="textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/shipment_end_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_cp_edit"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/shipment_end_state_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/state"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_end_state_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_end_state_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/state"
+        android:inputType="textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/shipment_end_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_city_edit"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/shipment_end_country_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/country"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_end_country_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_end_country_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/country"
+        android:inputType="textNoSuggestions"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/shipment_end_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_state_edit"
+        android:autofillHints="" />
+
+    <View
+        android:id="@+id/shipment_end_divider_below"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_country_edit" />
+
+    <Button
+        android:id="@+id/shipment_end_continue_button"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/kulim_park_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/continued"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_end_divider_below" />
+</androidx.constraintlayout.widget.ConstraintLayout>

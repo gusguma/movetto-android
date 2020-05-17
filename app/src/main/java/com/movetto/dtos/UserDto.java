@@ -3,6 +3,7 @@ package com.movetto.dtos;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -54,7 +55,8 @@ public class UserDto extends UserMinimumDto implements Serializable {
 
     public UserDto() {
         this.active = true;
-        //Empty for Serializer.
+        this.roles = new HashSet<>();
+        this.directions = new HashSet<>();
     }
 
     public UserDto(String displayName, String email, String uid, String phone) {
@@ -145,7 +147,11 @@ public class UserDto extends UserMinimumDto implements Serializable {
     @Override
     public String toString() {
         return "UserDto{" +
-                "phone='" + phone + '\'' +
+                "id=" + getId() +
+                ", displayName='" + getDisplayName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", uid='" + getUid() + '\'' +
+                ", phone='" + phone + '\'' +
                 ", customer=" + customer +
                 ", partner=" + partner +
                 ", roles=" + roles +

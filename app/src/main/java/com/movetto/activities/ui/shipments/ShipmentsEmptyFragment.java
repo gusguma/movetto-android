@@ -8,17 +8,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.activities.MainActivity;
+import com.movetto.dtos.CustomerDto;
+import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.view_models.CustomerViewModel;
 import com.movetto.view_models.ShipmentViewModel;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ShipmentsEmptyFragment extends Fragment {
@@ -26,13 +31,15 @@ public class ShipmentsEmptyFragment extends Fragment {
     private View root;
     private CustomerViewModel customerViewModel;
     private ShipmentViewModel shipmentViewModel;
+    private UserDto customer;
+    private List<ShipmentDto> shipments;
     private Button buttonContinue;
     private Button buttonLater;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        setLayout(inflater,container);
         setViewModels();
+        setLayout(inflater,container);
         setComponents();
         getCustomer();
         setButtonLater();
@@ -58,9 +65,27 @@ public class ShipmentsEmptyFragment extends Fragment {
             @Override
             public void onChanged(UserDto userDto) {
                 if(userDto != null){
+                    customer = userDto;
                     setButtonContinueExist();
+                    readShipments();
                 } else {
                     setButtonContinueEmpty();
+                }
+            }
+        });
+    }
+
+    private void readShipments(){
+        shipmentViewModel.readShipmentsByUid(customer.getUid()).observe(getViewLifecycleOwner(), new Observer<List<ShipmentDto>>() {
+            @Override
+            public void onChanged(List<ShipmentDto> shipmentDtos) {
+                if (!shipmentDtos.isEmpty()){
+                    Navigation.findNavController(root)
+                            .navigate(R.id.action_nav_shipments_empty_to_nav_shipments_list);
+                    getParentFragmentManager()
+                            .beginTransaction()
+                            .remove(ShipmentsEmptyFragment.this)
+                            .commit();
                 }
             }
         });

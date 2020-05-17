@@ -23,8 +23,8 @@ public class NewsRepository {
     private static final String BASE_NEWS_URL = UrlHandler.API_URL + UrlHandler.NEWS_URL;
 
     private RequestQueue requestQueue;
-    private MutableLiveData<List<NewsDto>> news;
     private ObjectMapper mapper;
+    private MutableLiveData<List<NewsDto>> news;
 
     public NewsRepository(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;

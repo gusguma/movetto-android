@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/shipment_detail_start_street_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/Street"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_detail_start_street_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_detail_start_street_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="start|top"
+        android:hint="@string/Street"
+        android:inputType="textMultiLine|textPostalAddress"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/shipment_detail_start_cp_edit"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/shipment_detail_start_cp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/postal_code"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_detail_start_cp_edit"
+        app:layout_constraintEnd_toStartOf="@+id/shipment_detail_start_cp_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_detail_start_cp_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/postal_code"
+        android:inputType="number|phone"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/shipment_detail_start_cp_label"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_detail_start_street_edit" />
+
+    <TextView
+        android:id="@+id/shipment_detail_start_city_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/city"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_detail_start_city_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_detail_start_city_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/city"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/shipment_detail_start_cp_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_detail_start_cp_edit" />
+
+    <TextView
+        android:id="@+id/shipment_detail_start_state_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/state"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_detail_start_state_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_detail_start_state_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/state"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/shipment_detail_start_city_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_detail_start_city_edit" />
+
+    <TextView
+        android:id="@+id/shipment_detail_start_country_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/country"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shipment_detail_start_country_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shipment_detail_start_country_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/country"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        android:theme="?attr/textInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/shipment_detail_start_state_edit"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_detail_start_state_edit" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/shipment_detail_start_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_save_black_24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

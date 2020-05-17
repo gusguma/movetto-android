@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ui.account.AccountCustomerRegisterFragment">
+
+
+    <ImageView
+        android:id="@+id/shipment_detail_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/account_customer_image_description"
+        android:src="@drawable/ic_shipments_linear_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/shipment_detail_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="XXXXXXXXXXXXXXX"
+        android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/shipment_detail_price"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        android:text="XXX.XX"
+        android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_detail_number" />
+
+    <TextView
+        android:id="@+id/shipment_detail_number_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="#"
+        android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+        app:layout_constraintEnd_toStartOf="@+id/shipment_detail_number"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/shipment_detail_divider"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_detail_status" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/shipment_detail_status"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="Grabado"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_detail_number" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="32dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_euro_symbol_black_24dp"
+        app:layout_constraintEnd_toStartOf="@+id/shipment_detail_price"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_detail_number"
+        app:srcCompat="@drawable/ic_euro_symbol_black_24dp"
+        tools:srcCompat="@drawable/ic_euro_symbol_black_24dp"
+        android:contentDescription="TODO" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/shipment_detail_view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/shipment_detail_pay_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shipment_detail_divider">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/shipment_detail_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/shipment_detail_tab_item_packages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="paquetes" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/shipment_detail_tab_item_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recogida" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/shipment_detail_tab_item_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entrega" />
+
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.viewpager.widget.ViewPager>
+
+    <Button
+        android:id="@+id/shipment_detail_pay_button"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/kulim_park_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="Pagar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/shipment_detail_delete_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/shipment_detail_delete_button"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/kulim_park_bold"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="Eliminar"
+        android:textColorLink="@color/color_on_secondary"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:cornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
