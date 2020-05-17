@@ -174,14 +174,17 @@ public class ShipmentRepository {
         return shipmentMutable;
     }
 
-    public MutableLiveData<ShipmentDto> deleteShipment(ShipmentDto shipment) throws JsonProcessingException, JSONException {
+    public MutableLiveData<ShipmentDto> deleteShipment(ShipmentDto shipment)
+            throws JsonProcessingException, JSONException {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.DELETE, BASE_SHIPMENTS_URL, shipmentRequest(shipment),
+                Request.Method.DELETE, BASE_SHIPMENTS_URL + "id/"
+                + shipment.getId(), shipmentRequest(shipment),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            ShipmentDto shipmentDto = mapper.readValue(response.toString(),ShipmentDto.class);
+                            ShipmentDto shipmentDto = mapper
+                                    .readValue(response.toString(),ShipmentDto.class);
                             shipmentMutable.setValue(shipmentDto);
                         } catch (IOException e) {
                             e.printStackTrace();

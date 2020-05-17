@@ -1,19 +1,17 @@
 package com.movetto.activities.ui.shipments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.movetto.R;
@@ -28,7 +26,7 @@ import com.movetto.view_models.UserViewModel;
 
 import org.json.JSONException;
 
-import java.util.Objects;
+import java.util.Arrays;
 import java.util.Set;
 
 public class ShipmentAddUpdatePackageFragment extends Fragment
@@ -50,7 +48,7 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
     private UserDto destinationUser;
     private ShipmentDto shipment;
     private Button buttonSave;
-    private Boolean response;
+    private Button buttonDelete;
 
     public ShipmentAddUpdatePackageFragment() {
         // Required empty public constructor
@@ -87,6 +85,7 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
         height = root.findViewById(R.id.shipment_package_height_edit);
         weight = root.findViewById(R.id.shipment_package_weight_edit);
         buttonSave = root.findViewById(R.id.shipment_package_continue_button);
+        buttonDelete = root.findViewById(R.id.shipment_package_delete_button);
     }
 
     private void setFormFieldsListener() {
@@ -95,12 +94,14 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
         height.setOnFocusChangeListener(this);
         weight.setOnFocusChangeListener(this);
         buttonSave.setOnClickListener(this);
+        buttonDelete.setOnClickListener(this);
     }
 
     private void getBundleData() {
         data = getArguments();
         if (data != null && data.getSerializable("shipment") != null){
             shipment = (ShipmentDto) data.getSerializable("shipment");
+            checkPackagesNumber();
         }
         if (data != null && data.getInt("packageId") != 0){
             updatePackageData();
@@ -108,6 +109,12 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
         if (data != null && data.getSerializable("destinationUser") != null){
             createNewShipment();
             checkDestinationUser();
+        }
+    }
+
+    private void checkPackagesNumber(){
+        if (shipment.getPackages().size() > 1) {
+            buttonDelete.setVisibility(View.VISIBLE);
         }
     }
 
@@ -159,8 +166,6 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
                 } else {
                     try {
                         destinationUser = userDto;
-                        destinationUser.getDirections().add(directionEnd);
-                        System.out.println(destinationUser);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -175,8 +180,6 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
             public void onChanged(UserDto userDto) {
                 if (userDto != null){
                     destinationUser = userDto;
-                    destinationUser.getDirections().add(directionEnd);
-                    System.out.println(destinationUser);
                 }
             }
         });
@@ -190,6 +193,7 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
         packageDto.setWidth(Double.parseDouble(width.getText().toString()));
         packageDto.setHigh(Double.parseDouble(height.getText().toString()));
         packageDto.setWeight(Double.parseDouble(weight.getText().toString()));
+        packageDto.setPackagePrice();
     }
 
     private boolean isFormValidate(){
@@ -220,26 +224,42 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
 
     @Override
     public void onClick(View v) {
-        try {
-            setPackageData();
-            if (isFormValidate()){
-                if (shipment == null){
-                    setNewShipment();
-                    saveShipment();
-                } else {
-                    setUpdateShipment();
-                    updateShipment();
-                    Toast.makeText(root.getContext()
-                            ,"Hay un paquete",Toast.LENGTH_LONG).show();
-                    //updateShipment();
-                }
-            } else {
-                Toast.makeText(root.getContext()
-                        ,"Verifique los datos del formulario",Toast.LENGTH_LONG).show();
+        if (v.getId() == buttonSave.getId()) {
+            try {
+                setButtonSaveListener();
+            } catch (JsonProcessingException | JSONException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        if (v.getId() == buttonDelete.getId()) {
+            try {
+                setButtonDeleteListener();
+            } catch (JsonProcessingException | JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void setButtonSaveListener() throws JsonProcessingException, JSONException {
+        setPackageData();
+        if (isFormValidate()) {
+            if (shipment == null) {
+                setNewShipment();
+                saveShipment();
+            } else {
+                setUpdateShipment();
+                updateShipment();
+            }
+        } else {
+            Toast.makeText(root.getContext()
+                    , "Verifique los datos del formulario", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void setButtonDeleteListener() throws JsonProcessingException, JSONException {
+        shipment.getPackages()
+                .removeIf(p -> p.getId() == packageDto.getId());
+        updateShipment();
     }
 
     private void setNewShipment(){
@@ -250,23 +270,25 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
                 destinationUser
         );
         shipment.getPackages().add(packageDto);
+        shipment.setShipmentPrice();
     }
 
     private void setUpdateShipment(){
         if (data.getInt("packageId") != 0) {
-            Set<PackageDto> packages = shipment.getPackages();
-            for (PackageDto pack : packages) {
+            shipment.getPackages().forEach(pack-> {
                 if (pack.getId() == data.getInt("packageId")){
                     pack.setLenght(Double.parseDouble(lenght.getText().toString()));
                     pack.setWidth(Double.parseDouble(width.getText().toString()));
                     pack.setHigh(Double.parseDouble(height.getText().toString()));
                     pack.setWeight(Double.parseDouble(weight.getText().toString()));
+                    pack.setPackagePrice();
                 }
-            }
-            shipment.setPackages(packages);
+            });
+            shipment.setShipmentPrice();
         } else {
             setPackageData();
             shipment.getPackages().add(packageDto);
+            shipment.setShipmentPrice();
         }
     }
 

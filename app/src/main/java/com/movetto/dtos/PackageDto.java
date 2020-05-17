@@ -75,9 +75,9 @@ public class PackageDto {
 
     public void setPackagePrice(){
         if (getPackageWeightVolume() > weight){
-            pricePackage = 1.00 * getPackageWeightVolume();
+            pricePackage = 0.3 * getPackageWeightVolume();
         } else {
-            pricePackage = 1.00 * weight;
+            pricePackage = 0.3 * weight;
         }
     }
 

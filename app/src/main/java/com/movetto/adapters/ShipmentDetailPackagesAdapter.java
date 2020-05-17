@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.movetto.R;
 import com.movetto.dtos.PackageDto;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
@@ -35,10 +36,11 @@ public class ShipmentDetailPackagesAdapter
 
     @Override
     public void onBindViewHolder(@NonNull ShipmentDetailPackagesHolder holder, int position) {
+        DecimalFormat df = new DecimalFormat("0.00");
         PackageDto packageDto = packages.get(position);
         holder.packageNumber.setText(encodeShipmentNumber(packageDto.getId()));
-        holder.packageVolume.setText(String.valueOf(packageDto.getPackageVolume()));
-        holder.packageWeight.setText(String.valueOf(packageDto.getWeight()));
+        holder.packageVolume.setText(df.format(packageDto.getPackageVolume()));
+        holder.packageWeight.setText(df.format(packageDto.getWeight()));
     }
 
     @Override

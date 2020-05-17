@@ -152,7 +152,6 @@ public class ShipmentEndFragment extends Fragment
         directionEnd.setCity(city.getText().toString());
         directionEnd.setState(state.getText().toString());
         directionEnd.setCountry(country.getText().toString());
-        destinationUser.getDirections().add(directionEnd);
     }
 
     private void setBundle(){

@@ -135,6 +135,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/color_secondary"
         android:fontFamily="@font/kulim_park_bold"
         android:insetTop="0dp"
         android:insetBottom="0dp"
@@ -142,6 +143,7 @@
         android:paddingBottom="16dp"
         android:text="Pagar"
         android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/shipment_detail_delete_button"
         app:layout_constraintHorizontal_bias="0.0"
@@ -149,21 +151,25 @@
 
     <Button
         android:id="@+id/shipment_detail_delete_button"
-        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/kulim_park_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:text="Eliminar"
         android:textColorLink="@color/color_on_secondary"
         android:textSize="18sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:cornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/shipment_detail_pay_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

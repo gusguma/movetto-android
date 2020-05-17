@@ -292,7 +292,8 @@
             android:id="@+id/action_nav_shipment_detail_to_nav_shipment_add_update_package"
             app:destination="@id/nav_shipment_add_update_package" />
         <action
-            android:id="@+id/action_nav_shipment_detail_to_nav_shipments_list"
-            app:destination="@id/nav_shipments_list" />
+            android:id="@+id/action_nav_shipment_detail_to_nav_shipments_empty"
+            app:destination="@id/nav_shipments_empty"
+            app:popUpTo="@id/nav_account_partner_empty" />
     </fragment>
 </navigation>
