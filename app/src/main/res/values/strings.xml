@@ -123,4 +123,6 @@
     <string name="san_sebastian_de_los_reyes">San Sebastian de los Reyes</string>
     <string name="valencia">Valencia</string>
     <string name="xx">XX</string>
+    <string name="wallet_subtitle">In order to use our services, you must have a balance in your wallet, to make an income, press the \"Deposit\" button, you can also leave it for later.</string>
+    <string name="deposit">Deposit</string>
 </resources>

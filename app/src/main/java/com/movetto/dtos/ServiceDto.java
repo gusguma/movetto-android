@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
 @JsonPropertyOrder({
         "id",
         "description",

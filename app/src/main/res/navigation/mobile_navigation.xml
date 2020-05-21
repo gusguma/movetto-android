@@ -90,9 +90,31 @@
 
     <fragment
         android:id="@+id/nav_wallet"
-        android:name="com.movetto.activities.ui.wallet.WalletFragment"
+        android:name="com.movetto.activities.ui.wallet.WalletEmptyFragment"
         android:label="@string/wallet"
-        tools:layout="@layout/fragment_wallet" />
+        tools:layout="@layout/fragment_wallet_empty" >
+        <action
+            android:id="@+id/action_nav_wallet_to_nav_wallet_detail"
+            app:destination="@id/nav_wallet_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_wallet_to_nav_wallet_deposit_amount"
+            app:destination="@id/nav_wallet_deposit_amount"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_wallet_to_nav_account_customer_empty"
+            app:destination="@id/nav_account_customer_empty"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/nav_news"
         android:name="com.movetto.activities.ui.news.NewsFragment"
@@ -295,5 +317,94 @@
             android:id="@+id/action_nav_shipment_detail_to_nav_shipments_empty"
             app:destination="@id/nav_shipments_empty"
             app:popUpTo="@id/nav_account_partner_empty" />
+        <action
+            android:id="@+id/action_nav_shipment_detail_self"
+            app:destination="@id/nav_shipment_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_shipments_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_detail"
+        android:name="com.movetto.activities.ui.wallet.WalletDetailFragment"
+        android:label="fragment_wallet_detail"
+        tools:layout="@layout/fragment_wallet_detail" >
+        <action
+            android:id="@+id/action_nav_wallet_detail_to_nav_wallet_card_edit"
+            app:destination="@id/nav_wallet_card_edit"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_deposit_amount"
+        android:name="com.movetto.activities.ui.wallet.WalletAmountFragment"
+        android:label="Cantidad a Depositar"
+        tools:layout="@layout/fragment_wallet_amount">
+        <action
+            android:id="@+id/action_nav_wallet_deposit_amount_to_nav_wallet_deposit_card"
+            app:destination="@id/nav_wallet_deposit_card"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_deposit_card"
+        android:name="com.movetto.activities.ui.wallet.WalletCardFragment"
+        android:label="Seleccionar Tarjeta"
+        tools:layout="@layout/fragment_wallet_card">
+        <action
+            android:id="@+id/action_nav_wallet_deposit_card_to_nav_wallet_deposit_detail"
+            app:destination="@id/nav_wallet_deposit_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_wallet_deposit_card_to_nav_wallet_card_edit"
+            app:destination="@id/nav_wallet_card_edit" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_deposit_detail"
+        android:name="com.movetto.activities.ui.wallet.WalletDepositFragment"
+        android:label="Detalle del Deposito"
+        tools:layout="@layout/fragment_wallet_deposit">
+        <action
+            android:id="@+id/action_nav_wallet_deposit_detail_to_nav_wallet_deposit_result"
+            app:destination="@id/nav_wallet_deposit_result"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_wallet" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_deposit_result"
+        android:name="com.movetto.activities.ui.wallet.WalletDepositResultFragment"
+        android:label="Resultado del Deposito"
+        tools:layout="@layout/fragment_wallet_deposit_result">
+        <action
+            android:id="@+id/action_nav_wallet_deposit_result_to_nav_wallet_detail"
+            app:destination="@id/nav_wallet_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_card_edit"
+        android:name="com.movetto.activities.ui.wallet.WalletCardAddUpdateFragment"
+        android:label="fragment_wallet_card_add_update"
+        tools:layout="@layout/fragment_wallet_card_add_update" >
+        <action
+            android:id="@+id/action_nav_wallet_card_edit_to_nav_wallet_deposit_card"
+            app:destination="@id/nav_wallet_deposit_card" />
+        <action
+            android:id="@+id/action_nav_wallet_card_edit_to_nav_wallet_detail"
+            app:destination="@id/nav_wallet_detail" />
     </fragment>
 </navigation>

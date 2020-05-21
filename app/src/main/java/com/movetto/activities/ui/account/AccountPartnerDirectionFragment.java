@@ -21,6 +21,7 @@ import com.movetto.dtos.DirectionType;
 import com.movetto.dtos.PartnerDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.validations.ErrorStrings;
+import com.movetto.dtos.validations.Validation;
 import com.movetto.view_models.PartnerViewModel;
 
 import java.util.Objects;
@@ -115,6 +116,14 @@ public class AccountPartnerDirectionFragment extends Fragment
         if(editText.getText().toString().isEmpty()){
             editText.setError(ErrorStrings.EMPTY);
         }
+        if(editText.getId() == R.id.account_customer_cp_edit){
+            isPostalCodeValid();
+        }
+    }
+
+    private void isPostalCodeValid(){
+        if (!Validation.isPostalCodeValid(postalCode.getText().toString()))
+            postalCode.setError(ErrorStrings.INVALID_POSTAL_CODE);
     }
 
     private boolean isFormValidate(){
