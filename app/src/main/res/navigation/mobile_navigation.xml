@@ -99,7 +99,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_news" />
         <action
             android:id="@+id/action_nav_wallet_to_nav_wallet_deposit_amount"
             app:destination="@id/nav_wallet_deposit_amount"
@@ -329,8 +330,8 @@
     <fragment
         android:id="@+id/nav_wallet_detail"
         android:name="com.movetto.activities.ui.wallet.WalletDetailFragment"
-        android:label="fragment_wallet_detail"
-        tools:layout="@layout/fragment_wallet_detail" >
+        android:label="Mi Monedero"
+        tools:layout="@layout/fragment_wallet_detail">
         <action
             android:id="@+id/action_nav_wallet_detail_to_nav_wallet_card_edit"
             app:destination="@id/nav_wallet_card_edit"
@@ -381,6 +382,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/nav_wallet" />
+        <action
+            android:id="@+id/action_nav_wallet_deposit_detail_to_nav_wallet"
+            app:destination="@id/nav_wallet" />
     </fragment>
     <fragment
         android:id="@+id/nav_wallet_deposit_result"
@@ -388,23 +392,29 @@
         android:label="Resultado del Deposito"
         tools:layout="@layout/fragment_wallet_deposit_result">
         <action
-            android:id="@+id/action_nav_wallet_deposit_result_to_nav_wallet_detail"
+            android:id="@+id/action_nav_wallet_deposit_result_to_nav_wallet"
+            app:destination="@id/nav_wallet"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_wallet" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_card_edit"
+        android:name="com.movetto.activities.ui.wallet.WalletCardAddUpdateFragment"
+        android:label="Añadir o Editar Tarjeta"
+        tools:layout="@layout/fragment_wallet_card_add_update">
+        <action
+            android:id="@+id/action_nav_wallet_card_edit_to_nav_wallet_deposit_card"
+            app:destination="@id/nav_wallet_deposit_card"
+            app:popUpTo="@id/nav_wallet_deposit_amount" />
+        <action
+            android:id="@+id/action_nav_wallet_card_edit_to_nav_wallet_detail"
             app:destination="@id/nav_wallet_detail"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_wallet_card_edit"
-        android:name="com.movetto.activities.ui.wallet.WalletCardAddUpdateFragment"
-        android:label="fragment_wallet_card_add_update"
-        tools:layout="@layout/fragment_wallet_card_add_update" >
-        <action
-            android:id="@+id/action_nav_wallet_card_edit_to_nav_wallet_deposit_card"
-            app:destination="@id/nav_wallet_deposit_card" />
-        <action
-            android:id="@+id/action_nav_wallet_card_edit_to_nav_wallet_detail"
-            app:destination="@id/nav_wallet_detail" />
     </fragment>
 </navigation>

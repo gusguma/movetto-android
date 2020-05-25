@@ -15,12 +15,12 @@ import com.movetto.handler.UrlHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 
 public class WalletRepository {
 
     private static final String BASE_WALLET_URL = UrlHandler.API_URL + UrlHandler.WALLET_URL;
+    private static final String BASE_WALLET_USER_URL = BASE_WALLET_URL + UrlHandler.USERS_URL;
 
     private RequestQueue requestQueue;
     private MutableLiveData<WalletDto> walletMutable;
@@ -35,7 +35,7 @@ public class WalletRepository {
 
     public MutableLiveData<WalletDto> readWallet(String uid) {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET, BASE_WALLET_URL + uid, null,
+                Request.Method.GET, BASE_WALLET_USER_URL + uid, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -73,6 +73,7 @@ public class WalletRepository {
                                     .readValue(response.toString()
                                             ,WalletDto.class);
                             walletMutable.setValue(walletDto);
+                            System.out.println(walletDto.toString());
                         } catch (IOException e) {
                             walletMutable.setValue(null);
                             e.printStackTrace();

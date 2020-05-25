@@ -74,6 +74,7 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
         viewPager = root.findViewById(R.id.shipment_detail_view_pager);
         tabLayout.setupWithViewPager(viewPager);
     }
+
     private void setComponents() {
         shipmentNumber = root.findViewById(R.id.shipment_detail_number);
         shipmentPrice = root.findViewById(R.id.shipment_detail_price);
@@ -196,7 +197,7 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
     }
 
     private void setPayButtonListener(){
-
+        //TODO
     }
 
     private void setDeleteButtonListener() throws JsonProcessingException, JSONException {

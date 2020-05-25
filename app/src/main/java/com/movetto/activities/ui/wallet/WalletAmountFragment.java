@@ -20,6 +20,7 @@ public class WalletAmountFragment extends Fragment
     private View root;
     private EditText amount;
     private Button buttonContinue;
+    private Bundle data;
 
     public WalletAmountFragment() {
         // Required empty public constructor
@@ -41,6 +42,7 @@ public class WalletAmountFragment extends Fragment
     private void setComponents() {
         amount = root.findViewById(R.id.wallet_deposit_amount_edit);
         buttonContinue = root.findViewById(R.id.wallet_deposit_amount_button);
+        data = getArguments();
     }
 
     private void setFormFieldsListener() {
@@ -67,7 +69,6 @@ public class WalletAmountFragment extends Fragment
     }
 
     private void setBundle(){
-        Bundle data = new Bundle();
         double amountForm = Double.parseDouble(amount.getText().toString());
         data.putDouble("amount", amountForm);
         Navigation.findNavController(root).navigate(

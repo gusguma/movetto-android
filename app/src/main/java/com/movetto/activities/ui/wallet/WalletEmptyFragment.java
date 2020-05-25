@@ -34,12 +34,13 @@ public class WalletEmptyFragment extends Fragment {
     private CustomerViewModel customerViewModel;
     private WalletViewModel walletViewModel;
     private UserDto customer;
+    private WalletDto wallet;
     private Button buttonContinue;
     private Button buttonLater;
+    private Bundle data;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         setViewModels();
         setLayout(inflater,container);
         setComponents();
@@ -68,6 +69,7 @@ public class WalletEmptyFragment extends Fragment {
             public void onChanged(UserDto userDto) {
                 if(userDto != null){
                     customer = userDto;
+                    setBundle();
                     setButtonContinueExist();
                     readWallet();
                 } else {
@@ -83,7 +85,7 @@ public class WalletEmptyFragment extends Fragment {
             public void onChanged(WalletDto walletDto) {
                 if (walletDto != null && !walletDto.getTransactions().isEmpty()){
                     Navigation.findNavController(root)
-                            .navigate(R.id.action_nav_wallet_to_nav_wallet_detail);
+                            .navigate(R.id.action_nav_wallet_to_nav_wallet_detail, data);
                     getParentFragmentManager()
                             .beginTransaction()
                             .remove(WalletEmptyFragment.this)
@@ -93,10 +95,16 @@ public class WalletEmptyFragment extends Fragment {
         });
     }
 
+    private void setBundle(){
+        data = new Bundle();
+        data.putInt("customerId", customer.getId());
+        data.putString("customerUid", customer.getUid());
+    }
+
     private void setButtonContinueExist(){
         buttonContinue.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                        R.id.action_nav_wallet_to_nav_wallet_deposit_amount,null)
+                        R.id.action_nav_wallet_to_nav_wallet_deposit_amount,data)
         );
     }
 

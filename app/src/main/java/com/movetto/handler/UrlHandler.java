@@ -11,5 +11,6 @@ public class UrlHandler {
     public static final String NEWS_URL = "news/";
     public static final String SHIPMENTS_URL = "shipments/";
     public static final String WALLET_URL = "wallet/";
+    public static final String CARD_URL = "card/";
 
 }

@@ -22,19 +22,19 @@ import java.util.Set;
         "active"
 })
 public class WalletDto {
-    @JsonProperty("registrationDate")
+    @JsonProperty("id")
     private int id;
-    @JsonProperty("registrationDate")
+    @JsonProperty("balance")
     private double balance;
-    @JsonProperty("registrationDate")
+    @JsonProperty("user")
     private UserDto user;
-    @JsonProperty("registrationDate")
+    @JsonProperty("transactions")
     private Set<TransactionDto> transactions;
+    @JsonProperty("registrationDate")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonProperty("registrationDate")
     private LocalDateTime registrationDate;
-    @JsonProperty("registrationDate")
+    @JsonProperty("active")
     private boolean active;
 
     public WalletDto () {

@@ -12,18 +12,18 @@
         android:paddingBottom="16dp">
 
         <ImageView
-            android:id="@+id/card_item_icon3"
+            android:id="@+id/card_detail_item_icon3"
             android:layout_width="43dp"
             android:layout_height="49dp"
             android:layout_gravity="left"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_003_credit_card"
-            app:layout_constraintStart_toEndOf="@+id/card_item_radio_button"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/card_item_number"
+            android:id="@+id/card_detail_item_number"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -33,11 +33,11 @@
             android:text="XXXX-XXXX-XXXX-XXXX"
             android:textAppearance="@style/TextAppearance.Movetto.Headline6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/card_item_icon3"
+            app:layout_constraintStart_toEndOf="@+id/card_detail_item_icon3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/card_item_expirate_year"
+            android:id="@+id/card_detail_item_expirate_year"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -47,17 +47,8 @@
             android:textAppearance="@style/TextAppearance.Movetto.Headline6"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/card_item_number"
-            app:layout_constraintTop_toBottomOf="@+id/card_item_number" />
-
-        <RadioButton
-            android:id="@+id/card_item_radio_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/card_detail_item_number"
+            app:layout_constraintTop_toBottomOf="@+id/card_detail_item_number" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
