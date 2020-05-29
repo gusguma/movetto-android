@@ -61,6 +61,34 @@ public class WalletRepository {
         return walletMutable;
     }
 
+    public MutableLiveData<WalletDto> readWalletById(int id) {
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET, BASE_WALLET_URL + id, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            WalletDto walletDto = mapper
+                                    .readValue(response.toString()
+                                            ,WalletDto.class);
+                            walletMutable.setValue(walletDto);
+                        } catch (IOException e) {
+                            walletMutable.setValue(null);
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        walletMutable.setValue(null);
+                        error.printStackTrace();
+                    }
+                });
+        requestQueue.add(request);
+        return walletMutable;
+    }
+
     public MutableLiveData<WalletDto> saveWallet(WalletDto walletDto)
             throws JsonProcessingException, JSONException {
         JsonObjectRequest request = new JsonObjectRequest(

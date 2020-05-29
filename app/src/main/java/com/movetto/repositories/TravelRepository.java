@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movetto.dtos.ShipmentDto;
+import com.movetto.dtos.TravelDto;
 import com.movetto.handler.UrlHandler;
 
 import org.json.JSONArray;
@@ -23,38 +24,38 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShipmentRepository {
+public class TravelRepository {
 
-    private static final String BASE_SHIPMENTS_URL = UrlHandler.API_URL + UrlHandler.SHIPMENTS_URL;
+    private static final String BASE_TRAVELS_URL = UrlHandler.API_URL + UrlHandler.TRAVELS_URL;
 
     private RequestQueue requestQueue;
-    private MutableLiveData<List<ShipmentDto>> shipments;
-    private MutableLiveData<ShipmentDto> shipmentMutable;
+    private MutableLiveData<List<TravelDto>> travels;
+    private MutableLiveData<TravelDto> travelMutable;
     private MutableLiveData<Boolean> isResponseOk;
     private ObjectMapper mapper;
 
-    public ShipmentRepository(RequestQueue requestQueue) {
+    public TravelRepository(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
-        this.shipments = new MutableLiveData<>();
+        this.travels = new MutableLiveData<>();
         this.isResponseOk = new MutableLiveData<>();
-        this.shipmentMutable = new MutableLiveData<>();
+        this.travelMutable = new MutableLiveData<>();
         this.mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
-    public MutableLiveData<List<ShipmentDto>> readShipments() {
+    public MutableLiveData<List<TravelDto>> readTravels() {
         JsonArrayRequest request = new JsonArrayRequest(
-                Request.Method.GET, BASE_SHIPMENTS_URL, null,
+                Request.Method.GET, BASE_TRAVELS_URL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            List<ShipmentDto> shipmentDtoList = mapper
+                            List<TravelDto> travelDtoList = mapper
                                     .readValue(response.toString()
-                                            ,new TypeReference<List<ShipmentDto>>(){});
-                            shipments.setValue(shipmentDtoList);
+                                            ,new TypeReference<List<TravelDto>>(){});
+                            travels.setValue(travelDtoList);
                         } catch (IOException e) {
-                            shipments.setValue(new ArrayList<>());
+                            travels.setValue(new ArrayList<>());
                             e.printStackTrace();
                         }
                     }
@@ -62,27 +63,27 @@ public class ShipmentRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        shipments.setValue(new ArrayList<>());
+                        travels.setValue(new ArrayList<>());
                         error.printStackTrace();
                     }
                 });
         requestQueue.add(request);
-        return shipments;
+        return travels;
     }
 
-    public MutableLiveData<List<ShipmentDto>> readShipmentsByUid(String uid) {
+    public MutableLiveData<List<TravelDto>> readTravelsByUid(String uid) {
         JsonArrayRequest request = new JsonArrayRequest(
-                Request.Method.GET, BASE_SHIPMENTS_URL + uid, null,
+                Request.Method.GET, BASE_TRAVELS_URL + uid, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            List<ShipmentDto> shipmentDtoList = mapper
+                            List<TravelDto> travelDtoList = mapper
                                     .readValue(response.toString()
-                                            ,new TypeReference<List<ShipmentDto>>(){});
-                            shipments.setValue(shipmentDtoList);
+                                            ,new TypeReference<List<TravelDto>>(){});
+                            travels.setValue(travelDtoList);
                         } catch (IOException e) {
-                            shipments.setValue(new ArrayList<>());
+                            travels.setValue(new ArrayList<>());
                             e.printStackTrace();
                         }
                     }
@@ -90,25 +91,25 @@ public class ShipmentRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        shipments.setValue(new ArrayList<>());
+                        travels.setValue(new ArrayList<>());
                         error.printStackTrace();
                     }
                 });
         requestQueue.add(request);
-        return shipments;
+        return travels;
     }
 
-    public MutableLiveData<ShipmentDto> readShipmentById(int id) {
+    public MutableLiveData<TravelDto> readTravelById(int id) {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET, BASE_SHIPMENTS_URL + "id/" + id, null,
+                Request.Method.GET, BASE_TRAVELS_URL + "id/" + id, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            ShipmentDto shipmentDto = mapper.readValue(response.toString(),ShipmentDto.class);
-                            shipmentMutable.setValue(shipmentDto);
+                            TravelDto travelDto = mapper.readValue(response.toString(),TravelDto.class);
+                            travelMutable.setValue(travelDto);
                         } catch (IOException e) {
-                            shipmentMutable.setValue(null);
+                            travelMutable.setValue(null);
                             e.printStackTrace();
                         }
                     }
@@ -116,26 +117,26 @@ public class ShipmentRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        shipmentMutable.setValue(null);
+                        travelMutable.setValue(null);
                         error.printStackTrace();
                     }
                 });
         requestQueue.add(request);
-        return shipmentMutable;
+        return travelMutable;
     }
 
-    public MutableLiveData<ShipmentDto> saveShipment(ShipmentDto shipment) throws JsonProcessingException, JSONException {
+    public MutableLiveData<TravelDto> saveTravel(TravelDto travel) throws JsonProcessingException, JSONException {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.POST, BASE_SHIPMENTS_URL, shipmentRequest(shipment),
+                Request.Method.POST, BASE_TRAVELS_URL, travelRequest(travel),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            ShipmentDto shipmentDto = mapper.readValue(response.toString(),ShipmentDto.class);
-                            shipmentMutable.setValue(shipmentDto);
+                            TravelDto travelDto = mapper.readValue(response.toString(),TravelDto.class);
+                            travelMutable.setValue(travelDto);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            shipmentMutable.setValue(null);
+                            travelMutable.setValue(null);
                         }
                     }
                 },
@@ -143,25 +144,25 @@ public class ShipmentRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
-                        shipmentMutable.setValue(null);
+                        travelMutable.setValue(null);
                     }
                 });
         requestQueue.add(request);
-        return shipmentMutable;
+        return travelMutable;
     }
 
-    public MutableLiveData<ShipmentDto> updateShipment(ShipmentDto shipment) throws JsonProcessingException, JSONException {
+    public MutableLiveData<TravelDto> updateTravel(TravelDto travel) throws JsonProcessingException, JSONException {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.PUT, BASE_SHIPMENTS_URL, shipmentRequest(shipment),
+                Request.Method.PUT, BASE_TRAVELS_URL, travelRequest(travel),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            ShipmentDto shipmentDto = mapper.readValue(response.toString(),ShipmentDto.class);
-                            shipmentMutable.setValue(shipmentDto);
+                            TravelDto travelDto = mapper.readValue(response.toString(),TravelDto.class);
+                            travelMutable.setValue(travelDto);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            shipmentMutable.setValue(null);
+                            travelMutable.setValue(null);
                         }
                     }
                 },
@@ -169,28 +170,28 @@ public class ShipmentRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
-                        shipmentMutable.setValue(null);
+                        travelMutable.setValue(null);
                     }
                 });
         requestQueue.add(request);
-        return shipmentMutable;
+        return travelMutable;
     }
 
-    public MutableLiveData<ShipmentDto> deleteShipment(ShipmentDto shipment)
+    public MutableLiveData<TravelDto> deleteTravel(TravelDto travel)
             throws JsonProcessingException, JSONException {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.DELETE, BASE_SHIPMENTS_URL + "id/"
-                + shipment.getId(), shipmentRequest(shipment),
+                Request.Method.DELETE, BASE_TRAVELS_URL + "id/"
+                + travel.getId(), travelRequest(travel),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            ShipmentDto shipmentDto = mapper
-                                    .readValue(response.toString(),ShipmentDto.class);
-                            shipmentMutable.setValue(shipmentDto);
+                            TravelDto travelDto = mapper
+                                    .readValue(response.toString(),TravelDto.class);
+                            travelMutable.setValue(travelDto);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            shipmentMutable.setValue(null);
+                            travelMutable.setValue(null);
                         }
                     }
                 },
@@ -198,15 +199,15 @@ public class ShipmentRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
-                        shipmentMutable.setValue(null);
+                        travelMutable.setValue(null);
                     }
                 });
         requestQueue.add(request);
-        return shipmentMutable;
+        return travelMutable;
     }
 
-    private JSONObject shipmentRequest(ShipmentDto shipmentDto) throws JsonProcessingException, JSONException {
-        String json = mapper.writeValueAsString(shipmentDto);
+    private JSONObject travelRequest(TravelDto travelDto) throws JsonProcessingException, JSONException {
+        String json = mapper.writeValueAsString(travelDto);
         System.out.println(json);
         return new JSONObject(json);
     }

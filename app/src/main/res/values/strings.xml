@@ -59,7 +59,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="travels">My Travels</string>
-    <string name="travel_subtitle">" In this section, you can add, display and view the status of all your travels."</string>
+    <string name="travel_subtitle">Currently you do not have any travel, press the Continue button to create one, or Later to Exit.</string>
     <string name="new_travel">New Travel</string>
     <string name="travel_list">Travel List</string>
     <string name="package_land_image_description">Package Image</string>
@@ -125,4 +125,7 @@
     <string name="xx">XX</string>
     <string name="wallet_subtitle">In order to use our services, you must have a balance in your wallet, to make an income, press the \"Deposit\" button, you can also leave it for later.</string>
     <string name="deposit">Deposit</string>
+    <string name="travel_subtitle_start">" Address where we will pick you up"</string>
+    <string name="destination_address">Destination Address</string>
+    <string name="travel_subtitle_end">"Address where we will take you "</string>
 </resources>

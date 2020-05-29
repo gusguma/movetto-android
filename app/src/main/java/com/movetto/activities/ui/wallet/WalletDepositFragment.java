@@ -76,7 +76,6 @@ public class WalletDepositFragment extends Fragment {
         buttonPay = root.findViewById(R.id.wallet_deposit_detail_pay_button);
         buttonCancel = root.findViewById(R.id.wallet_deposit_detail_cancel_button);
         data = getArguments();
-
     }
 
     private void setPaymentData(){

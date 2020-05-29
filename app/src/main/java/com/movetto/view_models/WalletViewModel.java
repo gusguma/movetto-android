@@ -34,6 +34,10 @@ public class WalletViewModel extends AndroidViewModel {
         return walletRepository.readWallet(uid);
     }
 
+    public MutableLiveData<WalletDto> readWalletById(int id){
+        return walletRepository.readWalletById(id);
+    }
+
     public MutableLiveData<WalletDto> saveWallet(WalletDto wallet)
             throws JsonProcessingException, JSONException {
         return walletRepository.saveWallet(wallet);

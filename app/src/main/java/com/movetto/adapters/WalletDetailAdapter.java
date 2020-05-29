@@ -68,8 +68,8 @@ public class WalletDetailAdapter extends FragmentStatePagerAdapter {
 
     private Bundle getBundle(){
         Bundle bundle = new Bundle();
+        bundle.putInt("customerId", customerId);
         bundle.putInt("walletId", walletId);
-        bundle.putInt("customerId",customerId);
         return bundle;
     }
 }

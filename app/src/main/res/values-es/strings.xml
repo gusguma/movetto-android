@@ -46,7 +46,7 @@
     <string name="shipment_subtitle_empty">Actualmente no dispones de ningún envío, pulsa el botón Continuar para crear uno, o Mas Tarde para Salir.</string>
     <string name="shipment_land_image_description">Imagen Envios</string>
     <string name="travels">Mis Viajes</string>
-    <string name="travel_subtitle">En esta sección, podrás añadir, mostrar y ver el estado de todos tus viajes.</string>
+    <string name="travel_subtitle">Actualmente no dispones de ningún viaje, pulsa el botón Continuar para crear uno, o Mas Tarde para Salir.</string>
     <string name="new_travel">Nuevo Viaje</string>
     <string name="travel_list">Listado Viajes</string>
     <string name="package_land_image_description">Imagen Paquetes</string>
@@ -110,4 +110,7 @@
     <string name="shipment_management">Aquí puedes gestionar tus envíos</string>
     <string name="wallet_subtitle">Para poder usar nuestros servicios, debes tener saldo en tu monedero, para realizar un ingreso, pulsa el boton \"Ingresar\", tambien puedes dejarlo para mas tarde.</string>
     <string name="deposit">Ingresar</string>
+    <string name="travel_subtitle_start">Dirección donde te recogeremos</string>
+    <string name="destination_address">Dirección de Destino</string>
+    <string name="travel_subtitle_end">Dirección donde te llevaremos</string>
 </resources>
