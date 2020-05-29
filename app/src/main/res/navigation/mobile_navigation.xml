@@ -36,13 +36,28 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_travel"
-        android:name="com.movetto.activities.ui.travel.TravelLandFragment"
+        android:id="@+id/nav_travel_empty"
+        android:name="com.movetto.activities.ui.travel.TravelEmptyFragment"
         android:label="@string/travel"
-        tools:layout="@layout/fragment_travel_land" >
+        tools:layout="@layout/fragment_travel_empty" >
         <action
-            android:id="@+id/action_nav_travel_to_nav_travel_create"
-            app:destination="@id/nav_travel_create"
+            android:id="@+id/action_nav_travel_empty_to_nav_travel_start"
+            app:destination="@id/nav_travel_start"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_travel_empty_to_nav_travel_list"
+            app:destination="@id/nav_travel_list"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_news" />
+        <action
+            android:id="@+id/action_nav_travel_empty_to_nav_account_customer_empty"
+            app:destination="@id/nav_account_customer_empty"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -82,17 +97,48 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_nav_account_to_nav_account_customer"
-            app:destination="@id/nav_account_customer" />
+            app:destination="@id/nav_account_customer"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_nav_account_to_nav_account_partner"
-            app:destination="@id/nav_account_partner" />
+            app:destination="@id/nav_account_partner"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_wallet"
-        android:name="com.movetto.activities.ui.wallet.WalletFragment"
+        android:name="com.movetto.activities.ui.wallet.WalletEmptyFragment"
         android:label="@string/wallet"
-        tools:layout="@layout/fragment_wallet" />
+        tools:layout="@layout/fragment_wallet_empty" >
+        <action
+            android:id="@+id/action_nav_wallet_to_nav_wallet_detail"
+            app:destination="@id/nav_wallet_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_news" />
+        <action
+            android:id="@+id/action_nav_wallet_to_nav_wallet_deposit_amount"
+            app:destination="@id/nav_wallet_deposit_amount"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_wallet_to_nav_account_customer_empty"
+            app:destination="@id/nav_account_customer_empty"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/nav_news"
         android:name="com.movetto.activities.ui.news.NewsFragment"
@@ -112,10 +158,18 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/nav_travel_create"
-        android:name="com.movetto.activities.ui.travel.TravelCreateFragment"
-        android:label="@string/new_travel"
-        tools:layout="@layout/fragment_travel_create" />
+        android:id="@+id/nav_travel_start"
+        android:name="com.movetto.activities.ui.travel.TravelStartFragment"
+        android:label="@string/pick_up_address"
+        tools:layout="@layout/fragment_travel_start" >
+        <action
+            android:id="@+id/action_nav_travel_start_to_nav_travel_end"
+            app:destination="@id/nav_travel_end"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/nav_account_customer_reg"
         android:name="com.movetto.activities.ui.account.AccountCustomerRegisterFragment"
@@ -247,7 +301,11 @@
         tools:layout="@layout/fragment_shipment_end" >
         <action
             android:id="@+id/action_nav_shipment_end_to_nav_shipment_add_update_package"
-            app:destination="@id/nav_shipment_add_update_package" />
+            app:destination="@id/nav_shipment_add_update_package"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/nav_shipments_list"
@@ -273,6 +331,10 @@
         <action
             android:id="@+id/action_nav_shipment_add_update_package_to_nav_shipment_detail"
             app:destination="@id/nav_shipment_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/nav_shipments_list" />
         <action
             android:id="@+id/action_nav_shipment_add_update_package_to_nav_shipments_empty"
@@ -290,10 +352,231 @@
         tools:layout="@layout/fragment_shipment_detail" >
         <action
             android:id="@+id/action_nav_shipment_detail_to_nav_shipment_add_update_package"
-            app:destination="@id/nav_shipment_add_update_package" />
+            app:destination="@id/nav_shipment_add_update_package"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_nav_shipment_detail_to_nav_shipments_empty"
             app:destination="@id/nav_shipments_empty"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/nav_account_partner_empty" />
+        <action
+            android:id="@+id/action_nav_shipment_detail_self"
+            app:destination="@id/nav_shipment_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_shipments_list" />
+        <action
+            android:id="@+id/action_nav_shipment_detail_to_nav_service_payment_detail"
+            app:destination="@id/nav_service_payment_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_detail"
+        android:name="com.movetto.activities.ui.wallet.WalletDetailFragment"
+        android:label="Mi Monedero"
+        tools:layout="@layout/fragment_wallet_detail">
+        <action
+            android:id="@+id/action_nav_wallet_detail_to_nav_wallet_card_edit"
+            app:destination="@id/nav_wallet_card_edit"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_wallet_detail_to_nav_wallet_deposit_amount"
+            app:destination="@id/nav_wallet_deposit_amount"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_deposit_amount"
+        android:name="com.movetto.activities.ui.wallet.WalletAmountFragment"
+        android:label="Cantidad a Depositar"
+        tools:layout="@layout/fragment_wallet_amount">
+        <action
+            android:id="@+id/action_nav_wallet_deposit_amount_to_nav_wallet_deposit_card"
+            app:destination="@id/nav_wallet_deposit_card"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_deposit_card"
+        android:name="com.movetto.activities.ui.wallet.WalletCardFragment"
+        android:label="Seleccionar Tarjeta"
+        tools:layout="@layout/fragment_wallet_card">
+        <action
+            android:id="@+id/action_nav_wallet_deposit_card_to_nav_wallet_deposit_detail"
+            app:destination="@id/nav_wallet_deposit_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_wallet_deposit_card_to_nav_wallet_card_edit"
+            app:destination="@id/nav_wallet_card_edit" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_deposit_detail"
+        android:name="com.movetto.activities.ui.wallet.WalletDepositFragment"
+        android:label="Detalle del Deposito"
+        tools:layout="@layout/fragment_wallet_deposit">
+        <action
+            android:id="@+id/action_nav_wallet_deposit_detail_to_nav_wallet_deposit_result"
+            app:destination="@id/nav_wallet_deposit_result"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_wallet" />
+        <action
+            android:id="@+id/action_nav_wallet_deposit_detail_to_nav_wallet"
+            app:destination="@id/nav_wallet" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_deposit_result"
+        android:name="com.movetto.activities.ui.wallet.WalletDepositResultFragment"
+        android:label="Resultado del Deposito"
+        tools:layout="@layout/fragment_wallet_deposit_result">
+        <action
+            android:id="@+id/action_nav_wallet_deposit_result_to_nav_wallet"
+            app:destination="@id/nav_wallet"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_wallet" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_wallet_card_edit"
+        android:name="com.movetto.activities.ui.wallet.WalletCardAddUpdateFragment"
+        android:label="Añadir o Editar Tarjeta"
+        tools:layout="@layout/fragment_wallet_card_add_update">
+        <action
+            android:id="@+id/action_nav_wallet_card_edit_to_nav_wallet_deposit_card"
+            app:destination="@id/nav_wallet_deposit_card"
+            app:popUpTo="@id/nav_wallet_deposit_amount" />
+        <action
+            android:id="@+id/action_nav_wallet_card_edit_to_nav_wallet_detail"
+            app:destination="@id/nav_wallet_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_news" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_service_payment_detail"
+        android:name="com.movetto.activities.ui.shared.ServicePaymentDetailFragment"
+        android:label="Detalle del Pago"
+        tools:layout="@layout/fragment_service_payment_detail" >
+        <action
+            android:id="@+id/action_nav_service_payment_detail_to_nav_wallet"
+            app:destination="@id/nav_wallet"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_service_payment_detail_to_nav_service_payment_result"
+            app:destination="@id/nav_service_payment_result"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_shipments_list" />
+        <action
+            android:id="@+id/action_nav_service_payment_detail_to_nav_shipment_detail"
+            app:destination="@id/nav_shipment_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_service_payment_result"
+        android:name="com.movetto.activities.ui.shared.ServicePaymentResultFragment"
+        android:label="Resultado del Pago"
+        tools:layout="@layout/fragment_service_payment_result" >
+        <action
+            android:id="@+id/action_nav_service_payment_result_to_nav_shipment_detail"
+            app:destination="@id/nav_shipment_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_travel_list"
+        android:name="com.movetto.activities.ui.travel.TravelListFragment"
+        android:label="fragment_travels_list"
+        tools:layout="@layout/fragment_travels_list" >
+        <action
+            android:id="@+id/action_nav_travel_list_to_nav_travel_detail"
+            app:destination="@id/nav_travel_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_travel_list_to_nav_travel_start"
+            app:destination="@id/nav_travel_start"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_travel_end"
+        android:name="com.movetto.activities.ui.travel.TravelEndFragment"
+        android:label="Dirección de Destino"
+        tools:layout="@layout/fragment_travel_end">
+        <action
+            android:id="@+id/action_nav_travel_end_to_nav_travel_data"
+            app:destination="@id/nav_travel_data"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_travel_data"
+        android:name="com.movetto.activities.ui.travel.TravelPeopleFragment"
+        android:label="Resto de Datos"
+        tools:layout="@layout/fragment_travel_people">
+        <action
+            android:id="@+id/action_nav_travel_people_to_nav_travel_detail2"
+            app:destination="@id/nav_travel_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_travel_list" />
+        <action
+            android:id="@+id/action_nav_travel_people_to_nav_travel_empty"
+            app:destination="@id/nav_travel_empty"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_travel_detail"
+        android:name="com.movetto.activities.ui.travel.TravelDetailFragment"
+        android:label="Detalle del Viaje"
+        tools:layout="@layout/fragment_travel_detail" />
 </navigation>

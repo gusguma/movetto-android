@@ -23,6 +23,7 @@ import com.movetto.adapters.ShipmentDetailAdapter;
 import com.movetto.dtos.PackageDto;
 import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.ShipmentStatus;
+import com.movetto.dtos.WalletDto;
 import com.movetto.view_models.ShipmentViewModel;
 
 import org.json.JSONException;
@@ -74,19 +75,13 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
         viewPager = root.findViewById(R.id.shipment_detail_view_pager);
         tabLayout.setupWithViewPager(viewPager);
     }
+
     private void setComponents() {
         shipmentNumber = root.findViewById(R.id.shipment_detail_number);
         shipmentPrice = root.findViewById(R.id.shipment_detail_price);
         shipmentStatus = root.findViewById(R.id.shipment_detail_status);
         payButton = root.findViewById(R.id.shipment_detail_pay_button);
         deleteButton = root.findViewById(R.id.shipment_detail_delete_button);
-    }
-
-    private void setAdapter(){
-        ShipmentDetailAdapter adapter = new ShipmentDetailAdapter(
-                getChildFragmentManager(), tabLayout.getTabCount(), getContext());
-        adapter.setShipmentId(shipment.getId());
-        viewPager.setAdapter(adapter);
     }
 
     private void setListeners(){
@@ -97,8 +92,8 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
 
     private void getShipmentData(){
         data = getArguments();
-        if (data != null && data.getInt("shipmentId") != 0){
-            shipmentViewModel.readShipmentById(data.getInt("shipmentId"))
+        if (data != null && data.getInt("serviceId") != 0){
+            shipmentViewModel.readShipmentById(data.getInt("serviceId"))
                     .observe(getViewLifecycleOwner(), new Observer<ShipmentDto>() {
                 @Override
                 public void onChanged(ShipmentDto shipmentDto) {
@@ -115,11 +110,10 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
         }
     }
 
-    private void checkShipmentStatus(){
-        if (shipment.getStatus() == ShipmentStatus.SAVED) {
-            payButton.setVisibility(View.VISIBLE);
-            deleteButton.setVisibility(View.VISIBLE);
-        }
+    private void setShipmentDetailData(){
+        shipmentNumber.setText(encodeShipmentNumber());
+        shipmentPrice.setText(calculateShipmentPriceString());
+        setShipmentStatus();
     }
 
     private String encodeShipmentNumber(){
@@ -128,18 +122,30 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
         return "" + formatter.format("%08d", number);
     }
 
-    private void setShipmentDetailData(){
-        shipmentNumber.setText(encodeShipmentNumber());
-        shipmentPrice.setText(calculateShipmentPrice());
-        setShipmentStatus();
+    private String calculateShipmentPriceString(){
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        calculateShipmentPrice();
+        return decimalFormat.format(shipment.getPriceShipment());
     }
 
-    private String calculateShipmentPrice(){
-        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+    private void calculateShipmentPrice(){
         Set<PackageDto> packages = shipment.getPackages();
         packages.forEach(PackageDto::setPackagePrice);
         shipment.setShipmentPrice();
-        return decimalFormat.format(shipment.getPriceShipment());
+    }
+
+    private void setAdapter(){
+        ShipmentDetailAdapter adapter = new ShipmentDetailAdapter(
+                getChildFragmentManager(), tabLayout.getTabCount(), getContext());
+        adapter.setShipmentId(shipment.getId());
+        viewPager.setAdapter(adapter);
+    }
+
+    private void checkShipmentStatus(){
+        if (shipment.getStatus() == ShipmentStatus.SAVED) {
+            payButton.setVisibility(View.VISIBLE);
+            deleteButton.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setShipmentStatus(){
@@ -196,7 +202,10 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
     }
 
     private void setPayButtonListener(){
-
+        data.putString("serviceNumber", encodeShipmentNumber());
+        data.putDouble("amount", shipment.getPriceShipment());
+        Navigation.findNavController(root).navigate(
+                R.id.action_nav_shipment_detail_to_nav_service_payment_detail, data);
     }
 
     private void setDeleteButtonListener() throws JsonProcessingException, JSONException {

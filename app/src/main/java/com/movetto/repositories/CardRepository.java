@@ -12,7 +12,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.movetto.dtos.ShipmentDto;
+import com.movetto.dtos.CardDto;
 import com.movetto.handler.UrlHandler;
 
 import org.json.JSONArray;
@@ -23,38 +23,35 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShipmentRepository {
+public class CardRepository {
 
-    private static final String BASE_SHIPMENTS_URL = UrlHandler.API_URL + UrlHandler.SHIPMENTS_URL;
+    private static final String BASE_CARDS_URL = UrlHandler.API_URL + UrlHandler.CARD_URL;
 
     private RequestQueue requestQueue;
-    private MutableLiveData<List<ShipmentDto>> shipments;
-    private MutableLiveData<ShipmentDto> shipmentMutable;
-    private MutableLiveData<Boolean> isResponseOk;
+    private MutableLiveData<List<CardDto>> cards;
+    private MutableLiveData<CardDto> cardMutable;
     private ObjectMapper mapper;
 
-    public ShipmentRepository(RequestQueue requestQueue) {
+    public CardRepository(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
-        this.shipments = new MutableLiveData<>();
-        this.isResponseOk = new MutableLiveData<>();
-        this.shipmentMutable = new MutableLiveData<>();
+        cards = new MutableLiveData<>();
+        cardMutable = new MutableLiveData<>();
         this.mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
-    public MutableLiveData<List<ShipmentDto>> readShipments() {
+    public MutableLiveData<List<CardDto>> readCards() {
         JsonArrayRequest request = new JsonArrayRequest(
-                Request.Method.GET, BASE_SHIPMENTS_URL, null,
+                Request.Method.GET, BASE_CARDS_URL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            List<ShipmentDto> shipmentDtoList = mapper
+                            List<CardDto> cardDtoList = mapper
                                     .readValue(response.toString()
-                                            ,new TypeReference<List<ShipmentDto>>(){});
-                            shipments.setValue(shipmentDtoList);
+                                            ,new TypeReference<List<CardDto>>(){});
+                            cards.setValue(cardDtoList);
                         } catch (IOException e) {
-                            shipments.setValue(new ArrayList<>());
                             e.printStackTrace();
                         }
                     }
@@ -62,27 +59,26 @@ public class ShipmentRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        shipments.setValue(new ArrayList<>());
+                        cards.setValue(new ArrayList<>());
                         error.printStackTrace();
                     }
                 });
         requestQueue.add(request);
-        return shipments;
+        return cards;
     }
 
-    public MutableLiveData<List<ShipmentDto>> readShipmentsByUid(String uid) {
+    public MutableLiveData<List<CardDto>> readCardsByUserId(int id) {
         JsonArrayRequest request = new JsonArrayRequest(
-                Request.Method.GET, BASE_SHIPMENTS_URL + uid, null,
+                Request.Method.GET, BASE_CARDS_URL + id, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            List<ShipmentDto> shipmentDtoList = mapper
+                            List<CardDto> cardDtoList = mapper
                                     .readValue(response.toString()
-                                            ,new TypeReference<List<ShipmentDto>>(){});
-                            shipments.setValue(shipmentDtoList);
+                                            ,new TypeReference<List<CardDto>>(){});
+                            cards.setValue(cardDtoList);
                         } catch (IOException e) {
-                            shipments.setValue(new ArrayList<>());
                             e.printStackTrace();
                         }
                     }
@@ -90,25 +86,25 @@ public class ShipmentRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        shipments.setValue(new ArrayList<>());
+                        cards.setValue(new ArrayList<>());
                         error.printStackTrace();
                     }
                 });
         requestQueue.add(request);
-        return shipments;
+        return cards;
     }
 
-    public MutableLiveData<ShipmentDto> readShipmentById(int id) {
+    public MutableLiveData<CardDto> readCardById(int id) {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET, BASE_SHIPMENTS_URL + "id/" + id, null,
+                Request.Method.GET, BASE_CARDS_URL + "id/" + id, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            ShipmentDto shipmentDto = mapper.readValue(response.toString(),ShipmentDto.class);
-                            shipmentMutable.setValue(shipmentDto);
+                            CardDto cardDto = mapper.readValue(response.toString(),CardDto.class);
+                            cardMutable.setValue(cardDto);
                         } catch (IOException e) {
-                            shipmentMutable.setValue(null);
+                            cardMutable.setValue(null);
                             e.printStackTrace();
                         }
                     }
@@ -116,26 +112,26 @@ public class ShipmentRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        shipmentMutable.setValue(null);
+                        cardMutable.setValue(null);
                         error.printStackTrace();
                     }
                 });
         requestQueue.add(request);
-        return shipmentMutable;
+        return cardMutable;
     }
 
-    public MutableLiveData<ShipmentDto> saveShipment(ShipmentDto shipment) throws JsonProcessingException, JSONException {
+    public MutableLiveData<CardDto> saveCard(CardDto card) throws JsonProcessingException, JSONException {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.POST, BASE_SHIPMENTS_URL, shipmentRequest(shipment),
+                Request.Method.POST, BASE_CARDS_URL, cardRequest(card),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            ShipmentDto shipmentDto = mapper.readValue(response.toString(),ShipmentDto.class);
-                            shipmentMutable.setValue(shipmentDto);
+                            CardDto cardDto = mapper.readValue(response.toString(),CardDto.class);
+                            cardMutable.setValue(cardDto);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            shipmentMutable.setValue(null);
+                            cardMutable.setValue(null);
                         }
                     }
                 },
@@ -143,25 +139,25 @@ public class ShipmentRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
-                        shipmentMutable.setValue(null);
+                        cardMutable.setValue(null);
                     }
                 });
         requestQueue.add(request);
-        return shipmentMutable;
+        return cardMutable;
     }
 
-    public MutableLiveData<ShipmentDto> updateShipment(ShipmentDto shipment) throws JsonProcessingException, JSONException {
+    public MutableLiveData<CardDto> updateCard(CardDto card) throws JsonProcessingException, JSONException {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.PUT, BASE_SHIPMENTS_URL, shipmentRequest(shipment),
+                Request.Method.PUT, BASE_CARDS_URL, cardRequest(card),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            ShipmentDto shipmentDto = mapper.readValue(response.toString(),ShipmentDto.class);
-                            shipmentMutable.setValue(shipmentDto);
+                            CardDto cardDto = mapper.readValue(response.toString(),CardDto.class);
+                            cardMutable.setValue(cardDto);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            shipmentMutable.setValue(null);
+                            cardMutable.setValue(null);
                         }
                     }
                 },
@@ -169,28 +165,28 @@ public class ShipmentRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
-                        shipmentMutable.setValue(null);
+                        cardMutable.setValue(null);
                     }
                 });
         requestQueue.add(request);
-        return shipmentMutable;
+        return cardMutable;
     }
 
-    public MutableLiveData<ShipmentDto> deleteShipment(ShipmentDto shipment)
+    public MutableLiveData<CardDto> deleteCard(CardDto card)
             throws JsonProcessingException, JSONException {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.DELETE, BASE_SHIPMENTS_URL + "id/"
-                + shipment.getId(), shipmentRequest(shipment),
+                Request.Method.DELETE, BASE_CARDS_URL + card.getId()
+                , cardRequest(card),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            ShipmentDto shipmentDto = mapper
-                                    .readValue(response.toString(),ShipmentDto.class);
-                            shipmentMutable.setValue(shipmentDto);
+                            CardDto cardDto = mapper
+                                    .readValue(response.toString(),CardDto.class);
+                            cardMutable.setValue(cardDto);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            shipmentMutable.setValue(null);
+                            cardMutable.setValue(null);
                         }
                     }
                 },
@@ -198,16 +194,17 @@ public class ShipmentRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
-                        shipmentMutable.setValue(null);
+                        cardMutable.setValue(null);
                     }
                 });
         requestQueue.add(request);
-        return shipmentMutable;
+        return cardMutable;
     }
 
-    private JSONObject shipmentRequest(ShipmentDto shipmentDto) throws JsonProcessingException, JSONException {
-        String json = mapper.writeValueAsString(shipmentDto);
+    private JSONObject cardRequest(CardDto cardDto) throws JsonProcessingException, JSONException {
+        String json = mapper.writeValueAsString(cardDto);
         System.out.println(json);
         return new JSONObject(json);
     }
+
 }

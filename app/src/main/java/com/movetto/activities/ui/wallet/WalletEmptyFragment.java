@@ -1,4 +1,4 @@
-package com.movetto.activities.ui.shipments;
+package com.movetto.activities.ui.wallet;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,34 +6,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.activities.MainActivity;
-import com.movetto.dtos.CustomerDto;
+import com.movetto.activities.ui.shipments.ShipmentsEmptyFragment;
 import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.UserDto;
+import com.movetto.dtos.WalletDto;
 import com.movetto.view_models.CustomerViewModel;
 import com.movetto.view_models.ShipmentViewModel;
+import com.movetto.view_models.WalletViewModel;
 
 import java.util.List;
 import java.util.Objects;
 
-public class ShipmentsEmptyFragment extends Fragment {
+public class WalletEmptyFragment extends Fragment {
 
     private View root;
     private CustomerViewModel customerViewModel;
-    private ShipmentViewModel shipmentViewModel;
+    private WalletViewModel walletViewModel;
     private UserDto customer;
+    private WalletDto wallet;
     private Button buttonContinue;
     private Button buttonLater;
+    private Bundle data;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,16 +51,16 @@ public class ShipmentsEmptyFragment extends Fragment {
 
     private void setViewModels() {
         customerViewModel = new ViewModelProvider(this).get(CustomerViewModel.class);
-        shipmentViewModel = new ViewModelProvider(this).get(ShipmentViewModel.class);
+        walletViewModel = new ViewModelProvider(this).get(WalletViewModel.class);
     }
 
     private void setLayout(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.fragment_shipment_empty, container, false);
+        root = inflater.inflate(R.layout.fragment_wallet_empty, container, false);
     }
 
     private void setComponents() {
-        buttonContinue = root.findViewById(R.id.shipment_land_continue_button);
-        buttonLater = root.findViewById(R.id.shipment_land_later_button);
+        buttonContinue = root.findViewById(R.id.wallet_land_continue_button);
+        buttonLater = root.findViewById(R.id.wallet_land_later_button);
     }
 
     private void getCustomer() {
@@ -65,8 +69,9 @@ public class ShipmentsEmptyFragment extends Fragment {
             public void onChanged(UserDto userDto) {
                 if(userDto != null){
                     customer = userDto;
+                    setBundle();
                     setButtonContinueExist();
-                    readShipments();
+                    readWallet();
                 } else {
                     setButtonContinueEmpty();
                 }
@@ -74,33 +79,39 @@ public class ShipmentsEmptyFragment extends Fragment {
         });
     }
 
-    private void readShipments(){
-        shipmentViewModel.readShipmentsByUid(customer.getUid()).observe(getViewLifecycleOwner(), new Observer<List<ShipmentDto>>() {
+    private void readWallet(){
+        walletViewModel.readWallet(customer.getUid()).observe(getViewLifecycleOwner(), new Observer<WalletDto>() {
             @Override
-            public void onChanged(List<ShipmentDto> shipmentDtos) {
-                if (!shipmentDtos.isEmpty()){
+            public void onChanged(WalletDto walletDto) {
+                if (walletDto != null && !walletDto.getTransactions().isEmpty()){
                     Navigation.findNavController(root)
-                            .navigate(R.id.action_nav_shipments_empty_to_nav_shipments_list);
+                            .navigate(R.id.action_nav_wallet_to_nav_wallet_detail, data);
                     getParentFragmentManager()
                             .beginTransaction()
-                            .remove(ShipmentsEmptyFragment.this)
+                            .remove(WalletEmptyFragment.this)
                             .commit();
                 }
             }
         });
     }
 
+    private void setBundle(){
+        data = new Bundle();
+        data.putInt("customerId", customer.getId());
+        data.putString("customerUid", customer.getUid());
+    }
+
     private void setButtonContinueExist(){
         buttonContinue.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                        R.id.action_nav_shipments_empty_to_nav_shipments_start,null)
+                        R.id.action_nav_wallet_to_nav_wallet_deposit_amount,data)
         );
     }
 
     private void setButtonContinueEmpty(){
         buttonContinue.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                        R.id.action_nav_shipments_empty_to_nav_account_customer_empty,null)
+                        R.id.action_nav_wallet_to_nav_account_customer_empty,null)
         );
     }
 

@@ -1,4 +1,4 @@
-package com.movetto.activities.ui.shipments;
+package com.movetto.activities.ui.travel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,29 +8,28 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.activities.MainActivity;
-import com.movetto.dtos.CustomerDto;
+import com.movetto.activities.ui.shipments.ShipmentsEmptyFragment;
 import com.movetto.dtos.ShipmentDto;
+import com.movetto.dtos.TravelDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.view_models.CustomerViewModel;
-import com.movetto.view_models.ShipmentViewModel;
+import com.movetto.view_models.TravelViewModel;
 
 import java.util.List;
 import java.util.Objects;
 
-public class ShipmentsEmptyFragment extends Fragment {
+public class TravelEmptyFragment extends Fragment {
 
     private View root;
     private CustomerViewModel customerViewModel;
-    private ShipmentViewModel shipmentViewModel;
+    private TravelViewModel travelViewModel;
     private UserDto customer;
     private Button buttonContinue;
     private Button buttonLater;
@@ -47,16 +46,16 @@ public class ShipmentsEmptyFragment extends Fragment {
 
     private void setViewModels() {
         customerViewModel = new ViewModelProvider(this).get(CustomerViewModel.class);
-        shipmentViewModel = new ViewModelProvider(this).get(ShipmentViewModel.class);
+        travelViewModel = new ViewModelProvider(this).get(TravelViewModel.class);
     }
 
     private void setLayout(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.fragment_shipment_empty, container, false);
+        root = inflater.inflate(R.layout.fragment_travel_empty, container, false);
     }
 
     private void setComponents() {
-        buttonContinue = root.findViewById(R.id.shipment_land_continue_button);
-        buttonLater = root.findViewById(R.id.shipment_land_later_button);
+        buttonContinue = root.findViewById(R.id.travel_land_continue_button);
+        buttonLater = root.findViewById(R.id.travel_land_later_button);
     }
 
     private void getCustomer() {
@@ -75,15 +74,15 @@ public class ShipmentsEmptyFragment extends Fragment {
     }
 
     private void readShipments(){
-        shipmentViewModel.readShipmentsByUid(customer.getUid()).observe(getViewLifecycleOwner(), new Observer<List<ShipmentDto>>() {
+        travelViewModel.readTravelsByUid(customer.getUid()).observe(getViewLifecycleOwner(), new Observer<List<TravelDto>>() {
             @Override
-            public void onChanged(List<ShipmentDto> shipmentDtos) {
+            public void onChanged(List<TravelDto> shipmentDtos) {
                 if (!shipmentDtos.isEmpty()){
                     Navigation.findNavController(root)
-                            .navigate(R.id.action_nav_shipments_empty_to_nav_shipments_list);
+                            .navigate(R.id.action_nav_travel_empty_to_nav_travel_list);
                     getParentFragmentManager()
                             .beginTransaction()
-                            .remove(ShipmentsEmptyFragment.this)
+                            .remove(TravelEmptyFragment.this)
                             .commit();
                 }
             }
@@ -93,14 +92,14 @@ public class ShipmentsEmptyFragment extends Fragment {
     private void setButtonContinueExist(){
         buttonContinue.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                        R.id.action_nav_shipments_empty_to_nav_shipments_start,null)
+                        R.id.action_nav_travel_empty_to_nav_travel_start,null)
         );
     }
 
     private void setButtonContinueEmpty(){
         buttonContinue.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                        R.id.action_nav_shipments_empty_to_nav_account_customer_empty,null)
+                        R.id.action_nav_travel_empty_to_nav_account_customer_empty,null)
         );
     }
 

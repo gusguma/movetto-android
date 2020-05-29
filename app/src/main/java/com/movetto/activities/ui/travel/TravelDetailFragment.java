@@ -1,6 +1,5 @@
 package com.movetto.activities.ui.travel;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,10 +14,9 @@ import com.movetto.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TravelCreateFragment extends Fragment {
+public class TravelDetailFragment extends Fragment {
 
-
-    public TravelCreateFragment() {
+    public TravelDetailFragment() {
         // Required empty public constructor
     }
 
@@ -27,7 +25,6 @@ public class TravelCreateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_travel_create, container, false);
+        return inflater.inflate(R.layout.fragment_travel_detail, container, false);
     }
-
 }

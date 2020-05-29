@@ -29,6 +29,8 @@ import java.util.List;
 
 public class ShipmentListFragment extends Fragment {
 
+    private static final int SHIPMENT = 1;
+
     private View root;
     private ShipmentViewModel shipmentViewModel;
     private RecyclerView recyclerView;
@@ -93,6 +95,9 @@ public class ShipmentListFragment extends Fragment {
             @Override
             public void onItemClick(ShipmentDto shipment) {
                 Bundle bundle = new Bundle();
+                bundle.putString("customerUid", user.getUid());
+                bundle.putInt("serviceType", SHIPMENT );
+                bundle.putInt("serviceId", shipment.getId());
                 bundle.putInt("shipmentId", shipment.getId());
                 Navigation.findNavController(root).navigate(
                         R.id.action_nav_shipments_list_to_nav_shipment_detail, bundle);
