@@ -74,6 +74,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_partner_divider_top"
         tools:listitem="@layout/shipment_item" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

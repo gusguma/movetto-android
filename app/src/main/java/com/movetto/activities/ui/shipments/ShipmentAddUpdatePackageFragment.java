@@ -275,7 +275,7 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
 
     private void setUpdateShipment(){
         if (data.getInt("packageId") != 0) {
-            shipment.getPackages().forEach(pack-> {
+            shipment.getPackages().forEach(pack -> {
                 if (pack.getId() == data.getInt("packageId")){
                     pack.setLenght(Double.parseDouble(lenght.getText().toString()));
                     pack.setWidth(Double.parseDouble(width.getText().toString()));
@@ -327,6 +327,7 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
     private void setBundleData (){
         data = new Bundle();
         data.putInt("shipmentId", shipment.getId());
+        data.putInt("serviceId", shipment.getId());
     }
 
     private void getShipmentSaveOk() {

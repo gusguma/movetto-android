@@ -26,7 +26,7 @@ public class WalletDetailAdapter extends FragmentStatePagerAdapter {
         super(fm, behavior);
         this.behavior = behavior;
         this.context = context;
-        titles = new String[]{CARDS, TRANSACTIONS};
+        titles = new String[]{TRANSACTIONS,CARDS};
     }
 
     @Nullable
@@ -41,13 +41,14 @@ public class WalletDetailAdapter extends FragmentStatePagerAdapter {
         Fragment fragment;
         switch (position) {
             case 0:
-                fragment = new WalletDetailCardsFragment();
-                fragment.setArguments(getBundle());
-                return fragment;
-            case 1:
                 fragment = new WalletDetailTransactionsFragment();
                 fragment.setArguments(getBundle());
                 return fragment;
+            case 1:
+                fragment = new WalletDetailCardsFragment();
+                fragment.setArguments(getBundle());
+                return fragment;
+
             default:
                 return null;
         }

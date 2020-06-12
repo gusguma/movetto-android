@@ -39,6 +39,7 @@ public class CustomerRepository extends UserRepository {
                             UserDto userDto = mapper.readValue(response.toString(),UserDto.class);
                             userDtoMutableLiveData.setValue(userDto);
                         } catch (IOException e) {
+                            userDtoMutableLiveData.setValue(null);
                             e.printStackTrace();
                         }
                     }
@@ -46,6 +47,7 @@ public class CustomerRepository extends UserRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        userDtoMutableLiveData.setValue(null);
                         error.printStackTrace();
                     }
                 });

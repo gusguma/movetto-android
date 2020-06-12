@@ -27,6 +27,10 @@ import java.util.List;
 public class TravelRepository {
 
     private static final String BASE_TRAVELS_URL = UrlHandler.API_URL + UrlHandler.TRAVELS_URL;
+    private static final String TRAVEL_PARTNER_URL = BASE_TRAVELS_URL + UrlHandler.PARTNERS_URL;
+    private static final String TRAVEL_AVAILABLE_URL = BASE_TRAVELS_URL + UrlHandler.AVAILABLE;
+    private static final String TRAVEL_PENDING_URL = BASE_TRAVELS_URL + UrlHandler.PENDING;
+    private static final String TRAVEL_FINISHED_URL = BASE_TRAVELS_URL + UrlHandler.FINISHED;
 
     private RequestQueue requestQueue;
     private MutableLiveData<List<TravelDto>> travels;
@@ -123,6 +127,118 @@ public class TravelRepository {
                 });
         requestQueue.add(request);
         return travelMutable;
+    }
+
+    public MutableLiveData<List<TravelDto>> readTravelsByPartnerUid(String uid) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET, TRAVEL_PARTNER_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<TravelDto> travelDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<ShipmentDto>>(){});
+                            travels.setValue(travelDtoList);
+                        } catch (IOException e) {
+                            travels.setValue(new ArrayList<>());
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        travels.setValue(new ArrayList<>());
+                        error.printStackTrace();
+                    }
+                });
+        requestQueue.add(request);
+        return travels;
+    }
+
+    public MutableLiveData<List<TravelDto>> readTravelsAvailable(String uid) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET, TRAVEL_AVAILABLE_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<TravelDto> travelDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<ShipmentDto>>(){});
+                            travels.setValue(travelDtoList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            travels.setValue(new ArrayList<>());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        travels.setValue(new ArrayList<>());
+                    }
+                });
+        requestQueue.add(request);
+        return travels;
+    }
+
+    public MutableLiveData<List<TravelDto>> readTravelsPending(String uid) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET, TRAVEL_PENDING_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<TravelDto> travelDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<ShipmentDto>>(){});
+                            travels.setValue(travelDtoList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            travels.setValue(new ArrayList<>());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        travels.setValue(new ArrayList<>());
+                    }
+                });
+        requestQueue.add(request);
+        return travels;
+    }
+
+    public MutableLiveData<List<TravelDto>> readTravelsFinished(String uid) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET, TRAVEL_FINISHED_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<TravelDto> travelDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<ShipmentDto>>(){});
+                            travels.setValue(travelDtoList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            travels.setValue(new ArrayList<>());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        travels.setValue(new ArrayList<>());
+                    }
+                });
+        requestQueue.add(request);
+        return travels;
     }
 
     public MutableLiveData<TravelDto> saveTravel(TravelDto travel) throws JsonProcessingException, JSONException {

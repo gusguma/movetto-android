@@ -3,6 +3,7 @@ package com.movetto.handler;
 public class UrlHandler {
 
     public static final String API_URL = "http://192.168.1.60:8080/";
+    public static final String MAPS_API_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=decimal";
     public static final String USERS_URL = "users/";
     public static final String CUSTOMERS_URL = "customers/";
     public static final String PARTNERS_URL = "partners/";
@@ -13,5 +14,7 @@ public class UrlHandler {
     public static final String TRAVELS_URL = "travels/";
     public static final String WALLET_URL = "wallet/";
     public static final String CARD_URL = "card/";
-
+    public static final String AVAILABLE = "available/";
+    public static final String PENDING = "pending/";
+    public static final String FINISHED = "finished/";
 }

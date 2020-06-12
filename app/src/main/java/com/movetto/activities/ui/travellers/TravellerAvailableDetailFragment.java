@@ -1,4 +1,4 @@
-package com.movetto.activities.ui.travel;
+package com.movetto.activities.ui.travellers;
 
 import android.os.Bundle;
 
@@ -14,9 +14,9 @@ import com.movetto.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TravelPeopleFragment extends Fragment {
+public class TravellerAvailableDetailFragment extends Fragment {
 
-    public TravelPeopleFragment() {
+    public TravellerAvailableDetailFragment() {
         // Required empty public constructor
     }
 
@@ -25,6 +25,6 @@ public class TravelPeopleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_travel_people, container, false);
+        return inflater.inflate(R.layout.fragment_traveller_available_detail, container, false);
     }
 }

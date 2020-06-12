@@ -29,7 +29,6 @@ public class UserRepository {
 
     protected FirebaseUser user;
     protected RequestQueue requestQueue;
-    private UserDto userDto;
     private MutableLiveData<UserDto> userDtoMutable;
     private MutableLiveData<Boolean> isResponseOk;
     protected ObjectMapper mapper;
@@ -43,18 +42,17 @@ public class UserRepository {
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
-    public void readUser(final MutableLiveData<UserDto> userDtoMutableLiveData) {
-        userDto = null;
-        String uri = BASE_USERS_URL + user.getUid();
+    public MutableLiveData<UserDto> readUser() {
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET, uri, null,
+                Request.Method.GET, BASE_USERS_URL + user.getUid(), null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            userDto = mapper.readValue(response.toString(), UserDto.class);
-                            userDtoMutableLiveData.setValue(userDto);
+                            UserDto userDto = mapper.readValue(response.toString(), UserDto.class);
+                            userDtoMutable.setValue(userDto);
                         } catch (IOException e) {
+                            userDtoMutable.setValue(null);
                             e.printStackTrace();
                         }
                     }
@@ -63,13 +61,15 @@ public class UserRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         try {
-                            saveUser(userDtoMutableLiveData);
+                            saveUser();
                         } catch (Exception e) {
+                            userDtoMutable.setValue(null);
                             e.printStackTrace();
                         }
                     }
                 });
         requestQueue.add(request);
+        return userDtoMutable;
     }
 
     public MutableLiveData<UserDto> readUserByEmail(UserDto destinationUser) {
@@ -99,17 +99,17 @@ public class UserRepository {
         return userDtoMutable;
     }
 
-    public void saveUser(final MutableLiveData<UserDto> userDtoMutableLiveData) throws Exception {
-        userDto = null;
+    public MutableLiveData<UserDto> saveUser() throws Exception {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
                 BASE_USERS_URL, userRequest(),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            userDto = mapper.readValue(response.toString(), UserDto.class);
-                            userDtoMutableLiveData.setValue(userDto);
+                            UserDto userDto = mapper.readValue(response.toString(), UserDto.class);
+                            userDtoMutable.setValue(userDto);
                         } catch (IOException e) {
+                            userDtoMutable.setValue(null);
                             e.printStackTrace();
                         }
                     }
@@ -117,10 +117,12 @@ public class UserRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        userDtoMutable.setValue(null);
                         error.printStackTrace();
                     }
                 });
         requestQueue.add(request);
+        return userDtoMutable;
     }
 
     public MutableLiveData<UserDto> saveUserByEmail(UserDto destinationUser) throws Exception {
@@ -130,7 +132,7 @@ public class UserRepository {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            userDto = mapper.readValue(response.toString(), UserDto.class);
+                            UserDto userDto = mapper.readValue(response.toString(), UserDto.class);
                             userDtoMutable.setValue(userDto);
                         } catch (IOException e) {
                             e.printStackTrace();

@@ -1,7 +1,6 @@
 package com.movetto.dtos.validations;
 
 import android.util.Patterns;
-
 public class Validation {
 
     public Validation(){

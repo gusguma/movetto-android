@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -23,7 +24,7 @@ import java.time.LocalDateTime;
         "end",
         "status"
 })
-public class TravelDto extends ServiceDto {
+public class TravelDto extends ServiceDto implements Serializable {
     @JsonProperty("people")
     private int people;
     @JsonProperty("distance")
@@ -66,14 +67,14 @@ public class TravelDto extends ServiceDto {
     }
 
     public long getTravelDuration(){
-        return Duration.between(start,end).toHours();
+        return Duration.between(start, end).toHours();
     }
 
-    public double getTravelPriceHours(){
+    private double getTravelPriceHours(){
         return getTravelDuration() * priceHour;
     }
 
-    public double getTravelPriceDistance(){
+    private double getTravelPriceDistance(){
         return distance * priceKm;
     }
 
@@ -155,7 +156,7 @@ public class TravelDto extends ServiceDto {
 
     @Override
     public String toString() {
-        return "Travel{" +
+        return "TravelDto{" +
                 "people=" + people +
                 ", distance=" + distance +
                 ", minimumPrice=" + minimumPrice +

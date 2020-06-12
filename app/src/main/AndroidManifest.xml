@@ -18,10 +18,12 @@
         </activity>
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings">
+        </activity>
         <activity
             android:name=".activities.MainMenuActivity"
-            android:label="@string/title_activity_main_menu"></activity>
+            android:label="@string/title_activity_main_menu">
+        </activity>
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,10 +33,10 @@
         </activity>
         <activity
             android:name=".activities.FirebaseUIActivity"
-            android:label="Autorizacion"></activity>
-
+            android:label="Autorizacion">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+            android:resource="@array/preloaded_fonts"/>
     </application>
 </manifest>

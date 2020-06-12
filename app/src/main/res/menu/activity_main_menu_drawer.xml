@@ -12,11 +12,11 @@
             android:icon="@drawable/ic_menu_travel_linear"
             android:title="@string/travel" />
         <item
-            android:id="@+id/nav_packages"
+            android:id="@+id/nav_shipment_available_empty"
             android:icon="@drawable/ic_menu_packages_linear"
-            android:title="@string/packages" />
+            android:title="@string/shipments_available" />
         <item
-            android:id="@+id/nav_travellers"
+            android:id="@+id/nav_travellers_available_empty"
             android:icon="@drawable/ic_menu_travellers_linear"
             android:title="@string/travellers" />
         <item
@@ -33,7 +33,7 @@
                 android:icon="@drawable/ic_menu_account_linear"
                 android:title="@string/my_account" />
             <item
-                android:id="@+id/nav_wallet"
+                android:id="@+id/nav_wallet_empty"
                 android:icon="@drawable/ic_menu_wallet_linear"
                 android:title="@string/wallet" />
         </menu>

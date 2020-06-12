@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/package_land_img"
+        android:id="@+id/shipment_available_result_img"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
@@ -15,27 +15,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_packages_linear_black" />
+        app:srcCompat="@drawable/ic_account_partner_register_colored" />
 
     <TextView
-        android:id="@+id/package_land_title"
+        android:id="@+id/shipment_available_result_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/kulim_park_bold"
-        android:text="@string/packages"
+        android:text="@string/wallet"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.Movetto.Headline5"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/package_land_img" />
+        app:layout_constraintTop_toBottomOf="@id/shipment_available_result_img" />
 
     <View
-        android:id="@+id/package_land_top_divider"
+        android:id="@+id/shipment_available_result_top_divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -45,26 +45,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/package_land_title" />
+        app:layout_constraintTop_toBottomOf="@id/shipment_available_result_title" />
 
     <TextView
-        android:id="@+id/package_land_subtitle"
+        android:id="@+id/shipment_available_result_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center"
-        android:text="@string/package_subtitle"
+        android:text="@string/wallet_subtitle"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.Movetto.Subtitle2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/package_land_top_divider" />
+        app:layout_constraintTop_toBottomOf="@id/shipment_available_result_top_divider" />
 
     <View
-        android:id="@+id/package_land_below_divider"
+        android:id="@+id/shipment_available_result_below_divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -74,10 +74,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/package_land_subtitle"/>
+        app:layout_constraintTop_toBottomOf="@id/shipment_available_result_subtitle" />
 
     <Button
-        android:id="@+id/package_land_list_button"
+        android:id="@+id/shipment_available_result_continue_button"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -89,11 +89,11 @@
         android:insetBottom="0dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:text="@string/package_list"
+        android:text="@string/continued"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/package_land_below_divider" />
+        app:layout_constraintTop_toBottomOf="@+id/shipment_available_result_below_divider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

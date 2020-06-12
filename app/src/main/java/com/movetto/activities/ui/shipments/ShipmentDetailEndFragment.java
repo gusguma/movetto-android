@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.movetto.R;
 import com.movetto.dtos.DirectionDto;
 import com.movetto.dtos.ShipmentDto;
+import com.movetto.dtos.ShipmentStatus;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;
@@ -44,6 +45,7 @@ public class ShipmentDetailEndFragment extends Fragment
     private ShipmentDto shipment;
     private DirectionDto directionEnd;
     private FloatingActionButton buttonSave;
+    private Bundle data;
 
     public ShipmentDetailEndFragment() {
         // Required empty public constructor
@@ -95,9 +97,10 @@ public class ShipmentDetailEndFragment extends Fragment
     }
 
     private void setShipmentId() {
-        Bundle data = getArguments();
+        data = getArguments();
         if (data != null && data.getInt("shipmentId") != 0) {
             shipmentId = data.getInt("shipmentId");
+            data.putInt("serviceId", shipmentId);
         }
     }
 
@@ -116,8 +119,23 @@ public class ShipmentDetailEndFragment extends Fragment
                 city.setText(directionEnd.getCity());
                 state.setText(directionEnd.getState());
                 country.setText(directionEnd.getCountry());
+                checkShipmentStatus();
             }
         });
+    }
+
+    private void checkShipmentStatus(){
+        if (shipment.getStatus() != ShipmentStatus.SAVED) {
+            name.setEnabled(false);
+            email.setEnabled(false);
+            phone.setEnabled(false);
+            street.setEnabled(false);
+            postalCode.setEnabled(false);
+            city.setEnabled(false);
+            state.setEnabled(false);
+            country.setEnabled(false);
+            buttonSave.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -226,7 +244,7 @@ public class ShipmentDetailEndFragment extends Fragment
         Bundle bundle = new Bundle();
         bundle.putInt("shipmentId", shipmentId);
         Navigation.findNavController(root).navigate(
-                R.id.action_nav_shipment_detail_self, bundle);
+                R.id.action_nav_shipment_detail_self, data);
     }
 
     private void updateShipmentOk() {

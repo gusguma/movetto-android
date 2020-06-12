@@ -29,8 +29,7 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<UserDto> readUser(){
-        userRepository.readUser(this.userDto);
-        return userDto;
+        return userRepository.readUser();
     }
 
     public MutableLiveData<UserDto> readUserByEmail(UserDto user) {
@@ -38,9 +37,7 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<UserDto> saveUser(UserDto userDto) throws Exception {
-        this.userDto.setValue(userDto);
-        userRepository.saveUser(this.userDto);
-        return this.userDto;
+        return userRepository.saveUser();
     }
 
     public MutableLiveData<UserDto> saveUserByEmail(UserDto user) throws Exception {

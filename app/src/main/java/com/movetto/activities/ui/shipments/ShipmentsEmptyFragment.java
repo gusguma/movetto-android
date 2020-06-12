@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
@@ -34,6 +35,11 @@ public class ShipmentsEmptyFragment extends Fragment {
     private UserDto customer;
     private Button buttonContinue;
     private Button buttonLater;
+    private ConstraintLayout progressBar;
+
+    public ShipmentsEmptyFragment() {
+        // Required empty public constructor
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +49,12 @@ public class ShipmentsEmptyFragment extends Fragment {
         getCustomer();
         setButtonLater();
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     private void setViewModels() {
@@ -57,6 +69,7 @@ public class ShipmentsEmptyFragment extends Fragment {
     private void setComponents() {
         buttonContinue = root.findViewById(R.id.shipment_land_continue_button);
         buttonLater = root.findViewById(R.id.shipment_land_later_button);
+        progressBar = root.findViewById(R.id.shipment_land_progress_bar);
     }
 
     private void getCustomer() {
@@ -68,6 +81,7 @@ public class ShipmentsEmptyFragment extends Fragment {
                     setButtonContinueExist();
                     readShipments();
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     setButtonContinueEmpty();
                 }
             }
@@ -85,6 +99,8 @@ public class ShipmentsEmptyFragment extends Fragment {
                             .beginTransaction()
                             .remove(ShipmentsEmptyFragment.this)
                             .commit();
+                } else {
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

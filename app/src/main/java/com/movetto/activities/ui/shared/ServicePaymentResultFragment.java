@@ -19,7 +19,7 @@ public class ServicePaymentResultFragment extends Fragment {
     private static final int TRAVEL = 2;
 
     private View root;
-    private Bundle bundle;
+    private Bundle data;
     private ImageView image;
     private TextView title;
     private TextView subtitle;
@@ -44,14 +44,14 @@ public class ServicePaymentResultFragment extends Fragment {
     }
 
     private void setComponents(){
-        bundle = getArguments();
-        if (bundle != null){
+        data = getArguments();
+        if (data != null){
             image = root.findViewById(R.id.payment_service_result_img);
-            image.setImageResource(bundle.getInt("image"));
+            image.setImageResource(data.getInt("image"));
             title = root.findViewById(R.id.payment_service_result_title);
-            title.setText(bundle.getString("title"));
+            title.setText(data.getString("title"));
             subtitle = root.findViewById(R.id.payment_service_result_subtitle);
-            subtitle.setText(bundle.getString("subtitle"));
+            subtitle.setText(data.getString("subtitle"));
         }
         button = root.findViewById(R.id.payment_service_result_continue_button);
     }
@@ -60,11 +60,12 @@ public class ServicePaymentResultFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (bundle != null && bundle.getInt("serviceType") == SHIPMENT) {
+                v.setEnabled(false);
+                if (data != null && data.getInt("serviceType") == SHIPMENT) {
                     setButtonListenerShipment();
                 }
-                if (bundle != null && bundle.getInt("serviceType") == TRAVEL) {
-                    setButtonListenerShipment();
+                if (data != null && data.getInt("serviceType") == TRAVEL) {
+                    setButtonListenerTravel();
                 }
             }
         });
@@ -72,10 +73,11 @@ public class ServicePaymentResultFragment extends Fragment {
 
     private void setButtonListenerShipment() {
         Navigation.findNavController(root).navigate(
-                R.id.action_nav_service_payment_result_to_nav_shipment_detail, bundle);
+                R.id.action_nav_service_payment_result_to_nav_shipment_detail, data);
     }
 
     private void setButtonListenerTravel() {
-        //TODO
+        Navigation.findNavController(root).navigate(
+                R.id.action_nav_service_payment_result_to_nav_travel_detail, data);
     }
 }

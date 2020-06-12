@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ui.account.AccountCustomerRegisterFragment">
+
+    <TextView
+        android:id="@+id/travel_detail_data_people_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Numero de Personas:"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/travel_detail_data_people_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/travel_detail_data_people_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="start|top"
+        android:hint="Numero de Personas"
+        android:inputType="numberDecimal"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/travel_detail_data_people_label"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/travel_detail_data_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Fecha Recogida:"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/travel_detail_data_date_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/travel_detail_data_date_edit"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="dd/mm/aaaa"
+        android:inputType="date"
+        app:layout_constraintEnd_toStartOf="@+id/travel_detail_data_date_button"
+        app:layout_constraintStart_toEndOf="@+id/travel_detail_data_date_label"
+        app:layout_constraintTop_toBottomOf="@+id/travel_detail_data_divider_below2" />
+
+    <ImageButton
+        android:id="@+id/travel_detail_data_date_button"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/ic_today_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/travel_detail_data_date_edit"
+        app:layout_constraintTop_toBottomOf="@+id/travel_detail_data_divider_below2" />
+
+    <TextView
+        android:id="@+id/travel_detail_data_hour_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Hora Recogida:"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/travel_detail_data_hour_edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/travel_detail_data_hour_edit"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="hh/mm"
+        android:inputType="time"
+        app:layout_constraintEnd_toStartOf="@+id/travel_detail_data_hour_button"
+        app:layout_constraintStart_toStartOf="@+id/travel_detail_data_date_edit"
+        app:layout_constraintTop_toBottomOf="@+id/travel_detail_data_date_edit" />
+
+    <ImageButton
+        android:id="@+id/travel_detail_data_hour_button"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/fui_transparent"
+        android:src="@drawable/ic_timer_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/travel_detail_data_date_button" />
+
+    <View
+        android:id="@+id/travel_detail_data_divider_below2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/travel_detail_data_people_edit" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/trave_detail_data_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_save_black_24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.movetto.activities.ui.shipments;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,7 +24,6 @@ import com.movetto.adapters.ShipmentDetailAdapter;
 import com.movetto.dtos.PackageDto;
 import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.ShipmentStatus;
-import com.movetto.dtos.WalletDto;
 import com.movetto.view_models.ShipmentViewModel;
 
 import org.json.JSONException;
@@ -33,7 +33,6 @@ import java.util.Formatter;
 import java.util.Set;
 
 public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabSelectedListener,
-        View.OnFocusChangeListener,
         View.OnClickListener {
 
     private static final int SHIPMENT_HASH = 213;
@@ -49,6 +48,7 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
     private Chip shipmentStatus;
     private Button payButton;
     private Button deleteButton;
+    private ConstraintLayout progressBar;
 
     public ShipmentDetailFragment() {
         // Required empty public constructor
@@ -82,6 +82,7 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
         shipmentStatus = root.findViewById(R.id.shipment_detail_status);
         payButton = root.findViewById(R.id.shipment_detail_pay_button);
         deleteButton = root.findViewById(R.id.shipment_detail_delete_button);
+        progressBar = root.findViewById(R.id.shipment_detail_progress_bar);
     }
 
     private void setListeners(){
@@ -102,6 +103,7 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
                         setShipmentDetailData();
                         setAdapter();
                         checkShipmentStatus();
+                        progressBar.setVisibility(View.GONE);
                     } else {
                         setShipmentDataNotFound();
                     }
@@ -137,7 +139,8 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
     private void setAdapter(){
         ShipmentDetailAdapter adapter = new ShipmentDetailAdapter(
                 getChildFragmentManager(), tabLayout.getTabCount(), getContext());
-        adapter.setShipmentId(shipment.getId());
+        data.putInt("shipmentId", shipment.getId());
+        adapter.setData(data);
         viewPager.setAdapter(adapter);
     }
 
@@ -149,16 +152,16 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
     }
 
     private void setShipmentStatus(){
-        if (shipment.getStatus() == ShipmentStatus.ACCEPTED)
-            shipmentStatus.setText("Aceptado");
+        if (shipment.getStatus() == ShipmentStatus.PAID)
+            shipmentStatus.setText("Pagado");
         if (shipment.getStatus() == ShipmentStatus.COLLECTED)
             shipmentStatus.setText("Recogido");
         if (shipment.getStatus() == ShipmentStatus.DELIVERED)
             shipmentStatus.setText("Entregado");
         if (shipment.getStatus() == ShipmentStatus.DETAINED)
             shipmentStatus.setText("Retenido");
-        if (shipment.getStatus() == ShipmentStatus.PREPARED)
-            shipmentStatus.setText("Preparado");
+        if (shipment.getStatus() == ShipmentStatus.ACCEPTED)
+            shipmentStatus.setText("Aceptado");
         if (shipment.getStatus() == ShipmentStatus.SAVED)
             shipmentStatus.setText("Grabado");
         if (shipment.getStatus() == ShipmentStatus.TRANSIT)
@@ -209,7 +212,7 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
     }
 
     private void setDeleteButtonListener() throws JsonProcessingException, JSONException {
-        shipmentViewModel.deleteShipment(shipment).observe(getViewLifecycleOwner(), new Observer<ShipmentDto>() {
+        shipmentViewModel.deleteShipment(shipment).observe(this, new Observer<ShipmentDto>() {
             @Override
             public void onChanged(ShipmentDto shipmentDto) {
                 if (shipmentDto != null){
@@ -235,11 +238,6 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
         Toast.makeText(root.getContext(),
                 "No se ha podido eliminar el envío",
                 Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        //Nothing to Do
     }
 
 }

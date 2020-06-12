@@ -26,6 +26,10 @@ import java.util.List;
 public class ShipmentRepository {
 
     private static final String BASE_SHIPMENTS_URL = UrlHandler.API_URL + UrlHandler.SHIPMENTS_URL;
+    private static final String SHIPMENT_PARTNER_URL = BASE_SHIPMENTS_URL + UrlHandler.PARTNERS_URL;
+    private static final String SHIPMENT_AVAILABLE_URL = BASE_SHIPMENTS_URL + UrlHandler.AVAILABLE;
+    private static final String SHIPMENT_PENDING_URL = BASE_SHIPMENTS_URL + UrlHandler.PENDING;
+    private static final String SHIPMENT_FINISHED_URL = BASE_SHIPMENTS_URL + UrlHandler.FINISHED;
 
     private RequestQueue requestQueue;
     private MutableLiveData<List<ShipmentDto>> shipments;
@@ -124,6 +128,118 @@ public class ShipmentRepository {
         return shipmentMutable;
     }
 
+    public MutableLiveData<List<ShipmentDto>> readShipmentsByPartnerUid(String uid) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET, SHIPMENT_PARTNER_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<ShipmentDto> shipmentDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<ShipmentDto>>(){});
+                            shipments.setValue(shipmentDtoList);
+                        } catch (IOException e) {
+                            shipments.setValue(new ArrayList<>());
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        shipments.setValue(new ArrayList<>());
+                        error.printStackTrace();
+                    }
+                });
+        requestQueue.add(request);
+        return shipments;
+    }
+
+    public MutableLiveData<List<ShipmentDto>> readShipmentsAvailable(String uid) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET, SHIPMENT_AVAILABLE_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<ShipmentDto> shipmentDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<ShipmentDto>>(){});
+                            shipments.setValue(shipmentDtoList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            shipments.setValue(new ArrayList<>());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        shipments.setValue(new ArrayList<>());
+                    }
+                });
+        requestQueue.add(request);
+        return shipments;
+    }
+
+    public MutableLiveData<List<ShipmentDto>> readShipmentsPending(String uid) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET, SHIPMENT_PENDING_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<ShipmentDto> shipmentDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<ShipmentDto>>(){});
+                            shipments.setValue(shipmentDtoList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            shipments.setValue(new ArrayList<>());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        shipments.setValue(new ArrayList<>());
+                    }
+                });
+        requestQueue.add(request);
+        return shipments;
+    }
+
+    public MutableLiveData<List<ShipmentDto>> readShipmentsFinished(String uid) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET, SHIPMENT_FINISHED_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<ShipmentDto> shipmentDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<ShipmentDto>>(){});
+                            shipments.setValue(shipmentDtoList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            shipments.setValue(new ArrayList<>());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        shipments.setValue(new ArrayList<>());
+                    }
+                });
+        requestQueue.add(request);
+        return shipments;
+    }
+
     public MutableLiveData<ShipmentDto> saveShipment(ShipmentDto shipment) throws JsonProcessingException, JSONException {
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST, BASE_SHIPMENTS_URL, shipmentRequest(shipment),
@@ -135,7 +251,7 @@ public class ShipmentRepository {
                             shipmentMutable.setValue(shipmentDto);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            shipmentMutable.setValue(null);
+                            shipments.setValue(new ArrayList<>());
                         }
                     }
                 },
@@ -143,7 +259,7 @@ public class ShipmentRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
-                        shipmentMutable.setValue(null);
+                        shipments.setValue(new ArrayList<>());
                     }
                 });
         requestQueue.add(request);

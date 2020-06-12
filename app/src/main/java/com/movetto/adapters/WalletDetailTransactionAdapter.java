@@ -17,6 +17,7 @@ import com.movetto.dtos.PaymentDto;
 import com.movetto.dtos.TransactionDto;
 import com.movetto.dtos.TransactionStatus;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +37,12 @@ public class WalletDetailTransactionAdapter
 
     @Override
     public void onBindViewHolder(@NonNull WalletDetailTransactionHolder holder, int position) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
         TransactionDto transactionDto = transactions.get(position);
         holder.transactionIcon.setImageResource(setTransactionIcon(transactionDto));
         holder.transactionType.setText(setTransactionChip(transactionDto));
-        holder.transactionAmount.setText(String.valueOf(transactionDto.getAmount()));
+        holder.transactionAmount.setText(
+                decimalFormat.format(Math.abs(transactionDto.getAmount())));
         holder.transactionText.setText(setTransactionText(transactionDto));
         holder.transactionDate.setText(setTransactionDate(transactionDto));
         holder.transactionStatus.setText(transactionDto.getStatus().toString());
@@ -76,12 +79,13 @@ public class WalletDetailTransactionAdapter
     }
 
     private String setTransactionText(TransactionDto transaction){
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
         return setTransactionChip(transaction)
                 + " - "
                 + transaction.getRegistrationDate().getDayOfMonth()
                 + "-" + transaction.getRegistrationDate().getMonth()
                 + "-" + transaction.getRegistrationDate().getYear()
-                + " | " + transaction.getAmount() + "€.";
+                + " | " + decimalFormat.format(transaction.getAmount()) + "€.";
     }
 
     private String setTransactionDate(TransactionDto transaction){
