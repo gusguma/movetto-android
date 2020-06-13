@@ -151,6 +151,8 @@ public class TravelDetailFragment extends Fragment implements TabLayout.OnTabSel
             travelStatus.setText("Grabado");
         if (travel.getStatus() == TravelStatus.TRANSIT)
             travelStatus.setText("En Transito");
+        if (travel.getStatus() == TravelStatus.PICKED_UP)
+            travelStatus.setText("Recogido");
     }
 
     private void setShipmentDataNotFound(){

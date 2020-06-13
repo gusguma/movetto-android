@@ -25,7 +25,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_news" />
         <action
             android:id="@+id/action_nav_shipments_empty_to_nav_account_customer_empty"
             app:destination="@id/nav_account_customer_empty"
@@ -46,7 +47,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_news" />
         <action
             android:id="@+id/action_nav_travel_empty_to_nav_travel_list"
             app:destination="@id/nav_travel_list"
@@ -83,7 +85,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_news" />
     </fragment>
 
     <fragment
@@ -105,7 +108,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_news" />
     </fragment>
 
     <fragment
@@ -650,7 +654,7 @@
     <fragment
         android:id="@+id/nav_shipment_available_list"
         android:name="com.movetto.activities.ui.packages.ShipmentAvailableListFragment"
-        android:label="Mis Envíos"
+        android:label="Gestión de Envíos"
         tools:layout="@layout/fragment_shipment_available_list">
         <action
             android:id="@+id/action_nav_shipment_available_list_to_nav_shipment_available_detail"
@@ -667,9 +671,13 @@
         tools:layout="@layout/fragment_shipment_available_detail" >
         <action
             android:id="@+id/action_nav_shipment_available_detail_to_nav_shipment_available_empty"
-            app:destination="@id/nav_shipment_available_empty" />
+            app:destination="@id/nav_shipment_available_empty"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_nav_shipment_available_detail_to_nav_shipment_available_action_detail"
+            android:id="@+id/action_nav_shipment_available_detail_to_nav_service_available_action_detail"
             app:destination="@id/nav_service_available_action_detail"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -744,10 +752,21 @@
     <fragment
         android:id="@+id/nav_traveller_available_detail"
         android:name="com.movetto.activities.ui.travellers.TravellerAvailableDetailFragment"
-        android:label="fragment_traveller_available_detail"
-        tools:layout="@layout/fragment_traveller_available_detail" >
+        android:label="Detalle del Viaje"
+        tools:layout="@layout/fragment_traveller_available_detail">
         <action
             android:id="@+id/action_nav_traveller_available_detail_to_nav_service_available_action_detail"
-            app:destination="@id/nav_service_available_action_detail" />
+            app:destination="@id/nav_service_available_action_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_traveller_available_detail_to_nav_travellers_available_empty"
+            app:destination="@id/nav_travellers_available_empty"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>

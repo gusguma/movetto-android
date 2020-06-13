@@ -74,7 +74,7 @@ public class TravellerAvailableEmptyFragment extends Fragment {
         partnerViewModel.readPartner().observe(getViewLifecycleOwner(), new Observer<UserDto>() {
             @Override
             public void onChanged(UserDto userDto) {
-                if(userDto != null){
+                if (userDto != null){
                     partner = userDto;
                     data.putString("partnerUid", partner.getUid());
                     readTravelsByPartner();
@@ -90,7 +90,6 @@ public class TravellerAvailableEmptyFragment extends Fragment {
             @Override
             public void onChanged(List<TravelDto> travelDtos) {
                 if (!travelDtos.isEmpty()) {
-                    System.out.println("travelbypartner vacio");
                     readTravelsAvailable();
                 } else {
                     getTravelListFragment();

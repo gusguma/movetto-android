@@ -76,6 +76,7 @@ public class TravelDetailDataFragment extends Fragment
         setFormFieldsListener();
         setTravelId();
         setTravelDataInput();
+        setCalendar();
         return root;
     }
 
@@ -143,7 +144,7 @@ public class TravelDetailDataFragment extends Fragment
 
     private String setDateInput(){
         return dateFormat(daySelected) + BAR
-                + dateFormat(monthSelected) + BAR
+                + dateFormat(monthSelected + 1) + BAR
                 + yearSelected;
     }
 
@@ -151,18 +152,25 @@ public class TravelDetailDataFragment extends Fragment
         return dateFormat(hourSelected) + POINTS + dateFormat(minuteSelected);
     }
 
+    private void setCalendar() {
+        Calendar c = Calendar.getInstance();
+        yearSelected = c.get(Calendar.YEAR);
+        monthSelected = c.get(Calendar.MONTH);
+        daySelected = c.get(Calendar.DAY_OF_MONTH);
+    }
+
     private void setDate(){
         DatePickerDialog datePickerDialog = new DatePickerDialog(root.getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String dateFormatted = dateFormat(dayOfMonth) + BAR
-                        + dateFormat(month + 1) + BAR + year;
-                date.setText(dateFormatted);
                 yearSelected = year;
-                monthSelected = month + 1;
+                monthSelected = month;
                 daySelected = dayOfMonth;
+                String dateFormatted = dateFormat(daySelected) + BAR
+                        + dateFormat(monthSelected + 1) + BAR + yearSelected;
+                date.setText(dateFormatted);
             }
-        },yearSelected,monthSelected - 1,daySelected);
+        },yearSelected,monthSelected,daySelected);
         datePickerDialog.show();
     }
 

@@ -96,7 +96,6 @@ public class ShipmentsAvailableEmptyFragment extends Fragment {
             @Override
             public void onChanged(List<ShipmentDto> shipmentDtos) {
                 if (!shipmentDtos.isEmpty()) {
-                    System.out.println("shipmentsbypartner vacio");
                     readShipmentsAvailable();
                 } else {
                     getShipmentListFragment();
@@ -110,7 +109,6 @@ public class ShipmentsAvailableEmptyFragment extends Fragment {
             @Override
             public void onChanged(List<ShipmentDto> shipmentDtos) {
                 if (shipmentDtos.isEmpty()){
-                    System.out.println("shipmentsAvailable vacio");
                     progressBar.setVisibility(View.GONE);
                 } else {
                     getShipmentListFragment();

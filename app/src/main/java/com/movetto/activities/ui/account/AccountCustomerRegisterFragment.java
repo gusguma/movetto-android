@@ -99,6 +99,10 @@ public class AccountCustomerRegisterFragment extends Fragment
                 if (userDto != null) {
                     displayName.setText(userDto.getDisplayName());
                     email.setText(userDto.getEmail());
+                    if (userDto.getPhone() != null) {
+                        phone.setText(userDto.getPhone().toString());
+                        phone.setEnabled(false);
+                    }
                     userOutputDto = userDto;
                 }
             }

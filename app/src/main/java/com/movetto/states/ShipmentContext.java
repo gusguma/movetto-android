@@ -84,6 +84,6 @@ public class ShipmentContext {
 
     protected void navigate(){
         Navigation.findNavController(root).navigate(
-                R.id.action_nav_shipment_available_detail_to_nav_shipment_available_action_detail, data);
+                R.id.action_nav_shipment_available_detail_to_nav_service_available_action_detail, data);
     }
 }

@@ -110,7 +110,7 @@ public class ShipmentDetailEndFragment extends Fragment
             public void onChanged(ShipmentDto shipmentDto) {
                 shipment = shipmentDto;
                 destinationUser = shipment.getDestinationUser();
-                directionEnd = shipment.getStartDirection();
+                directionEnd = shipment.getEndDirection();
                 name.setText(destinationUser.getDisplayName());
                 email.setText(destinationUser.getEmail());
                 phone.setText(String.valueOf(destinationUser.getPhone()));

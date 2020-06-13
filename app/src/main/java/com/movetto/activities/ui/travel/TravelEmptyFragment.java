@@ -68,6 +68,7 @@ public class TravelEmptyFragment extends Fragment {
                     setButtonContinueExist();
                     readTravels();
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     setButtonContinueEmpty();
                 }
             }

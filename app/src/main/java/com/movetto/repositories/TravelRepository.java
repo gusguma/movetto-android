@@ -138,7 +138,7 @@ public class TravelRepository {
                         try {
                             List<TravelDto> travelDtoList = mapper
                                     .readValue(response.toString()
-                                            ,new TypeReference<List<ShipmentDto>>(){});
+                                            ,new TypeReference<List<TravelDto>>(){});
                             travels.setValue(travelDtoList);
                         } catch (IOException e) {
                             travels.setValue(new ArrayList<>());
@@ -166,7 +166,7 @@ public class TravelRepository {
                         try {
                             List<TravelDto> travelDtoList = mapper
                                     .readValue(response.toString()
-                                            ,new TypeReference<List<ShipmentDto>>(){});
+                                            ,new TypeReference<List<TravelDto>>(){});
                             travels.setValue(travelDtoList);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -194,7 +194,7 @@ public class TravelRepository {
                         try {
                             List<TravelDto> travelDtoList = mapper
                                     .readValue(response.toString()
-                                            ,new TypeReference<List<ShipmentDto>>(){});
+                                            ,new TypeReference<List<TravelDto>>(){});
                             travels.setValue(travelDtoList);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -222,7 +222,7 @@ public class TravelRepository {
                         try {
                             List<TravelDto> travelDtoList = mapper
                                     .readValue(response.toString()
-                                            ,new TypeReference<List<ShipmentDto>>(){});
+                                            ,new TypeReference<List<TravelDto>>(){});
                             travels.setValue(travelDtoList);
                         } catch (IOException e) {
                             e.printStackTrace();

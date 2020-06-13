@@ -1,6 +1,8 @@
 package com.movetto.dtos;
 
-public class CoordinateDto {
+import java.io.Serializable;
+
+public class CoordinateDto implements Serializable {
 
     private double latitude;
     private double longitude;

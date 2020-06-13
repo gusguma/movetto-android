@@ -61,6 +61,24 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/travel_data_people_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/travel_data_people_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="start|top"
+        android:hint="Numero de Personas"
+        android:inputType="numberDecimal"
+        android:textAppearance="@style/TextAppearance.Movetto.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/travel_data_people_label"
+        app:layout_constraintTop_toBottomOf="@+id/travel_data_divider_top" />
+
     <TextView
         android:id="@+id/travel_data_date_label"
         android:layout_width="wrap_content"
@@ -129,24 +147,6 @@
         android:src="@drawable/ic_timer_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/travel_data_date_button" />
-
-    <EditText
-        android:id="@+id/travel_data_people_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:enabled="true"
-        android:gravity="start|top"
-        android:hint="Numero de Personas"
-        android:inputType="numberDecimal"
-        android:textAppearance="@style/TextAppearance.Movetto.Body2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/travel_data_people_label"
-        app:layout_constraintTop_toBottomOf="@+id/travel_data_divider_top" />
 
     <View
         android:id="@+id/travel_data_divider_below"

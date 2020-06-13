@@ -97,7 +97,10 @@ public class AccountPartnerRegisterFragment extends Fragment
             public void onChanged(UserDto userDto) {
                 displayName.setText(userDto.getDisplayName());
                 email.setText(userDto.getEmail());
-                phone.setText(userDto.getPhone().toString());
+                if (userDto.getPhone() != null) {
+                    phone.setText(userDto.getPhone().toString());
+                    phone.setEnabled(false);
+                }
                 userOutputDto = userDto;
             }
         });

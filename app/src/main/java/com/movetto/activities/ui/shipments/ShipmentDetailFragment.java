@@ -166,6 +166,8 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
             shipmentStatus.setText("Grabado");
         if (shipment.getStatus() == ShipmentStatus.TRANSIT)
             shipmentStatus.setText("En Transito");
+        if (shipment.getStatus() == ShipmentStatus.FINISHED)
+            shipmentStatus.setText("Finalizado");
     }
 
     private void setShipmentDataNotFound(){

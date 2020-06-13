@@ -81,7 +81,7 @@ public class ServiceActionSpinnerAdapter extends BaseAdapter {
         }
         if (vehicle.getClass() == VanDto.class) {
             VanDto van = (VanDto) vehicle;
-            return BIKE + " - " + van.getMake() + " - " + " - " + van.getRegistration();
+            return VAN + " - " + van.getMake() + " - " + " - " + van.getRegistration();
         }
         return null;
     }
@@ -102,8 +102,6 @@ public class ServiceActionSpinnerAdapter extends BaseAdapter {
     }
 
     class VehicleHolder {
-
         private TextView textVehicle;
-
     }
 }

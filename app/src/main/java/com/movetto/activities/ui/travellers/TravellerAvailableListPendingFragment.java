@@ -90,7 +90,7 @@ public class TravellerAvailableListPendingFragment extends Fragment {
                 if (!travelDtos.isEmpty()) {
                     adapter.setTravels(travelDtos);
                     progressBar.setVisibility(View.GONE);
-                    travelsAvailableEmpty.setVisibility(View.GONE);
+                    travelsPendingEmpty.setVisibility(View.GONE);
                 } else {
                     progressBar.setVisibility(View.GONE);
                 }

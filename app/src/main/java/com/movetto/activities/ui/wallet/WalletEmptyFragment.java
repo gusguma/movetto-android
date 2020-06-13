@@ -62,6 +62,7 @@ public class WalletEmptyFragment extends Fragment {
     private void setComponents() {
         buttonContinue = root.findViewById(R.id.wallet_land_continue_button);
         buttonLater = root.findViewById(R.id.wallet_land_later_button);
+        progressBar = root.findViewById(R.id.wallet_land_progress_bar);
     }
 
     private void getCustomer() {
@@ -74,6 +75,7 @@ public class WalletEmptyFragment extends Fragment {
                     setButtonContinueExist();
                     readWallet();
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     setButtonContinueEmpty();
                 }
             }

@@ -21,16 +21,22 @@ import android.widget.Toast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.movetto.R;
 import com.movetto.adapters.ServiceActionSpinnerAdapter;
+import com.movetto.dtos.ChargeDto;
+import com.movetto.dtos.DepositDto;
 import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.ShipmentStatus;
+import com.movetto.dtos.TransactionDto;
+import com.movetto.dtos.TransactionStatus;
 import com.movetto.dtos.TravelDto;
 import com.movetto.dtos.TravelStatus;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.VehicleDto;
+import com.movetto.dtos.WalletDto;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.view_models.ShipmentViewModel;
 import com.movetto.view_models.TravelViewModel;
 import com.movetto.view_models.UserViewModel;
+import com.movetto.view_models.WalletViewModel;
 
 import org.json.JSONException;
 
@@ -47,6 +53,7 @@ public class ServiceAvailableActionFragment extends Fragment
     private View root;
     private ShipmentViewModel shipmentViewModel;
     private TravelViewModel travelViewModel;
+    private WalletViewModel walletViewModel;
     private UserViewModel userViewModel;
     private double paymentAmount;
     private TextView type;
@@ -61,6 +68,7 @@ public class ServiceAvailableActionFragment extends Fragment
     private ShipmentDto shipment;
     private TravelDto travel;
     private VehicleDto vehicle;
+    private WalletDto wallet;
     private Button buttonConfirm;
     private Button buttonCancel;
     private ConstraintLayout progressBar;
@@ -87,6 +95,7 @@ public class ServiceAvailableActionFragment extends Fragment
         shipmentViewModel = new ViewModelProvider(this).get(ShipmentViewModel.class);
         travelViewModel = new ViewModelProvider(this).get(TravelViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        walletViewModel = new ViewModelProvider(this).get(WalletViewModel.class);
     }
 
     private void setLayout(LayoutInflater inflater, ViewGroup container) {
@@ -139,6 +148,7 @@ public class ServiceAvailableActionFragment extends Fragment
         if (data.getInt("serviceType") == TRAVEL) {
             setTravel();
             type.setText("Viaje");
+            checkTravelAction();
         }
     }
 
@@ -161,6 +171,31 @@ public class ServiceAvailableActionFragment extends Fragment
         }
         if (status == ShipmentStatus.FINISHED) {
             action.setText("Finalizar");
+        }
+        if (status == ShipmentStatus.PAID) {
+            action.setText("Cancelar");
+        }
+    }
+
+    private void checkTravelAction(){
+        TravelStatus status = (TravelStatus) data.getSerializable("newStatus");
+        if (status == TravelStatus.ACCEPTED) {
+            action.setText("Aceptar");
+        }
+        if (status == TravelStatus.PICKED_UP) {
+            action.setText("Recoger");
+        }
+        if (status == TravelStatus.TRANSIT) {
+            action.setText("En Camino");
+        }
+        if (status == TravelStatus.DETAINED) {
+            action.setText("Detener");
+        }
+        if (status == TravelStatus.FINISHED) {
+            action.setText("Finalizar");
+        }
+        if (status == TravelStatus.PAID) {
+            action.setText("Cancelar");
         }
     }
 
@@ -198,8 +233,20 @@ public class ServiceAvailableActionFragment extends Fragment
             public void onChanged(UserDto userDto) {
                 if (userDto != null) {
                     partner = userDto;
+                    setWallet();
                     checkVehicle();
                     progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
+    private void setWallet(){
+        walletViewModel.readWallet(partner.getUid()).observe(getViewLifecycleOwner(), new Observer<WalletDto>() {
+            @Override
+            public void onChanged(WalletDto walletDto) {
+                if (walletDto != null) {
+                    wallet = walletDto;
                 }
             }
         });
@@ -208,11 +255,7 @@ public class ServiceAvailableActionFragment extends Fragment
     private void checkVehicle() {
         if (shipment != null && shipment.getVehicle() == null) {
             setAdapter();
-        } else {
-            spinnerVehicles.setVisibility(View.GONE);
-            spinnerLabel.setVisibility(View.GONE);
-        }
-        if (travel != null && travel.getVehicle() == null) {
+        } else if (travel != null && travel.getVehicle() == null) {
             setAdapter();
         } else {
             spinnerVehicles.setVisibility(View.GONE);
@@ -260,7 +303,7 @@ public class ServiceAvailableActionFragment extends Fragment
             if (shipment.getStatus() != status) {
                 shipment.setStatus(status);
                 checkShipmentData();
-                updateShipment();
+                checkShipmentStatus();
             } else {
                 Navigation.findNavController(root).navigate(
                         R.id.action_nav_service_available_action_detail_to_nav_shipment_available_empty, data);
@@ -268,7 +311,6 @@ public class ServiceAvailableActionFragment extends Fragment
                         "No se ha podido actualizar el Envío",
                         Toast.LENGTH_LONG).show();
             }
-
         }
     }
 
@@ -278,7 +320,7 @@ public class ServiceAvailableActionFragment extends Fragment
             if (travel.getStatus() != status) {
                 travel.setStatus(status);
                 checkTravelData();
-                updateTravel();
+                checkTravelStatus();
             } else {
                 Navigation.findNavController(root).navigate(
                         R.id.action_nav_service_available_action_detail_to_nav_travellers_available_empty, data);
@@ -286,6 +328,88 @@ public class ServiceAvailableActionFragment extends Fragment
                         "No se ha podido actualizar el Envío",
                         Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    private void checkShipmentStatus() throws JsonProcessingException, JSONException {
+        if (data.getSerializable("newStatus") == ShipmentStatus.FINISHED) {
+            checkWallet();
+        } else {
+            updateShipment();
+        }
+    }
+
+    private void checkTravelStatus() throws JsonProcessingException, JSONException {
+        if (data.getSerializable("newStatus") == TravelStatus.FINISHED) {
+            checkWallet();
+        } else {
+            updateTravel();
+        }
+    }
+
+    private void checkWallet() throws JsonProcessingException, JSONException {
+        if (wallet == null) {
+            wallet = new WalletDto(partner);
+            createTransaction();
+            saveWallet();
+        } else {
+            createTransaction();
+            updateWallet();
+        }
+    }
+
+    private void createTransaction(){
+        TransactionDto transaction = null;
+        if (data.getInt("serviceType") == SHIPMENT) {
+            transaction = new ChargeDto(paymentAmount * 0.9, shipment);
+        }
+        if (data.getInt("serviceType") == TRAVEL) {
+            transaction = new ChargeDto(paymentAmount * 0.9, travel);
+        }
+        assert transaction != null;
+        transaction.setAmount(paymentAmount * 0.9);
+        transaction.setStatus(TransactionStatus.CREATED);
+        wallet.getTransactions().add(transaction);
+    }
+
+    private void saveWallet() throws JsonProcessingException, JSONException {
+        walletViewModel.saveWallet(wallet).observe(getViewLifecycleOwner(), new Observer<WalletDto>() {
+            @Override
+            public void onChanged(WalletDto walletDto) {
+                if (walletDto != null) {
+                    wallet = walletDto;
+                    try {
+                        checkServiceToUpdate();
+                    } catch (JsonProcessingException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    private void updateWallet() throws JsonProcessingException, JSONException {
+        walletViewModel.updateWallet(wallet).observe(getViewLifecycleOwner(), new Observer<WalletDto>() {
+            @Override
+            public void onChanged(WalletDto walletDto) {
+                if (walletDto != null) {
+                    wallet = walletDto;
+                    try {
+                        checkServiceToUpdate();
+                    } catch (JsonProcessingException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    private void checkServiceToUpdate() throws JsonProcessingException, JSONException {
+        if (data != null && data.getInt("serviceType") == SHIPMENT) {
+            updateShipment();
+        }
+        if (data != null && data.getInt("serviceType") == TRAVEL) {
+            updateTravel();
         }
     }
 
@@ -308,10 +432,12 @@ public class ServiceAvailableActionFragment extends Fragment
 
     private void checkServiceNewStatus() {
         if (data.getSerializable("newStatus") == ShipmentStatus.PAID) {
+            System.out.println("ha entrado en shipment status paid");
             shipment.setPartner(null);
             shipment.setVehicle(null);
         }
         if (data.getSerializable("newStatus") == TravelStatus.PAID) {
+            System.out.println("ha entrado en travel status paid");
             travel.setPartner(null);
             travel.setVehicle(null);
         }

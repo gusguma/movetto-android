@@ -98,6 +98,7 @@ public class TravelDataFragment extends Fragment
         buttonDate = root.findViewById(R.id.travel_data_date_button);
         buttonTime = root.findViewById(R.id.travel_data_hour_button);
         buttonSave = root.findViewById(R.id.travel_data_save_button);
+        date.setText(formatDate());
     }
 
     private void setFormFieldsListener() {
@@ -176,16 +177,19 @@ public class TravelDataFragment extends Fragment
         }
     }
 
+    private String formatDate() {
+        return dateFormat(daySelected) + BAR
+                + dateFormat(monthSelected + 1) + BAR + yearSelected;
+    }
+
     private void setDate(){
         DatePickerDialog datePickerDialog = new DatePickerDialog(root.getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String dateFormatted = dateFormat(dayOfMonth) + BAR
-                        + dateFormat(month + 1) + BAR + year;
-                date.setText(dateFormatted);
                 yearSelected = year;
-                monthSelected = month + 1;
+                monthSelected = month;
                 daySelected = dayOfMonth;
+                date.setText(formatDate());
             }
         },yearSelected,monthSelected,daySelected);
         datePickerDialog.show();

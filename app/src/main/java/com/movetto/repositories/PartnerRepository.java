@@ -39,6 +39,7 @@ public class PartnerRepository extends UserRepository {
                             userDtoMutableLiveData.setValue(userDto);
                         } catch (IOException e) {
                             e.printStackTrace();
+                            userDtoMutableLiveData.setValue(null);
                         }
                     }
                 },
@@ -46,6 +47,7 @@ public class PartnerRepository extends UserRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
+                        userDtoMutableLiveData.setValue(null);
                     }
                 });
         requestQueue.add(request);
