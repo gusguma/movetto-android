@@ -34,13 +34,11 @@ public class ShipmentRepository {
     private RequestQueue requestQueue;
     private MutableLiveData<List<ShipmentDto>> shipments;
     private MutableLiveData<ShipmentDto> shipmentMutable;
-    private MutableLiveData<Boolean> isResponseOk;
     private ObjectMapper mapper;
 
     public ShipmentRepository(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
         this.shipments = new MutableLiveData<>();
-        this.isResponseOk = new MutableLiveData<>();
         this.shipmentMutable = new MutableLiveData<>();
         this.mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);

@@ -72,6 +72,7 @@ public class AccountCustomerFragment extends Fragment
         displayName = root.findViewById(R.id.account_customer_name_edit);
         email = root.findViewById(R.id.account_customer_email_edit);
         phone = root.findViewById(R.id.account_customer_phone_edit);
+        phone.setEnabled(false);
         street = root.findViewById(R.id.account_customer_street_edit);
         postalCode = root.findViewById(R.id.account_customer_cp_edit);
         city = root.findViewById(R.id.account_customer_city_edit);

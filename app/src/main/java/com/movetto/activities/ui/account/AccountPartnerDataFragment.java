@@ -80,7 +80,7 @@ public class AccountPartnerDataFragment extends Fragment
                 userOutputDto = userDto;
                 displayName.setText(userDto.getDisplayName());
                 email.setText(userDto.getEmail());
-                phone.setText(userDto.getPhone().toString());
+                phone.setText((String)userDto.getPhone());
                 partnerId.setText(userDto.getPartner().getPartnerId());
             }
         });

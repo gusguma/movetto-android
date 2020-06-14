@@ -1,18 +1,17 @@
 package com.movetto.activities.ui.account;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.dtos.DirectionDto;
@@ -111,25 +110,23 @@ public class AccountPartnerRegisterFragment extends Fragment
         EditText editText = (EditText) v;
         boolean focus = editText.hasFocus();
         boolean isEmpty = editText.getText().toString().isEmpty();
+        if (editText.getId() == R.id.account_partner_reg_cp_edit) {
+            if (!Validation.isPostalCodeValid(postalCode.getText().toString()))
+                postalCode.setError(ErrorStrings.INVALID_POSTAL_CODE);
+        }
+        if (editText.getId() == R.id.account_partner_reg_phone_edit) {
+            if (!Validation.isPhoneValid(phone.getText().toString()))
+                phone.setError(ErrorStrings.INVALID_PHONE_NUMBER);
+        }
+        if (editText.getId() == R.id.account_partner_reg_id_edit) {
+            if (!Validation.isRegisterIdValid(partnerId.getText().toString()))
+                partnerId.setError(ErrorStrings.INVALID_REGISTER_ID);
+        }
+        if (isEmpty) {
+            editText.setError(ErrorStrings.EMPTY);
+        }
         if (focus) {
             editText.setError(null);
-        } else {
-            if(isEmpty){
-                editText.setError(ErrorStrings.EMPTY);
-            } else {
-                if (editText.getId() == R.id.account_partner_reg_cp_edit){
-                    if (Validation.isPostalCodeValid(postalCode.getText().toString()))
-                        postalCode.setError(ErrorStrings.INVALID_POSTAL_CODE);
-                }
-                if (editText.getId() == R.id.account_partner_reg_phone_edit) {
-                    if (Validation.isPhoneValid(phone.getText().toString()))
-                        phone.setError(ErrorStrings.INVALID_PHONE_NUMBER);
-                }
-                if (editText.getId() == R.id.account_partner_reg_id_edit) {
-                    if (Validation.isRegisterIdValid(partnerId.getText().toString()))
-                        partnerId.setError(ErrorStrings.INVALID_REGISTER_ID);
-                }
-            }
         }
     }
 

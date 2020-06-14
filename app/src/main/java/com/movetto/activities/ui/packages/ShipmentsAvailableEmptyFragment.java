@@ -39,6 +39,7 @@ public class ShipmentsAvailableEmptyFragment extends Fragment {
     private Button buttonBack;
     private ConstraintLayout progressBar;
     private Bundle data;
+    private int count;
 
     public ShipmentsAvailableEmptyFragment() {
         // Required empty public constructor
@@ -83,9 +84,13 @@ public class ShipmentsAvailableEmptyFragment extends Fragment {
                 if(userDto != null){
                     partner = userDto;
                     data.putString("partnerUid", partner.getUid());
-                    readShipmentsByPartner();
+                    count += 1;
+                    if (count == 1) {
+                        readShipmentsByPartner();
+                    }
                 } else {
                     setPartnerEmpty();
+
                 }
             }
         });
@@ -95,8 +100,11 @@ public class ShipmentsAvailableEmptyFragment extends Fragment {
         shipmentViewModel.readShipmentsByPartnerUid(partner.getUid()).observe(getViewLifecycleOwner(), new Observer<List<ShipmentDto>>() {
             @Override
             public void onChanged(List<ShipmentDto> shipmentDtos) {
-                if (!shipmentDtos.isEmpty()) {
-                    readShipmentsAvailable();
+                if (shipmentDtos.isEmpty()) {
+                    count += 1;
+                    if (count == 2) {
+                        readShipmentsAvailable();
+                    }
                 } else {
                     getShipmentListFragment();
                 }

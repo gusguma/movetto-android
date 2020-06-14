@@ -34,6 +34,7 @@ public class TravellerAvailableEmptyFragment extends Fragment {
     private Button buttonBack;
     private ConstraintLayout progressBar;
     private Bundle data;
+    private int count;
 
     public TravellerAvailableEmptyFragment() {
         // Required empty public constructor
@@ -77,6 +78,10 @@ public class TravellerAvailableEmptyFragment extends Fragment {
                 if (userDto != null){
                     partner = userDto;
                     data.putString("partnerUid", partner.getUid());
+                    count += 1;
+                    if (count == 1) {
+                        readTravelsByPartner();
+                    }
                     readTravelsByPartner();
                 } else {
                     setPartnerEmpty();
@@ -89,8 +94,11 @@ public class TravellerAvailableEmptyFragment extends Fragment {
         travelViewModel.readTravelsByPartnerUid(partner.getUid()).observe(getViewLifecycleOwner(), new Observer<List<TravelDto>>() {
             @Override
             public void onChanged(List<TravelDto> travelDtos) {
-                if (!travelDtos.isEmpty()) {
-                    readTravelsAvailable();
+                if (travelDtos.isEmpty()) {
+                    count += 1;
+                    if (count == 2) {
+                        readTravelsAvailable();
+                    }
                 } else {
                     getTravelListFragment();
                 }
@@ -103,7 +111,6 @@ public class TravellerAvailableEmptyFragment extends Fragment {
             @Override
             public void onChanged(List<TravelDto> travelDtos) {
                 if (travelDtos.isEmpty()){
-                    System.out.println("travelsAvailable vacio");
                     progressBar.setVisibility(View.GONE);
                 } else {
                     getTravelListFragment();
