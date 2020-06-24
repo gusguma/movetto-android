@@ -11,19 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
 import com.movetto.R;
-import com.movetto.dtos.CardDto;
+import com.movetto.dtos.ChargeDto;
 import com.movetto.dtos.DepositDto;
 import com.movetto.dtos.PaymentDto;
 import com.movetto.dtos.TransactionDto;
-import com.movetto.dtos.TransactionStatus;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class WalletDetailTransactionAdapter
         extends RecyclerView.Adapter<WalletDetailTransactionAdapter.WalletDetailTransactionHolder>{
 
-    private List<TransactionDto> transactions = new ArrayList<>();
+    private List<TransactionDto> transactions = new ArrayList<TransactionDto>();
     private OnItemClickListener listener;
 
     @NonNull
@@ -36,10 +38,12 @@ public class WalletDetailTransactionAdapter
 
     @Override
     public void onBindViewHolder(@NonNull WalletDetailTransactionHolder holder, int position) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
         TransactionDto transactionDto = transactions.get(position);
         holder.transactionIcon.setImageResource(setTransactionIcon(transactionDto));
         holder.transactionType.setText(setTransactionChip(transactionDto));
-        holder.transactionAmount.setText(String.valueOf(transactionDto.getAmount()));
+        holder.transactionAmount.setText(
+                decimalFormat.format(Math.abs(transactionDto.getAmount())));
         holder.transactionText.setText(setTransactionText(transactionDto));
         holder.transactionDate.setText(setTransactionDate(transactionDto));
         holder.transactionStatus.setText(transactionDto.getStatus().toString());
@@ -52,7 +56,17 @@ public class WalletDetailTransactionAdapter
 
     public void setTransactions(List<TransactionDto> transactions){
         this.transactions = transactions;
+        orderTransactionsByDate();
         notifyDataSetChanged();
+    }
+
+    private void orderTransactionsByDate() {
+        Collections.sort(transactions, new Comparator<TransactionDto>() {
+            @Override
+            public int compare(TransactionDto o1, TransactionDto o2) {
+                return o2.getRegistrationDate().compareTo(o1.getRegistrationDate());
+            }
+        });
     }
 
     private int setTransactionIcon(TransactionDto transactionDto){
@@ -60,6 +74,9 @@ public class WalletDetailTransactionAdapter
             return R.drawable.ic_file_upload_black_24dp;
         }
         if (transactionDto.getClass() == DepositDto.class) {
+            return R.drawable.ic_file_download_black_24dp;
+        }
+        if (transactionDto.getClass() == ChargeDto.class) {
             return R.drawable.ic_file_download_black_24dp;
         }
         return 0;
@@ -72,21 +89,25 @@ public class WalletDetailTransactionAdapter
         if (transactionDto.getClass() == DepositDto.class) {
             return "Deposito";
         }
+        if (transactionDto.getClass() == ChargeDto.class) {
+            return "Cobro";
+        }
         return null;
     }
 
     private String setTransactionText(TransactionDto transaction){
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
         return setTransactionChip(transaction)
-                + " - "
+                + " | "
                 + transaction.getRegistrationDate().getDayOfMonth()
-                + "-" + transaction.getRegistrationDate().getMonth()
+                + "-" + transaction.getRegistrationDate().getMonthValue()
                 + "-" + transaction.getRegistrationDate().getYear()
-                + " | " + transaction.getAmount() + "€.";
+                + " | " + decimalFormat.format(transaction.getAmount()) + "€.";
     }
 
     private String setTransactionDate(TransactionDto transaction){
         return transaction.getRegistrationDate().getDayOfMonth()
-                + "-" + transaction.getRegistrationDate().getMonth()
+                + "-" + transaction.getRegistrationDate().getMonthValue()
                 + "-" + transaction.getRegistrationDate().getYear();
     }
 

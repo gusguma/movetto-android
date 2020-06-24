@@ -17,13 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.movetto.R;
-import com.movetto.adapters.AccountPartnerVehiclesAdapter;
 import com.movetto.adapters.ShipmentListAdapter;
 import com.movetto.dtos.ShipmentDto;
-import com.movetto.dtos.VehicleDto;
-import com.movetto.view_models.CustomerViewModel;
 import com.movetto.view_models.ShipmentViewModel;
-import com.movetto.view_models.UserViewModel;
 
 import java.util.List;
 

@@ -27,6 +27,10 @@ import java.util.List;
 public class TravelRepository {
 
     private static final String BASE_TRAVELS_URL = UrlHandler.API_URL + UrlHandler.TRAVELS_URL;
+    private static final String TRAVEL_PARTNER_URL = BASE_TRAVELS_URL + UrlHandler.PARTNERS_URL;
+    private static final String TRAVEL_AVAILABLE_URL = BASE_TRAVELS_URL + UrlHandler.AVAILABLE;
+    private static final String TRAVEL_PENDING_URL = BASE_TRAVELS_URL + UrlHandler.PENDING;
+    private static final String TRAVEL_FINISHED_URL = BASE_TRAVELS_URL + UrlHandler.FINISHED;
 
     private RequestQueue requestQueue;
     private MutableLiveData<List<TravelDto>> travels;
@@ -36,15 +40,16 @@ public class TravelRepository {
 
     public TravelRepository(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
-        this.travels = new MutableLiveData<>();
-        this.isResponseOk = new MutableLiveData<>();
-        this.travelMutable = new MutableLiveData<>();
+        this.travels = new MutableLiveData<List<TravelDto>>();
+        this.isResponseOk = new MutableLiveData<Boolean>();
+        this.travelMutable = new MutableLiveData<TravelDto>();
         this.mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
     public MutableLiveData<List<TravelDto>> readTravels() {
-        JsonArrayRequest request = new JsonArrayRequest(
+        JsonArrayRequest request;
+        request = new JsonArrayRequest(
                 Request.Method.GET, BASE_TRAVELS_URL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -55,7 +60,7 @@ public class TravelRepository {
                                             ,new TypeReference<List<TravelDto>>(){});
                             travels.setValue(travelDtoList);
                         } catch (IOException e) {
-                            travels.setValue(new ArrayList<>());
+                            travels.setValue(new ArrayList<TravelDto>());
                             e.printStackTrace();
                         }
                     }
@@ -63,7 +68,7 @@ public class TravelRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        travels.setValue(new ArrayList<>());
+                        travels.setValue(new ArrayList<TravelDto>());
                         error.printStackTrace();
                     }
                 });
@@ -72,7 +77,8 @@ public class TravelRepository {
     }
 
     public MutableLiveData<List<TravelDto>> readTravelsByUid(String uid) {
-        JsonArrayRequest request = new JsonArrayRequest(
+        JsonArrayRequest request;
+        request = new JsonArrayRequest(
                 Request.Method.GET, BASE_TRAVELS_URL + uid, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -83,7 +89,7 @@ public class TravelRepository {
                                             ,new TypeReference<List<TravelDto>>(){});
                             travels.setValue(travelDtoList);
                         } catch (IOException e) {
-                            travels.setValue(new ArrayList<>());
+                            travels.setValue(new ArrayList<TravelDto>());
                             e.printStackTrace();
                         }
                     }
@@ -91,7 +97,7 @@ public class TravelRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        travels.setValue(new ArrayList<>());
+                        travels.setValue(new ArrayList<TravelDto>());
                         error.printStackTrace();
                     }
                 });
@@ -100,7 +106,8 @@ public class TravelRepository {
     }
 
     public MutableLiveData<TravelDto> readTravelById(int id) {
-        JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request;
+        request = new JsonObjectRequest(
                 Request.Method.GET, BASE_TRAVELS_URL + "id/" + id, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -125,8 +132,125 @@ public class TravelRepository {
         return travelMutable;
     }
 
+    public MutableLiveData<List<TravelDto>> readTravelsByPartnerUid(String uid) {
+        JsonArrayRequest request;
+        request = new JsonArrayRequest(
+                Request.Method.GET, TRAVEL_PARTNER_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<TravelDto> travelDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<TravelDto>>(){});
+                            travels.setValue(travelDtoList);
+                        } catch (IOException e) {
+                            travels.setValue(new ArrayList<TravelDto>());
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        travels.setValue(new ArrayList<TravelDto>());
+                        error.printStackTrace();
+                    }
+                });
+        requestQueue.add(request);
+        return travels;
+    }
+
+    public MutableLiveData<List<TravelDto>> readTravelsAvailable(String uid) {
+        JsonArrayRequest request;
+        request = new JsonArrayRequest(
+                Request.Method.GET, TRAVEL_AVAILABLE_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<TravelDto> travelDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<TravelDto>>(){});
+                            travels.setValue(travelDtoList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            travels.setValue(new ArrayList<TravelDto>());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        travels.setValue(new ArrayList<TravelDto>());
+                    }
+                });
+        requestQueue.add(request);
+        return travels;
+    }
+
+    public MutableLiveData<List<TravelDto>> readTravelsPending(String uid) {
+        JsonArrayRequest request;
+        request = new JsonArrayRequest(
+                Request.Method.GET, TRAVEL_PENDING_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<TravelDto> travelDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<TravelDto>>(){});
+                            travels.setValue(travelDtoList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            travels.setValue(new ArrayList<TravelDto>());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        travels.setValue(new ArrayList<TravelDto>());
+                    }
+                });
+        requestQueue.add(request);
+        return travels;
+    }
+
+    public MutableLiveData<List<TravelDto>> readTravelsFinished(String uid) {
+        JsonArrayRequest request;
+        request = new JsonArrayRequest(
+                Request.Method.GET, TRAVEL_FINISHED_URL + uid, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            List<TravelDto> travelDtoList = mapper
+                                    .readValue(response.toString()
+                                            ,new TypeReference<List<TravelDto>>(){});
+                            travels.setValue(travelDtoList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            travels.setValue(new ArrayList<TravelDto>());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        travels.setValue(new ArrayList<TravelDto>());
+                    }
+                });
+        requestQueue.add(request);
+        return travels;
+    }
+
     public MutableLiveData<TravelDto> saveTravel(TravelDto travel) throws JsonProcessingException, JSONException {
-        JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request;
+        request = new JsonObjectRequest(
                 Request.Method.POST, BASE_TRAVELS_URL, travelRequest(travel),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -152,7 +276,8 @@ public class TravelRepository {
     }
 
     public MutableLiveData<TravelDto> updateTravel(TravelDto travel) throws JsonProcessingException, JSONException {
-        JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request;
+        request = new JsonObjectRequest(
                 Request.Method.PUT, BASE_TRAVELS_URL, travelRequest(travel),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -179,7 +304,8 @@ public class TravelRepository {
 
     public MutableLiveData<TravelDto> deleteTravel(TravelDto travel)
             throws JsonProcessingException, JSONException {
-        JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request;
+        request = new JsonObjectRequest(
                 Request.Method.DELETE, BASE_TRAVELS_URL + "id/"
                 + travel.getId(), travelRequest(travel),
                 new Response.Listener<JSONObject>() {

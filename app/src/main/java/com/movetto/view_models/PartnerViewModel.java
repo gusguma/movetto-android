@@ -21,8 +21,8 @@ public class PartnerViewModel extends UserViewModel {
         RequestQueue requestQueue = Volley
                 .newRequestQueue(getApplication().getApplicationContext());
         partnerRepository = new PartnerRepository(requestQueue);
-        partner = new MutableLiveData<>();
-        response = new MutableLiveData<>();
+        partner = new MutableLiveData<UserDto>();
+        response = new MutableLiveData<Boolean>();
     }
 
     public MutableLiveData<UserDto> readPartner(){

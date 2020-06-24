@@ -34,14 +34,15 @@ public class CardRepository {
 
     public CardRepository(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
-        cards = new MutableLiveData<>();
-        cardMutable = new MutableLiveData<>();
+        cards = new MutableLiveData<List<CardDto>>();
+        cardMutable = new MutableLiveData<CardDto>();
         this.mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
     public MutableLiveData<List<CardDto>> readCards() {
-        JsonArrayRequest request = new JsonArrayRequest(
+        JsonArrayRequest request;
+        request = new JsonArrayRequest(
                 Request.Method.GET, BASE_CARDS_URL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -52,6 +53,7 @@ public class CardRepository {
                                             ,new TypeReference<List<CardDto>>(){});
                             cards.setValue(cardDtoList);
                         } catch (IOException e) {
+                            cards.setValue(new ArrayList<CardDto>());
                             e.printStackTrace();
                         }
                     }
@@ -59,7 +61,7 @@ public class CardRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        cards.setValue(new ArrayList<>());
+                        cards.setValue(new ArrayList<CardDto>());
                         error.printStackTrace();
                     }
                 });
@@ -68,7 +70,8 @@ public class CardRepository {
     }
 
     public MutableLiveData<List<CardDto>> readCardsByUserId(int id) {
-        JsonArrayRequest request = new JsonArrayRequest(
+        JsonArrayRequest request;
+        request = new JsonArrayRequest(
                 Request.Method.GET, BASE_CARDS_URL + id, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -79,6 +82,7 @@ public class CardRepository {
                                             ,new TypeReference<List<CardDto>>(){});
                             cards.setValue(cardDtoList);
                         } catch (IOException e) {
+                            cards.setValue(new ArrayList<CardDto>());
                             e.printStackTrace();
                         }
                     }
@@ -86,7 +90,7 @@ public class CardRepository {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        cards.setValue(new ArrayList<>());
+                        cards.setValue(new ArrayList<CardDto>());
                         error.printStackTrace();
                     }
                 });
@@ -95,7 +99,8 @@ public class CardRepository {
     }
 
     public MutableLiveData<CardDto> readCardById(int id) {
-        JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request;
+        request = new JsonObjectRequest(
                 Request.Method.GET, BASE_CARDS_URL + "id/" + id, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -121,7 +126,8 @@ public class CardRepository {
     }
 
     public MutableLiveData<CardDto> saveCard(CardDto card) throws JsonProcessingException, JSONException {
-        JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request;
+        request = new JsonObjectRequest(
                 Request.Method.POST, BASE_CARDS_URL, cardRequest(card),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -147,7 +153,8 @@ public class CardRepository {
     }
 
     public MutableLiveData<CardDto> updateCard(CardDto card) throws JsonProcessingException, JSONException {
-        JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request;
+        request = new JsonObjectRequest(
                 Request.Method.PUT, BASE_CARDS_URL, cardRequest(card),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -174,7 +181,8 @@ public class CardRepository {
 
     public MutableLiveData<CardDto> deleteCard(CardDto card)
             throws JsonProcessingException, JSONException {
-        JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request;
+        request = new JsonObjectRequest(
                 Request.Method.DELETE, BASE_CARDS_URL + card.getId()
                 , cardRequest(card),
                 new Response.Listener<JSONObject>() {

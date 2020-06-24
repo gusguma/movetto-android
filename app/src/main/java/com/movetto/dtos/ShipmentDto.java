@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.ToDoubleFunction;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -21,7 +23,7 @@ import java.util.Set;
         "packages",
         "destinationUser"
 })
-public class ShipmentDto extends ServiceDto {
+public class ShipmentDto extends ServiceDto implements Serializable {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonProperty("shipmentDatetimeLimit")
@@ -49,7 +51,7 @@ public class ShipmentDto extends ServiceDto {
         this.minimumPrice = 5.00;
         this.status = ShipmentStatus.SAVED;
         this.shipmentDatetimeLimit = LocalDateTime.now().plusDays(5);
-        this.packages = new HashSet<>();
+        this.packages = new HashSet<PackageDto>();
         setShipmentPrice();
     }
 
@@ -62,7 +64,12 @@ public class ShipmentDto extends ServiceDto {
     }
     public void setShipmentPrice(){
         priceShipment = this.getMinimumPrice() + this.getPackages().stream()
-                .mapToDouble(PackageDto::getPricePackage)
+                .mapToDouble(new ToDoubleFunction<PackageDto>() {
+                    @Override
+                    public double applyAsDouble(PackageDto value) {
+                        return value.getPricePackage();
+                    }
+                })
                 .sum();
     }
     public double getMinimumPrice() {

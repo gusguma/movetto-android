@@ -29,7 +29,7 @@ public class NewsRepository {
     public NewsRepository(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
         this.mapper = new ObjectMapper();
-        this.news = new MutableLiveData<>();
+        this.news = new MutableLiveData<List<NewsDto>>();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 

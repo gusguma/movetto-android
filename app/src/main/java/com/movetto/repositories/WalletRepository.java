@@ -28,7 +28,7 @@ public class WalletRepository {
 
     public WalletRepository(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
-        this.walletMutable = new MutableLiveData<>();
+        this.walletMutable = new MutableLiveData<WalletDto>();
         this.mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }

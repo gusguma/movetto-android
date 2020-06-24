@@ -11,11 +11,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.movetto.dtos.DirectionDto;
 import com.movetto.dtos.VehicleDto;
 import com.movetto.handler.UrlHandler;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -36,7 +34,7 @@ public class VehicleRepository {
         this.mapper = new ObjectMapper();
         this.user = FirebaseAuth.getInstance().getCurrentUser();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        isResponseOk = new MutableLiveData<>();
+        isResponseOk = new MutableLiveData<Boolean>();
     }
 
     public MutableLiveData<VehicleDto> readVehicle(int id){

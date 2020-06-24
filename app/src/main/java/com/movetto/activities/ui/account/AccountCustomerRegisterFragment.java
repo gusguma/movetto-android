@@ -96,10 +96,15 @@ public class AccountCustomerRegisterFragment extends Fragment
         customerViewModel.readUser().observe(getViewLifecycleOwner(), new Observer<UserDto>() {
             @Override
             public void onChanged(UserDto userDto) {
-                displayName.setText(userDto.getDisplayName());
-                email.setText(userDto.getEmail());
-                phone.setText(userDto.getPhone().toString());
-                userOutputDto = userDto;
+                if (userDto != null) {
+                    displayName.setText(userDto.getDisplayName());
+                    email.setText(userDto.getEmail());
+                    if (userDto.getPhone() != null) {
+                        phone.setText(userDto.getPhone().toString());
+                        phone.setEnabled(false);
+                    }
+                    userOutputDto = userDto;
+                }
             }
         });
     }

@@ -23,7 +23,7 @@ public class NewsViewModel extends AndroidViewModel {
         RequestQueue requestQueue = Volley
                 .newRequestQueue(getApplication().getApplicationContext());
         newsRepository = new NewsRepository(requestQueue);
-        news = new MutableLiveData<>();
+        news = new MutableLiveData<List<NewsDto>>();
     }
 
     public MutableLiveData<List<NewsDto>> readNews() {

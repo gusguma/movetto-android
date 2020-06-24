@@ -1,6 +1,9 @@
 package com.movetto.activities.ui.shipments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -9,19 +12,12 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.movetto.R;
-import com.movetto.adapters.AccountPartnerVehiclesAdapter;
 import com.movetto.adapters.ShipmentDetailPackagesAdapter;
 import com.movetto.dtos.PackageDto;
 import com.movetto.dtos.ShipmentDto;
-import com.movetto.dtos.UserDto;
-import com.movetto.dtos.VehicleDto;
-import com.movetto.view_models.PartnerViewModel;
+import com.movetto.dtos.ShipmentStatus;
 import com.movetto.view_models.ShipmentViewModel;
 
 import java.util.ArrayList;
@@ -46,22 +42,20 @@ public class ShipmentDetailPackagesFragment extends Fragment {
         setViewModels();
         setLayout(inflater, container);
         setComponents();
-        setListeners();
         setObservers();
-        setAdapterListener();
         return root;
     }
 
-    private void setViewModels(){
+    private void setViewModels() {
         shipmentViewModel = new ViewModelProvider(this).get(ShipmentViewModel.class);
     }
 
-    private void setLayout(LayoutInflater inflater, ViewGroup container){
+    private void setLayout(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.fragment_shipment_detail_packages
                 , container, false);
     }
 
-    private void setComponents(){
+    private void setComponents() {
         RecyclerView recyclerView = root.findViewById(R.id.packages_list_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
@@ -70,7 +64,7 @@ public class ShipmentDetailPackagesFragment extends Fragment {
         addPackageButton = root.findViewById(R.id.packages_list_add_button);
     }
 
-    private void setListeners(){
+    private void setListeners() {
         addPackageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,27 +77,39 @@ public class ShipmentDetailPackagesFragment extends Fragment {
         });
     }
 
-    private void setObservers(){
+    private void setObservers() {
         shipmentViewModel.readShipmentById(getShipmentId()).observe(getViewLifecycleOwner(), new Observer<ShipmentDto>() {
             @Override
             public void onChanged(ShipmentDto shipmentDto) {
-                shipment = shipmentDto;
-                List<PackageDto> packages = new ArrayList<>(shipmentDto.getPackages());
-                adapter.setPackages(packages);
+                if (shipmentDto != null) {
+                    shipment = shipmentDto;
+                    List<PackageDto> packages = new ArrayList<PackageDto>(shipmentDto.getPackages());
+                    adapter.setPackages(packages);
+                    checkShipmentStatus();
+                }
             }
         });
     }
 
-    private int getShipmentId(){
+    private void checkShipmentStatus() {
+        if (shipment.getStatus() == ShipmentStatus.SAVED) {
+            setListeners();
+            setAdapterListener();
+        } else {
+            addPackageButton.setVisibility(View.GONE);
+        }
+    }
+
+    private int getShipmentId() {
         assert getParentFragment() != null;
         data = getParentFragment().getArguments();
-        if (data != null && data.getInt("shipmentId") != 0){
+        if (data != null && data.getInt("shipmentId") != 0) {
             return data.getInt("shipmentId");
         }
         return 0;
     }
 
-    private void setAdapterListener(){
+    private void setAdapterListener() {
         adapter.setOnItemClickListener(new ShipmentDetailPackagesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(PackageDto packageDto) {
@@ -116,7 +122,7 @@ public class ShipmentDetailPackagesFragment extends Fragment {
         });
     }
 
-    private void setPartnerBundle(){
+    private void setPartnerBundle() {
         Bundle bundle = new Bundle();
         bundle.putSerializable("shipment", shipment);
         Navigation.findNavController(root).navigate(

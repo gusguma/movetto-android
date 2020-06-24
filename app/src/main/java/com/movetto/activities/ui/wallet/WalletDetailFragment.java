@@ -14,10 +14,11 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.movetto.R;
-import com.movetto.adapters.ShipmentDetailAdapter;
 import com.movetto.adapters.WalletDetailAdapter;
 import com.movetto.dtos.WalletDto;
 import com.movetto.view_models.WalletViewModel;
+
+import java.text.DecimalFormat;
 
 public class WalletDetailFragment extends Fragment implements TabLayout.OnTabSelectedListener {
 
@@ -88,7 +89,8 @@ public class WalletDetailFragment extends Fragment implements TabLayout.OnTabSel
     }
 
     private void setWalletDetailData(){
-        balance.setText(String.valueOf(wallet.getBalance()));
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        balance.setText(decimalFormat.format(wallet.getBalance()));
     }
 
     @Override

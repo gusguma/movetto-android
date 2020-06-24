@@ -44,9 +44,9 @@
     <string name="account">Account</string>
     <string name="my_account">My Account</string>
     <string name="travel">Travels</string>
-    <string name="travellers">Travellers</string>
+    <string name="travellers">Travels Available</string>
     <string name="shipments">Shipments</string>
-    <string name="packages">Packages</string>
+    <string name="shipments_available">Shipments Available</string>
     <string name="balance">Balance</string>
     <string name="wallet">Wallet</string>
     <string name="attachment_title">Automatically download attachments for incoming emails</string>
@@ -128,4 +128,5 @@
     <string name="travel_subtitle_start">" Address where we will pick you up"</string>
     <string name="destination_address">Destination Address</string>
     <string name="travel_subtitle_end">"Address where we will take you "</string>
+    <string name="travel_management">Here you can manage your travels</string>
 </resources>

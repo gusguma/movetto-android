@@ -26,7 +26,7 @@ public class PartnerDto implements Serializable {
 
     public PartnerDto() {
         //Empty for Framework
-        vehicles = new HashSet<>();
+        vehicles = new HashSet<VehicleDto>();
     }
 
     public String getPartnerId() {

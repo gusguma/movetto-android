@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,8 +16,6 @@ import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.activities.MainActivity;
-import com.movetto.activities.ui.shipments.ShipmentsEmptyFragment;
-import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.TravelDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.view_models.CustomerViewModel;
@@ -33,6 +32,7 @@ public class TravelEmptyFragment extends Fragment {
     private UserDto customer;
     private Button buttonContinue;
     private Button buttonLater;
+    private ConstraintLayout progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class TravelEmptyFragment extends Fragment {
     private void setComponents() {
         buttonContinue = root.findViewById(R.id.travel_land_continue_button);
         buttonLater = root.findViewById(R.id.travel_land_later_button);
+        progressBar = root.findViewById(R.id.travel_land_progress_bar);
     }
 
     private void getCustomer() {
@@ -65,15 +66,16 @@ public class TravelEmptyFragment extends Fragment {
                 if(userDto != null){
                     customer = userDto;
                     setButtonContinueExist();
-                    readShipments();
+                    readTravels();
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     setButtonContinueEmpty();
                 }
             }
         });
     }
 
-    private void readShipments(){
+    private void readTravels(){
         travelViewModel.readTravelsByUid(customer.getUid()).observe(getViewLifecycleOwner(), new Observer<List<TravelDto>>() {
             @Override
             public void onChanged(List<TravelDto> shipmentDtos) {
@@ -84,6 +86,8 @@ public class TravelEmptyFragment extends Fragment {
                             .beginTransaction()
                             .remove(TravelEmptyFragment.this)
                             .commit();
+                } else {
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

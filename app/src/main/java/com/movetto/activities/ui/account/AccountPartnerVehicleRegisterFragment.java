@@ -55,7 +55,6 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
     private EditText registration;
     private String vehicleSelected;
     private VehicleDto vehicleDto;
-
     private UserDto userOutputDto;
     private Button buttonSave;
     private Button buttonDelete;
@@ -325,6 +324,7 @@ public class AccountPartnerVehicleRegisterFragment extends Fragment
             } else {
                 Toast.makeText(root.getContext()
                         ,"Verifique los datos del formulario",Toast.LENGTH_LONG).show();
+
             }
         } catch (Exception e) {
             e.printStackTrace();

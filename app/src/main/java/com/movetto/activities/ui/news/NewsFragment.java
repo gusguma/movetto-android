@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.movetto.R;
 import com.movetto.adapters.NewsAdapter;
@@ -28,6 +29,7 @@ public class NewsFragment extends Fragment {
     private View root;
     private NewsAdapter adapter;
     private List<NewsDto> news;
+    private ProgressBar progressBar;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -53,6 +55,7 @@ public class NewsFragment extends Fragment {
 
     private void setComponents(){
         RecyclerView recyclerView = root.findViewById(R.id.news_recycler_view);
+        progressBar = root.findViewById(R.id.news_progress_bar);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         adapter = new NewsAdapter();
@@ -64,6 +67,7 @@ public class NewsFragment extends Fragment {
             public void onChanged(List<NewsDto> newsDtos) {
                 news = newsDtos;
                 adapter.setNews(news);
+                progressBar.setVisibility(View.GONE);
             }
         });
     }

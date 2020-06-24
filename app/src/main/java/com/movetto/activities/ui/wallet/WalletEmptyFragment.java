@@ -6,10 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,15 +16,11 @@ import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.activities.MainActivity;
-import com.movetto.activities.ui.shipments.ShipmentsEmptyFragment;
-import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.WalletDto;
 import com.movetto.view_models.CustomerViewModel;
-import com.movetto.view_models.ShipmentViewModel;
 import com.movetto.view_models.WalletViewModel;
 
-import java.util.List;
 import java.util.Objects;
 
 public class WalletEmptyFragment extends Fragment {
@@ -34,7 +29,7 @@ public class WalletEmptyFragment extends Fragment {
     private CustomerViewModel customerViewModel;
     private WalletViewModel walletViewModel;
     private UserDto customer;
-    private WalletDto wallet;
+    private ConstraintLayout progressBar;
     private Button buttonContinue;
     private Button buttonLater;
     private Bundle data;
@@ -61,6 +56,7 @@ public class WalletEmptyFragment extends Fragment {
     private void setComponents() {
         buttonContinue = root.findViewById(R.id.wallet_land_continue_button);
         buttonLater = root.findViewById(R.id.wallet_land_later_button);
+        progressBar = root.findViewById(R.id.wallet_land_progress_bar);
     }
 
     private void getCustomer() {
@@ -73,6 +69,7 @@ public class WalletEmptyFragment extends Fragment {
                     setButtonContinueExist();
                     readWallet();
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     setButtonContinueEmpty();
                 }
             }
@@ -90,6 +87,8 @@ public class WalletEmptyFragment extends Fragment {
                             .beginTransaction()
                             .remove(WalletEmptyFragment.this)
                             .commit();
+                } else {
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

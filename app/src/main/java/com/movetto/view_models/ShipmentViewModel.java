@@ -40,6 +40,22 @@ public class ShipmentViewModel extends AndroidViewModel {
         return shipmentRepository.readShipmentsByUid(uid);
     }
 
+    public MutableLiveData<List<ShipmentDto>> readShipmentsByPartnerUid(String uid) {
+        return shipmentRepository.readShipmentsByPartnerUid(uid);
+    }
+
+    public MutableLiveData<List<ShipmentDto>> readShipmentsAvailable(String uid) {
+        return shipmentRepository.readShipmentsAvailable(uid);
+    }
+
+    public MutableLiveData<List<ShipmentDto>> readShipmentsPending(String uid) {
+        return shipmentRepository.readShipmentsPending(uid);
+    }
+
+    public MutableLiveData<List<ShipmentDto>> readShipmentsFinished(String uid) {
+        return shipmentRepository.readShipmentsFinished(uid);
+    }
+
     public MutableLiveData<ShipmentDto> saveShipment(ShipmentDto shipment)
             throws JsonProcessingException, JSONException {
         return shipmentRepository.saveShipment(shipment);

@@ -22,9 +22,9 @@
     <string name="account">Cuenta</string>
     <string name="my_account">Mi Cuenta</string>
     <string name="travel">Mis Viajes</string>
-    <string name="travellers">Viajeros Disponibles</string>
+    <string name="travellers">Viajes Disponibles</string>
     <string name="shipments">Mis Envios</string>
-    <string name="packages">Paquetes Disponibles</string>
+    <string name="shipments_available">Envíos Disponibles</string>
     <string name="balance">Balance</string>
     <string name="wallet">Monedero</string>
     <string name="action_settings">Configuración</string>
@@ -50,10 +50,10 @@
     <string name="new_travel">Nuevo Viaje</string>
     <string name="travel_list">Listado Viajes</string>
     <string name="package_land_image_description">Imagen Paquetes</string>
-    <string name="package_subtitle">En esta sección, podrás mostrar y visualizar el estado de todos los paquetes disponibles.</string>
+    <string name="package_subtitle">Actualmente no hay envios disponibles, compruebalo mas tarde.</string>
     <string name="package_list">Listado Paquetes</string>
     <string name="traveller_land_image_description">Imagen Viajeros</string>
-    <string name="traveller_subtitle">En esta sección, podrás mostrar y visualizar el estado de todos los viajeros disponibles.</string>
+    <string name="traveller_subtitle">Actualmente no hay viajes disponibles, compruebalo mas tarde.</string>
     <string name="traveller_list">Listado Viajeros</string>
     <string name="account_subtitle">En esta sección, podrás ver y editar los datos de tu cuenta.</string>
     <string name="account_manage_customer">Cuenta de Cliente</string>
@@ -113,4 +113,8 @@
     <string name="travel_subtitle_start">Dirección donde te recogeremos</string>
     <string name="destination_address">Dirección de Destino</string>
     <string name="travel_subtitle_end">Dirección donde te llevaremos</string>
+    <string name="travel_management">Aquí puedes gestionar tus viajes</string>
+    <string name="san_sebastian_de_los_reyes">San Sebastian de los Reyes</string>
+    <string name="valencia">valencia</string>
+    <string name="xx">xx</string>
 </resources>

@@ -25,7 +25,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.movetto.R;
-import com.movetto.view_models.PartnerViewModel;
 import com.movetto.view_models.UserViewModel;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -90,8 +89,8 @@ public class MainMenuActivity extends AppCompatActivity{
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_shipments_empty, R.id.nav_travel_empty, R.id.nav_packages,
-                R.id.nav_travellers,R.id.nav_news, R.id.nav_account, R.id.nav_wallet)
+                R.id.nav_shipments_empty, R.id.nav_travel_empty, R.id.nav_shipment_available_empty,
+                R.id.nav_travellers_available_empty,R.id.nav_news, R.id.nav_account, R.id.nav_wallet_empty)
                 .setDrawerLayout(drawerLayout)
                 .build();
     }
@@ -173,9 +172,7 @@ public class MainMenuActivity extends AppCompatActivity{
     }
 
     public void checkUserDatabase(){
-        userViewModel = new ViewModelProvider(this).get(PartnerViewModel.class);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.readUser();
     }
-
-
 }

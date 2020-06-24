@@ -16,18 +16,14 @@ import android.widget.Toast;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.movetto.R;
-import com.movetto.dtos.CardDto;
-import com.movetto.dtos.DepositDto;
 import com.movetto.dtos.PaymentDto;
-import com.movetto.dtos.ServiceDto;
 import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.ShipmentStatus;
 import com.movetto.dtos.TravelDto;
-import com.movetto.dtos.UserDto;
+import com.movetto.dtos.TravelStatus;
 import com.movetto.dtos.WalletDto;
-import com.movetto.view_models.CardViewModel;
-import com.movetto.view_models.CustomerViewModel;
 import com.movetto.view_models.ShipmentViewModel;
+import com.movetto.view_models.TravelViewModel;
 import com.movetto.view_models.WalletViewModel;
 
 import org.json.JSONException;
@@ -42,6 +38,7 @@ public class ServicePaymentDetailFragment extends Fragment {
     private View root;
     private WalletViewModel walletViewModel;
     private ShipmentViewModel shipmentViewModel;
+    private TravelViewModel travelViewModel;
     private double paymentAmount;
     private TextView type;
     private TextView serviceNumber;
@@ -72,6 +69,7 @@ public class ServicePaymentDetailFragment extends Fragment {
     private void setViewModels(){
         walletViewModel = new ViewModelProvider(this).get(WalletViewModel.class);
         shipmentViewModel = new ViewModelProvider(this).get(ShipmentViewModel.class);
+        travelViewModel = new ViewModelProvider(this).get(TravelViewModel.class);
     }
 
     private void setLayout(LayoutInflater inflater, ViewGroup container) {
@@ -139,7 +137,14 @@ public class ServicePaymentDetailFragment extends Fragment {
 
     private void setTravel(){
         if (data != null && data.getInt("serviceId") != 0) {
-            //TODO
+            travelViewModel.readTravelById(data.getInt("travelId")).observe(getViewLifecycleOwner(), new Observer<TravelDto>() {
+                @Override
+                public void onChanged(TravelDto travelDto) {
+                    if (travelDto != null) {
+                        travel = travelDto;
+                    }
+                }
+            });
         }
     }
 
@@ -147,15 +152,18 @@ public class ServicePaymentDetailFragment extends Fragment {
         buttonPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.setEnabled(false);
                 if (wallet != null) {
                     try {
                         checkService();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 } else {
                     Navigation.findNavController(root).navigate(
-                            R.id.action_nav_service_payment_detail_to_nav_wallet
+                            R.id.action_nav_service_payment_detail_to_nav_wallet_empty
                     );
                 }
             }
@@ -163,28 +171,32 @@ public class ServicePaymentDetailFragment extends Fragment {
     }
 
     private void checkService() throws JsonProcessingException, JSONException {
-        if (data != null && data.getInt("shipmentId") != 0) {
+        if (data != null && data.getInt("serviceType") == SHIPMENT) {
             createShipmentPayment();
-            updateShipment();
         }
-        if (data != null && data.getInt("travelId") != 0) {
+        if (data != null && data.getInt("serviceType") == TRAVEL) {
             createTravelPayment();
-            updateTravel();
         }
     }
 
-    private void createShipmentPayment(){
+    private void createShipmentPayment() throws JsonProcessingException, JSONException {
         if (shipment.getStatus() == ShipmentStatus.SAVED){
             PaymentDto paymentDto = new PaymentDto(paymentAmount,shipment);
             wallet.getTransactions().add(paymentDto);
-            shipment.setStatus(ShipmentStatus.ACCEPTED);
+            shipment.setStatus(ShipmentStatus.PAID);
+            updateShipment();
             System.out.println(shipment.toString());
         }
     }
 
-    private void createTravelPayment(){
-        PaymentDto paymentDto = new PaymentDto(paymentAmount,travel);
-        wallet.getTransactions().add(paymentDto);
+    private void createTravelPayment() throws JsonProcessingException, JSONException {
+        if (travel.getStatus() == TravelStatus.SAVED){
+            PaymentDto paymentDto = new PaymentDto(paymentAmount,travel);
+            wallet.getTransactions().add(paymentDto);
+            travel.setStatus(TravelStatus.PAID);
+            updateTravel();
+            System.out.println(travel.toString());
+        }
     }
 
     private void updateShipment() throws JsonProcessingException, JSONException {
@@ -194,7 +206,9 @@ public class ServicePaymentDetailFragment extends Fragment {
                 if (shipmentDto != null) {
                     try {
                         updateWallet();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 } else {
@@ -204,17 +218,34 @@ public class ServicePaymentDetailFragment extends Fragment {
         });
     }
 
-    private void updateTravel(){
-        //TODO
+    private void updateTravel() throws JsonProcessingException, JSONException {
+        travelViewModel.updateTravel(travel).observe(getViewLifecycleOwner(), new Observer<TravelDto>() {
+            @Override
+            public void onChanged(TravelDto travelDto) {
+                if (travelDto != null) {
+                    try {
+                        updateWallet();
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                } else {
+                    getPaymentError();
+                }
+            }
+        });
     }
 
     private void updateWallet() throws JsonProcessingException, JSONException {
         walletViewModel.updateWallet(wallet).observe(getViewLifecycleOwner(), new Observer<WalletDto>() {
             @Override
             public void onChanged(WalletDto walletDto) {
-                if (walletDto != null) {
+                if (wallet != null) {
                     getPaymentOk();
-                } else {
+                    wallet = null;
+                }
+                if (walletDto == null) {
                     getPaymentError();
                 }
             }
@@ -225,9 +256,17 @@ public class ServicePaymentDetailFragment extends Fragment {
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(root).navigate(
-                        R.id.action_nav_service_payment_detail_to_nav_shipment_detail
-                );
+                v.setEnabled(false);
+                if (data.getInt("serviceType") == SHIPMENT) {
+                    Navigation.findNavController(root).navigate(
+                            R.id.action_nav_service_payment_detail_to_nav_shipment_detail, data
+                    );
+                }
+                if (data.getInt("serviceType") == TRAVEL) {
+                    Navigation.findNavController(root).navigate(
+                            R.id.action_nav_service_payment_detail_to_nav_travel_detail, data
+                    );
+                }
             }
         });
     }
@@ -250,7 +289,7 @@ public class ServicePaymentDetailFragment extends Fragment {
         Navigation.findNavController(root).navigate(
                 R.id.action_nav_service_payment_detail_to_nav_service_payment_result, data);
         Toast.makeText(root.getContext(),
-                "No se ha podido realizar el depósito.",
+                "No se ha podido realizar el pago.",
                 Toast.LENGTH_LONG).show();
     }
 }

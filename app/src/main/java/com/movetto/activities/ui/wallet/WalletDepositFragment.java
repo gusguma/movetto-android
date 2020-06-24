@@ -135,7 +135,9 @@ public class WalletDepositFragment extends Fragment {
                     createTransaction();
                     try {
                         updateWallet();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch ( JSONException e) {
                         e.printStackTrace();
                     }
                 } else {
@@ -143,7 +145,9 @@ public class WalletDepositFragment extends Fragment {
                     createTransaction();
                     try {
                         saveWallet();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch ( JSONException e) {
                         e.printStackTrace();
                     }
                 }

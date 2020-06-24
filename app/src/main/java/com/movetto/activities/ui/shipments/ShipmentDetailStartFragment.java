@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.movetto.R;
 import com.movetto.dtos.DirectionDto;
 import com.movetto.dtos.ShipmentDto;
+import com.movetto.dtos.ShipmentStatus;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;
 import com.movetto.view_models.ShipmentViewModel;
@@ -37,6 +38,7 @@ public class ShipmentDetailStartFragment extends Fragment
     private ShipmentDto shipment;
     private DirectionDto directionStart;
     private FloatingActionButton buttonSave;
+    private Bundle data;
 
     public ShipmentDetailStartFragment() {
         // Required empty public constructor
@@ -81,9 +83,10 @@ public class ShipmentDetailStartFragment extends Fragment
     }
 
     private void setShipmentId() {
-        Bundle data = getArguments();
+        data = getArguments();
         if (data != null && data.getInt("shipmentId") != 0) {
             shipmentId = data.getInt("shipmentId");
+            data.putInt("serviceId", shipmentId);
         }
     }
 
@@ -98,8 +101,20 @@ public class ShipmentDetailStartFragment extends Fragment
                 city.setText(directionStart.getCity());
                 state.setText(directionStart.getState());
                 country.setText(directionStart.getCountry());
+                checkShipmentStatus();
             }
         });
+    }
+
+    private void checkShipmentStatus(){
+        if (shipment.getStatus() != ShipmentStatus.SAVED) {
+            street.setEnabled(false);
+            postalCode.setEnabled(false);
+            city.setEnabled(false);
+            state.setEnabled(false);
+            country.setEnabled(false);
+            buttonSave.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -174,7 +189,7 @@ public class ShipmentDetailStartFragment extends Fragment
 
     private void updateShipmentOk() {
         Navigation.findNavController(root).navigate(
-                R.id.action_nav_shipment_detail_self);
+                R.id.action_nav_shipment_detail_self, data);
         Toast.makeText(root.getContext(),
                 "Envio Actualizado",
                 Toast.LENGTH_LONG).show();
@@ -182,7 +197,7 @@ public class ShipmentDetailStartFragment extends Fragment
 
     private void updateShipmentError() {
         Navigation.findNavController(root).navigate(
-                R.id.action_nav_shipment_detail_self);
+                R.id.action_nav_shipment_detail_self, data);
         Toast.makeText(root.getContext()
                 , "No se ha podido actualizar el envío",
                 Toast.LENGTH_LONG).show();

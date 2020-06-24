@@ -55,8 +55,8 @@ public class UserDto extends UserMinimumDto implements Serializable {
 
     public UserDto() {
         this.active = true;
-        this.roles = new HashSet<>();
-        this.directions = new HashSet<>();
+        this.roles = new HashSet<Role>();
+        this.directions = new HashSet<DirectionDto>();
     }
 
     public UserDto(String displayName, String email, String uid, String phone) {

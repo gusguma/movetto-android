@@ -48,26 +48,29 @@ public class ShipmentListAdapter
     }
 
     private double getPackagesWeight(ShipmentDto shipmentDto){
-        return shipmentDto.getPackages().stream().mapToDouble(PackageDto::getWeight).sum();
+        return shipmentDto.getPackages().stream()
+                .mapToDouble(PackageDto::getWeight).sum();
     }
 
     private String getShipmentStatus(ShipmentDto shipmentDto){
+        if (shipmentDto.getStatus() == ShipmentStatus.SAVED)
+            return "Grabado";
+        if (shipmentDto.getStatus() == ShipmentStatus.PAID)
+            return "Pagado";
         if (shipmentDto.getStatus() == ShipmentStatus.ACCEPTED)
             return "Aceptado";
         if (shipmentDto.getStatus() == ShipmentStatus.COLLECTED)
             return "Recogido";
-        if (shipmentDto.getStatus() == ShipmentStatus.DELETED)
-            return "Borrado";
-        if (shipmentDto.getStatus() == ShipmentStatus.DELIVERED)
-            return "Entregado";
-        if (shipmentDto.getStatus() == ShipmentStatus.DETAINED)
-            return "Retenido";
-        if (shipmentDto.getStatus() == ShipmentStatus.PREPARED)
-            return "Preparado";
-        if (shipmentDto.getStatus() == ShipmentStatus.SAVED)
-            return "Grabado";
         if (shipmentDto.getStatus() == ShipmentStatus.TRANSIT)
             return "En Transito";
+        if (shipmentDto.getStatus() == ShipmentStatus.DETAINED)
+            return "Retenido";
+        if (shipmentDto.getStatus() == ShipmentStatus.DELIVERED)
+            return "Entregado";
+        if (shipmentDto.getStatus() == ShipmentStatus.FINISHED)
+            return "Finalizado";
+        if (shipmentDto.getStatus() == ShipmentStatus.DELETED)
+            return "Borrado";
         return "";
     }
 

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/travel_item_icon_start"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_shipment_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/travel_item_icon_end"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_shipment_finish"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/travel_item_icon_start" />
+
+        <ImageView
+            android:id="@+id/travel_item_icon_people"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_travel_people"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <ImageView
+            android:id="@+id/travel_item_icon_date"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_travel_date"
+            app:layout_constraintStart_toEndOf="@+id/travel_item_people"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <ImageView
+            android:id="@+id/travel_item_icon_time"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_travel_time"
+            app:layout_constraintStart_toEndOf="@+id/travel_item_date"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <ImageView
+            android:id="@+id/travel_item_icon_euro"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/travel_item_price"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:srcCompat="@drawable/ic_euro_symbol_black_24dp"
+            tools:srcCompat="@drawable/ic_euro_symbol_black_24dp" />
+
+        <TextView
+            android:id="@+id/travel_item_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:text="Daganzo de Arriba"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/travel_item_icon_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/travel_item_start_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Madrid"
+            android:textAppearance="@style/TextAppearance.Movetto.Caption"
+            app:layout_constraintStart_toStartOf="@+id/travel_item_start"
+            app:layout_constraintTop_toBottomOf="@+id/travel_item_start" />
+
+        <TextView
+            android:id="@+id/travel_item_end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:text="Daganzo de Arriba"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/travel_item_icon_end"
+            app:layout_constraintTop_toBottomOf="@+id/travel_item_start_subtitle" />
+
+        <TextView
+            android:id="@+id/travel_item_end_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Madrid"
+            android:textAppearance="@style/TextAppearance.Movetto.Caption"
+            app:layout_constraintStart_toStartOf="@+id/travel_item_end"
+            app:layout_constraintTop_toBottomOf="@+id/travel_item_end" />
+
+        <TextView
+            android:id="@+id/travel_item_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="XXX"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/travel_item_icon_people"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/travel_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="XX/XX/XXXX"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/travel_item_icon_date"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/travel_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="XX:XX"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/travel_item_icon_time"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/travel_item_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/kulim_park_bold"
+            android:gravity="center_vertical"
+            android:text="XXX.XX"
+            android:textAppearance="@style/TextAppearance.Movetto.Headline6"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/travel_item_end_subtitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

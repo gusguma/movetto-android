@@ -23,8 +23,8 @@ public class PartnerRepository extends UserRepository {
 
     public PartnerRepository(RequestQueue requestQueue) {
         super(requestQueue);
-        userDtoMutableLiveData = new MutableLiveData<>();
-        isResponseOk = new MutableLiveData<>();
+        userDtoMutableLiveData = new MutableLiveData<UserDto>();
+        isResponseOk = new MutableLiveData<Boolean>();
     }
 
     public MutableLiveData<UserDto> readPartner(){
@@ -39,6 +39,7 @@ public class PartnerRepository extends UserRepository {
                             userDtoMutableLiveData.setValue(userDto);
                         } catch (IOException e) {
                             e.printStackTrace();
+                            userDtoMutableLiveData.setValue(null);
                         }
                     }
                 },
@@ -46,6 +47,7 @@ public class PartnerRepository extends UserRepository {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
+                        userDtoMutableLiveData.setValue(null);
                     }
                 });
         requestQueue.add(request);

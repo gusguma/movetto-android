@@ -22,7 +22,7 @@ public class ShipmentDetailAdapter extends FragmentStatePagerAdapter {
     private int behavior;
     private Context context;
     private String[] titles;
-    private int shipmentId;
+    private Bundle data;
 
     public ShipmentDetailAdapter(@NonNull FragmentManager fm, int behavior, Context context) {
         super(fm, behavior);
@@ -44,15 +44,15 @@ public class ShipmentDetailAdapter extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 fragment = new ShipmentDetailPackagesFragment();
-                fragment.setArguments(getBundle());
+                fragment.setArguments(data);
                 return fragment;
             case 1:
                 fragment = new ShipmentDetailStartFragment();
-                fragment.setArguments(getBundle());
+                fragment.setArguments(data);
                 return fragment;
             case 2:
                 fragment = new ShipmentDetailEndFragment();
-                fragment.setArguments(getBundle());
+                fragment.setArguments(data);
                 return fragment;
             default:
                 return null;
@@ -64,13 +64,7 @@ public class ShipmentDetailAdapter extends FragmentStatePagerAdapter {
         return behavior;
     }
 
-    public void setShipmentId (int shipmentId){
-        this.shipmentId = shipmentId;
-    }
-
-    private Bundle getBundle(){
-        Bundle bundle = new Bundle();
-        bundle.putInt("shipmentId", shipmentId);
-        return bundle;
+    public void setData (Bundle data){
+        this.data = data;
     }
 }

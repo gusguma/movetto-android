@@ -65,7 +65,8 @@ public class UserCheckDatabaseService extends AsyncTask<String, String, String> 
 
     private void checkUser(){
         String uri = URL_USER_RESOURCE + user.getUid();
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, uri,null,
+        JsonObjectRequest request;
+        request = new JsonObjectRequest(Request.Method.GET, uri,null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -83,10 +84,11 @@ public class UserCheckDatabaseService extends AsyncTask<String, String, String> 
                 System.out.println("Usuario no encontrado " + user.getUid());
                 try {
                     saveUser();
-                } catch (JSONException | JsonProcessingException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
+                } catch (JsonProcessingException e) {
+                    error.printStackTrace();
                 }
-                error.printStackTrace();
             }
         });
         queue.add(request);
