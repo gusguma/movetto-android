@@ -83,7 +83,7 @@ public class ShipmentDetailPackagesFragment extends Fragment {
             public void onChanged(ShipmentDto shipmentDto) {
                 if (shipmentDto != null) {
                     shipment = shipmentDto;
-                    List<PackageDto> packages = new ArrayList<>(shipmentDto.getPackages());
+                    List<PackageDto> packages = new ArrayList<PackageDto>(shipmentDto.getPackages());
                     adapter.setPackages(packages);
                     checkShipmentStatus();
                 }

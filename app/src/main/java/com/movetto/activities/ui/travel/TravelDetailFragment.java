@@ -19,7 +19,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.tabs.TabLayout;
 import com.movetto.R;
-import com.movetto.adapters.ShipmentDetailAdapter;
 import com.movetto.adapters.TravelDetailAdapter;
 import com.movetto.dtos.TravelDto;
 import com.movetto.dtos.TravelStatus;
@@ -185,7 +184,9 @@ public class TravelDetailFragment extends Fragment implements TabLayout.OnTabSel
         if (v.getId() == R.id.travel_detail_delete_button) {
             try {
                 setDeleteButtonListener();
-            } catch (JsonProcessingException | JSONException e) {
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            } catch (JSONException e){
                 e.printStackTrace();
             }
         }

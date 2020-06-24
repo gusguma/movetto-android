@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.movetto.R;
 import com.movetto.dtos.CardDto;
-import com.movetto.dtos.PackageDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.view_models.CardViewModel;
@@ -172,14 +171,18 @@ public class WalletCardAddUpdateFragment extends Fragment
         if (v.getId() == buttonSave.getId()) {
             try {
                 setButtonSaveListener();
-            } catch (JsonProcessingException | JSONException e) {
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            } catch ( JSONException e) {
                 e.printStackTrace();
             }
         }
         if (v.getId() == buttonDelete.getId()) {
             try {
                 setButtonDeleteListener();
-            } catch (JsonProcessingException | JSONException e) {
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            } catch ( JSONException e) {
                 e.printStackTrace();
             }
         }

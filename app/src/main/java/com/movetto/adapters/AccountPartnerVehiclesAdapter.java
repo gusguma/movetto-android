@@ -22,7 +22,7 @@ import java.util.List;
 public class AccountPartnerVehiclesAdapter extends
         RecyclerView.Adapter<AccountPartnerVehiclesAdapter.VehicleHolder> {
 
-    private List<VehicleDto> vehicles = new ArrayList<>();
+    private List<VehicleDto> vehicles = new ArrayList<VehicleDto>();
     private OnItemClickListener listener;
 
     @NonNull

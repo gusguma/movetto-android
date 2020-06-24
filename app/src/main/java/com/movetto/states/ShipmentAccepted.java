@@ -2,9 +2,6 @@ package com.movetto.states;
 
 import android.view.View;
 
-import androidx.navigation.Navigation;
-
-import com.movetto.R;
 import com.movetto.dtos.ShipmentStatus;
 
 public class ShipmentAccepted extends ShipmentState {

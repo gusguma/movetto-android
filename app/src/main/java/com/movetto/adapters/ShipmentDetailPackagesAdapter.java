@@ -22,7 +22,7 @@ public class ShipmentDetailPackagesAdapter
 
     private static final int PACKAGE_HASH = 273;
 
-    private List<PackageDto> packages = new ArrayList<>();
+    private List<PackageDto> packages = new ArrayList<PackageDto>();
     private OnItemClickListener listener;
 
     @NonNull

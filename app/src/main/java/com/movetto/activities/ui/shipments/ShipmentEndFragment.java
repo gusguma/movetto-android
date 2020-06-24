@@ -3,7 +3,6 @@ package com.movetto.activities.ui.shipments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -17,12 +16,9 @@ import com.movetto.R;
 import com.movetto.dtos.DirectionDto;
 import com.movetto.dtos.DirectionType;
 import com.movetto.dtos.Role;
-import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;
-import com.movetto.view_models.CustomerViewModel;
-import com.movetto.view_models.UserViewModel;
 
 public class ShipmentEndFragment extends Fragment
         implements View.OnFocusChangeListener, View.OnClickListener{

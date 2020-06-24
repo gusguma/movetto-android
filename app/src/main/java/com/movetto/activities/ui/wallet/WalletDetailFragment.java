@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.movetto.R;
-import com.movetto.adapters.ShipmentDetailAdapter;
 import com.movetto.adapters.WalletDetailAdapter;
 import com.movetto.dtos.WalletDto;
 import com.movetto.view_models.WalletViewModel;

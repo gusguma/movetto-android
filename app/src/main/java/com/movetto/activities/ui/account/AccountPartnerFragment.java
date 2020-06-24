@@ -3,21 +3,16 @@ package com.movetto.activities.ui.account;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.google.android.material.tabs.TabLayout;
 
 import com.movetto.R;
 import com.movetto.adapters.AccountPartnerAdapter;
-import com.movetto.dtos.DirectionDto;
-import com.movetto.dtos.UserDto;
-import com.movetto.view_models.PartnerViewModel;
 
 public class AccountPartnerFragment extends Fragment
         implements TabLayout.OnTabSelectedListener,

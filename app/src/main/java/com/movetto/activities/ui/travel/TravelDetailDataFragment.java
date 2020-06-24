@@ -21,21 +21,15 @@ import android.widget.Toast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.movetto.R;
-import com.movetto.dtos.DirectionDto;
 import com.movetto.dtos.TravelDto;
 import com.movetto.dtos.TravelStatus;
 import com.movetto.dtos.validations.ErrorStrings;
-import com.movetto.view_models.CustomerViewModel;
 import com.movetto.view_models.TravelViewModel;
 
 import org.json.JSONException;
 
 import java.time.LocalDateTime;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAmount;
-import java.time.temporal.TemporalUnit;
 import java.util.Calendar;
-import java.util.List;
 
 public class TravelDetailDataFragment extends Fragment
         implements View.OnFocusChangeListener, View.OnClickListener{
@@ -245,7 +239,9 @@ public class TravelDetailDataFragment extends Fragment
                     travel = travelDto;
                     try {
                         updateTravel();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 } else {

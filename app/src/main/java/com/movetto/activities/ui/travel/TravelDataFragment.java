@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.service.notification.ZenPolicy;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.movetto.R;
 import com.movetto.dtos.DirectionDto;
-import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.TravelDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.validations.ErrorStrings;
@@ -32,11 +30,8 @@ import com.movetto.view_models.TravelViewModel;
 
 import org.json.JSONException;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.Temporal;
 import java.util.Calendar;
-import java.util.Timer;
 
 public class TravelDataFragment extends Fragment
         implements View.OnFocusChangeListener, View.OnClickListener{
@@ -229,7 +224,9 @@ public class TravelDataFragment extends Fragment
                     travel = travelDto;
                     try {
                         saveTravel();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 } else {

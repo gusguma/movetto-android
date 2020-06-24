@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.firebase.ui.auth.ui.ProgressView;
 import com.movetto.R;
 import com.movetto.adapters.NewsAdapter;
 import com.movetto.dtos.NewsDto;

@@ -22,7 +22,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.movetto.R;
 import com.movetto.adapters.ServiceActionSpinnerAdapter;
 import com.movetto.dtos.ChargeDto;
-import com.movetto.dtos.DepositDto;
 import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.ShipmentStatus;
 import com.movetto.dtos.TransactionDto;
@@ -118,7 +117,7 @@ public class ServiceAvailableActionFragment extends Fragment
     }
 
     private void setAdapter(){
-        List<VehicleDto> vehicles = new ArrayList<>(partner.getPartner().getVehicles());
+        List<VehicleDto> vehicles = new ArrayList<VehicleDto>(partner.getPartner().getVehicles());
         adapter = new ServiceActionSpinnerAdapter(getContext());
         adapter.setVehicles(vehicles);
         spinnerVehicles.setAdapter(adapter);
@@ -281,7 +280,9 @@ public class ServiceAvailableActionFragment extends Fragment
                                 ,"Verifique los datos del formulario",Toast.LENGTH_LONG).show();
                         v.setEnabled(true);
                     }
-                } catch (JsonProcessingException | JSONException e) {
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -380,7 +381,9 @@ public class ServiceAvailableActionFragment extends Fragment
                     wallet = walletDto;
                     try {
                         checkServiceToUpdate();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
@@ -396,7 +399,9 @@ public class ServiceAvailableActionFragment extends Fragment
                     wallet = walletDto;
                     try {
                         checkServiceToUpdate();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 }
@@ -432,12 +437,10 @@ public class ServiceAvailableActionFragment extends Fragment
 
     private void checkServiceNewStatus() {
         if (data.getSerializable("newStatus") == ShipmentStatus.PAID) {
-            System.out.println("ha entrado en shipment status paid");
             shipment.setPartner(null);
             shipment.setVehicle(null);
         }
         if (data.getSerializable("newStatus") == TravelStatus.PAID) {
-            System.out.println("ha entrado en travel status paid");
             travel.setPartner(null);
             travel.setVehicle(null);
         }

@@ -24,8 +24,8 @@ public class CustomerRepository extends UserRepository {
 
     public CustomerRepository(RequestQueue requestQueue) {
         super(requestQueue);
-        userDtoMutableLiveData = new MutableLiveData<>();
-        isResponseOk = new MutableLiveData<>();
+        userDtoMutableLiveData = new MutableLiveData<UserDto>();
+        isResponseOk = new MutableLiveData<Boolean>();
     }
 
     public MutableLiveData<UserDto> readCustomer(){

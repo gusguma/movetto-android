@@ -30,7 +30,7 @@ public class DistanceMatrixService {
 
     public DistanceMatrixService(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
-        this.travel = new MutableLiveData<>();
+        this.travel = new MutableLiveData<TravelDto>();
         this.mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }

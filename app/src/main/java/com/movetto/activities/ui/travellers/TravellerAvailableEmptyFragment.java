@@ -82,7 +82,6 @@ public class TravellerAvailableEmptyFragment extends Fragment {
                     if (count == 1) {
                         readTravelsByPartner();
                     }
-                    readTravelsByPartner();
                 } else {
                     setPartnerEmpty();
                 }
@@ -111,7 +110,10 @@ public class TravellerAvailableEmptyFragment extends Fragment {
             @Override
             public void onChanged(List<TravelDto> travelDtos) {
                 if (travelDtos.isEmpty()){
-                    progressBar.setVisibility(View.GONE);
+                    count += 1;
+                    if (count > 3) {
+                        progressBar.setVisibility(View.GONE);
+                    }
                 } else {
                     getTravelListFragment();
                 }

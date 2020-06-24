@@ -16,16 +16,12 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.movetto.R;
-import com.movetto.adapters.WalletDetailCardAdapter;
 import com.movetto.adapters.WalletDetailTransactionAdapter;
-import com.movetto.dtos.CardDto;
 import com.movetto.dtos.TransactionDto;
 import com.movetto.dtos.WalletDto;
-import com.movetto.view_models.CardViewModel;
 import com.movetto.view_models.WalletViewModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class WalletDetailTransactionsFragment extends Fragment {
@@ -96,7 +92,7 @@ public class WalletDetailTransactionsFragment extends Fragment {
             @Override
             public void onChanged(WalletDto walletDto) {
                 if (walletDto != null) {
-                    List<TransactionDto> transactions = new ArrayList<>(walletDto.getTransactions());
+                    List<TransactionDto> transactions = new ArrayList<TransactionDto>(walletDto.getTransactions());
                     adapter.setTransactions(transactions);
                     transactionEmptyText.setVisibility(View.GONE);
                 }

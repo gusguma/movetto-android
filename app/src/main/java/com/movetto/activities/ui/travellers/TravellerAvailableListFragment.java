@@ -12,9 +12,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 import com.movetto.R;
-import com.movetto.adapters.ShipmentAvailableListAdapter;
 import com.movetto.adapters.TravelAvailableListAdapter;
-import com.movetto.view_models.ShipmentViewModel;
 import com.movetto.view_models.TravelViewModel;
 
 public class TravellerAvailableListFragment extends Fragment

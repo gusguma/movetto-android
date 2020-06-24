@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.ToDoubleFunction;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -50,7 +51,7 @@ public class ShipmentDto extends ServiceDto implements Serializable {
         this.minimumPrice = 5.00;
         this.status = ShipmentStatus.SAVED;
         this.shipmentDatetimeLimit = LocalDateTime.now().plusDays(5);
-        this.packages = new HashSet<>();
+        this.packages = new HashSet<PackageDto>();
         setShipmentPrice();
     }
 
@@ -63,7 +64,12 @@ public class ShipmentDto extends ServiceDto implements Serializable {
     }
     public void setShipmentPrice(){
         priceShipment = this.getMinimumPrice() + this.getPackages().stream()
-                .mapToDouble(PackageDto::getPricePackage)
+                .mapToDouble(new ToDoubleFunction<PackageDto>() {
+                    @Override
+                    public double applyAsDouble(PackageDto value) {
+                        return value.getPricePackage();
+                    }
+                })
                 .sum();
     }
     public double getMinimumPrice() {

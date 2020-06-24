@@ -15,10 +15,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.movetto.R;
-import com.movetto.dtos.CustomerDto;
 import com.movetto.dtos.DirectionDto;
 import com.movetto.dtos.DirectionType;
-import com.movetto.dtos.PartnerDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;

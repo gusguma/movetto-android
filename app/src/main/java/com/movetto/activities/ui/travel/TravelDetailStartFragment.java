@@ -17,12 +17,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.movetto.R;
 import com.movetto.dtos.DirectionDto;
-import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.TravelDto;
 import com.movetto.dtos.TravelStatus;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;
-import com.movetto.view_models.ShipmentViewModel;
 import com.movetto.view_models.TravelViewModel;
 
 import org.json.JSONException;
@@ -186,7 +184,9 @@ public class TravelDetailStartFragment extends Fragment
                     travel = travelDto;
                     try {
                         updateTravel();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 } else {

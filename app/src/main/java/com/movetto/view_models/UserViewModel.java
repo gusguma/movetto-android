@@ -25,7 +25,7 @@ public class UserViewModel extends AndroidViewModel {
         RequestQueue requestQueue = Volley
                 .newRequestQueue(getApplication().getApplicationContext());
         userRepository = new CustomerRepository(requestQueue);
-        userDto = new MutableLiveData<>();
+        userDto = new MutableLiveData<UserDto>();
     }
 
     public MutableLiveData<UserDto> readUser(){

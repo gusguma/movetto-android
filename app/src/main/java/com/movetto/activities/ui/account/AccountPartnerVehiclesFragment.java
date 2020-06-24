@@ -2,19 +2,16 @@ package com.movetto.activities.ui.account;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.movetto.R;
@@ -23,8 +20,6 @@ import com.movetto.dtos.PartnerDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.VehicleDto;
 import com.movetto.view_models.PartnerViewModel;
-import com.movetto.view_models.UserViewModel;
-import com.movetto.view_models.VehicleViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +86,7 @@ public class AccountPartnerVehiclesFragment extends Fragment {
             public void onChanged(UserDto userDto) {
                 userOutputDto = userDto;
                 partnerDto = userDto.getPartner();
-                List<VehicleDto> vehicles = new ArrayList<>(partnerDto.getVehicles());
+                List<VehicleDto> vehicles = new ArrayList<VehicleDto>(partnerDto.getVehicles());
                 accountPartnerVehiclesAdapter.setVehicles(vehicles);
             }
         });

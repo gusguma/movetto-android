@@ -25,7 +25,7 @@ public class ServiceActionSpinnerAdapter extends BaseAdapter {
     private static final String VAN = "Furgoneta";
 
     private VehicleHolder holder;
-    private List<VehicleDto> vehicles = new ArrayList<>();
+    private List<VehicleDto> vehicles = new ArrayList<VehicleDto>();
     private VehicleDto vehicle;
     private Context context;
 

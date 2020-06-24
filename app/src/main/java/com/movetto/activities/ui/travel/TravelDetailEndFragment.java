@@ -184,7 +184,9 @@ public class TravelDetailEndFragment extends Fragment
                     travel = travelDto;
                     try {
                         updateTravel();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 } else {

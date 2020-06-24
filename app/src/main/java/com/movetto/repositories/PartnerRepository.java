@@ -23,8 +23,8 @@ public class PartnerRepository extends UserRepository {
 
     public PartnerRepository(RequestQueue requestQueue) {
         super(requestQueue);
-        userDtoMutableLiveData = new MutableLiveData<>();
-        isResponseOk = new MutableLiveData<>();
+        userDtoMutableLiveData = new MutableLiveData<UserDto>();
+        isResponseOk = new MutableLiveData<Boolean>();
     }
 
     public MutableLiveData<UserDto> readPartner(){

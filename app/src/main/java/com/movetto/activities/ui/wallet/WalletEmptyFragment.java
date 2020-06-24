@@ -6,9 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -18,15 +16,11 @@ import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.activities.MainActivity;
-import com.movetto.activities.ui.shipments.ShipmentsEmptyFragment;
-import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.dtos.WalletDto;
 import com.movetto.view_models.CustomerViewModel;
-import com.movetto.view_models.ShipmentViewModel;
 import com.movetto.view_models.WalletViewModel;
 
-import java.util.List;
 import java.util.Objects;
 
 public class WalletEmptyFragment extends Fragment {

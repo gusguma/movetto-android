@@ -156,7 +156,9 @@ public class ServicePaymentDetailFragment extends Fragment {
                 if (wallet != null) {
                     try {
                         checkService();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 } else {
@@ -204,7 +206,9 @@ public class ServicePaymentDetailFragment extends Fragment {
                 if (shipmentDto != null) {
                     try {
                         updateWallet();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 } else {
@@ -221,7 +225,9 @@ public class ServicePaymentDetailFragment extends Fragment {
                 if (travelDto != null) {
                     try {
                         updateWallet();
-                    } catch (JsonProcessingException | JSONException e) {
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e){
                         e.printStackTrace();
                     }
                 } else {

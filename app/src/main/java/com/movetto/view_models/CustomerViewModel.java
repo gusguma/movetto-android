@@ -21,8 +21,8 @@ public class CustomerViewModel extends UserViewModel {
         RequestQueue requestQueue = Volley
                 .newRequestQueue(getApplication().getApplicationContext());
         customerRepository = new CustomerRepository(requestQueue);
-        customer = new MutableLiveData<>();
-        response = new MutableLiveData<>();
+        customer = new MutableLiveData<UserDto>();
+        response = new MutableLiveData<Boolean>();
     }
 
     public MutableLiveData<UserDto> readCustomer(){

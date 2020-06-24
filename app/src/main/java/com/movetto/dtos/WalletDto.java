@@ -46,7 +46,7 @@ public class WalletDto {
     public WalletDto (UserDto user) {
         this();
         this.user = user;
-        this.transactions = new HashSet<>();
+        this.transactions = new HashSet<TransactionDto>();
     }
 
     public int getId() {

@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.movetto.R;
 import com.movetto.adapters.TravelListAdapter;
 import com.movetto.dtos.TravelDto;
-import com.movetto.view_models.ShipmentViewModel;
 import com.movetto.view_models.TravelViewModel;
 
 import java.util.List;

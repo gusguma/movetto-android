@@ -9,13 +9,11 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.movetto.R;
-import com.movetto.dtos.CustomerDto;
 import com.movetto.dtos.UserDto;
 import com.movetto.view_models.CustomerViewModel;
 import com.movetto.view_models.PartnerViewModel;

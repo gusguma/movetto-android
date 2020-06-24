@@ -26,7 +26,6 @@ import com.movetto.view_models.UserViewModel;
 
 import org.json.JSONException;
 
-import java.util.Arrays;
 import java.util.Set;
 
 public class ShipmentAddUpdatePackageFragment extends Fragment
@@ -227,14 +226,18 @@ public class ShipmentAddUpdatePackageFragment extends Fragment
         if (v.getId() == buttonSave.getId()) {
             try {
                 setButtonSaveListener();
-            } catch (JsonProcessingException | JSONException e) {
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         if (v.getId() == buttonDelete.getId()) {
             try {
                 setButtonDeleteListener();
-            } catch (JsonProcessingException | JSONException e) {
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }

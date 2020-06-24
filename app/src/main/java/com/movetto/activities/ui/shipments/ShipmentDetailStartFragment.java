@@ -18,7 +18,6 @@ import com.movetto.R;
 import com.movetto.dtos.DirectionDto;
 import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.ShipmentStatus;
-import com.movetto.dtos.TravelStatus;
 import com.movetto.dtos.validations.ErrorStrings;
 import com.movetto.dtos.validations.Validation;
 import com.movetto.view_models.ShipmentViewModel;

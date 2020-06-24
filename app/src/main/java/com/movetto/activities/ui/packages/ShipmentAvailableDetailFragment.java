@@ -28,6 +28,7 @@ import com.movetto.view_models.ShipmentViewModel;
 import java.text.DecimalFormat;
 import java.util.Formatter;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class ShipmentAvailableDetailFragment extends Fragment {
 
@@ -141,7 +142,12 @@ public class ShipmentAvailableDetailFragment extends Fragment {
 
     private void calculateShipmentPrice(){
         Set<PackageDto> packages = shipment.getPackages();
-        packages.forEach(PackageDto::setPackagePrice);
+        packages.forEach(new Consumer<PackageDto>() {
+            @Override
+            public void accept(PackageDto packageDto) {
+                packageDto.setPackagePrice();
+            }
+        });
         shipment.setShipmentPrice();
     }
 

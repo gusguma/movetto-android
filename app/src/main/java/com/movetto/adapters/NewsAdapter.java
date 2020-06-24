@@ -51,7 +51,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         notifyDataSetChanged();
     }
 
-    public void setNewsImage(ImageView image, String url ){
+    private void setNewsImage(ImageView image, String url){
         Picasso.get().load(url).into(image);
     }
 

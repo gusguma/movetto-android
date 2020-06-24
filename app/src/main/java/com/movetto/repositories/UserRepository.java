@@ -37,8 +37,8 @@ public class UserRepository {
         this.user = FirebaseAuth.getInstance().getCurrentUser();
         this.requestQueue = requestQueue;
         this.mapper = new ObjectMapper();
-        this.isResponseOk = new MutableLiveData<>();
-        this.userDtoMutable = new MutableLiveData<>();
+        this.isResponseOk = new MutableLiveData<Boolean>();
+        this.userDtoMutable = new MutableLiveData<UserDto>();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 

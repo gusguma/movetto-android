@@ -31,6 +31,7 @@ import org.json.JSONException;
 import java.text.DecimalFormat;
 import java.util.Formatter;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabSelectedListener,
         View.OnClickListener {
@@ -132,7 +133,12 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
 
     private void calculateShipmentPrice(){
         Set<PackageDto> packages = shipment.getPackages();
-        packages.forEach(PackageDto::setPackagePrice);
+        packages.forEach(new Consumer<PackageDto>() {
+            @Override
+            public void accept(PackageDto packageDto) {
+                packageDto.setPackagePrice();
+            }
+        });
         shipment.setShipmentPrice();
     }
 
@@ -200,7 +206,9 @@ public class ShipmentDetailFragment extends Fragment implements TabLayout.OnTabS
         if (v.getId() == R.id.shipment_detail_delete_button) {
             try {
                 setDeleteButtonListener();
-            } catch (JsonProcessingException | JSONException e) {
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }

@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.RenderProcessGoneDetail;
 import android.widget.Button;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -18,14 +16,11 @@ import androidx.navigation.Navigation;
 
 import com.movetto.R;
 import com.movetto.activities.MainActivity;
-import com.movetto.activities.ui.shipments.ShipmentsEmptyFragment;
 import com.movetto.dtos.ShipmentDto;
 import com.movetto.dtos.UserDto;
-import com.movetto.view_models.CustomerViewModel;
 import com.movetto.view_models.PartnerViewModel;
 import com.movetto.view_models.ShipmentViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -90,7 +85,6 @@ public class ShipmentsAvailableEmptyFragment extends Fragment {
                     }
                 } else {
                     setPartnerEmpty();
-
                 }
             }
         });
@@ -117,7 +111,10 @@ public class ShipmentsAvailableEmptyFragment extends Fragment {
             @Override
             public void onChanged(List<ShipmentDto> shipmentDtos) {
                 if (shipmentDtos.isEmpty()){
-                    progressBar.setVisibility(View.GONE);
+                    count += 1;
+                    if (count > 3) {
+                        progressBar.setVisibility(View.GONE);
+                    }
                 } else {
                     getShipmentListFragment();
                 }
